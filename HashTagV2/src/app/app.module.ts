@@ -8,8 +8,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { RegisComponent } from './regis/regis.component';
+import { Routes,RouterModule } from "@angular/router"
 
-
+const appRoutes: Routes = [
+  {path: '', component: LoginComponent},
+  {path: 'Register', component: RegisComponent},
+  {path: 'Homepage', component: HomeComponent},
+];
 
 @NgModule({
   declarations: [
@@ -17,12 +23,14 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RegisComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
