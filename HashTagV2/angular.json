@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "HashTagV2"
+  "defaultProject": "HashTagV2",
+  "cli": {
+    "analytics": "b5ed49b1-3997-4e31-8ecf-b61dbc31f4fb"
+  }
 }
