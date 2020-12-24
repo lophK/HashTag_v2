@@ -10,13 +10,19 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RegisComponent } from './regis/regis.component';
 import { Routes,RouterModule } from "@angular/router";
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'Register', component: RegisComponent},
   {path: 'Homepage', component: HomeComponent},
+<<<<<<< HEAD
   {path: 'Profile', component: ProfileComponent},
+=======
+   {path: 'login', component: LoginComponent},
+>>>>>>> 470f7deeaab924b6c38a7dabdc3c2684d5573db3
 ];
 
 @NgModule({
@@ -33,6 +39,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
