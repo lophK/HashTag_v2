@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>User-List</title>
+</head>
+<body>
+    <div class="table-data">
+<h2>show all user List</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>first Name</th>
+            <th>last Name</th>
+            <th>username</th>
+            <th>password</th>
+            <th>tel</th>
+            <th>address</th>
+            <th>birthday</th>
+        </tr>
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.first_name %></td>
+            <td><%=data.last_name %></td>
+            <td><%=data.username %></td>
+            <td><%=data.password %></td>
+            <td><%=data.tel_phone %></td>
+            <td><%=data.address %></td>
+            <td><%=data.birthday %></td>
+            <!-- <td><a href="/users/edit/<%=data.id%>">Edit</a></td> -->
+            <!-- <td><a href="/users/delete/<%=data.id%>">Delete</a></td> -->
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>
+<style> 
+    table, td, th { 
+     border: 1px solid #ddd; 
+     text-align: left; 
+    } 
+    table { 
+     border-collapse: collapse; 
+     width: 50%; 
+    } 
+    .table-data{ 
+     position: relative; 
+     left:150px; 
+     top:100px; 
+    } 
+    th, td { 
+     padding: 15px; 
+    } 
+    </style>
