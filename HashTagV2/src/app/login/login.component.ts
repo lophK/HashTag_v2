@@ -7,11 +7,10 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
   hasttag = faHashtag;
-
-  public username: any;
-  public password: any;
+  username = "";
+  password = "";
   constructor(private http:HttpClient) {
    
    }
@@ -19,12 +18,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
-
     let json  ={username : this.username, password : this.password};
-    console.log(this.password);
-    this.http.post('http://localhost:3120/login/auth',JSON.stringify(json)).subscribe(response=>{
-      console.log("OK");
-    } 
-    );
+    console.log(json);
+    // this.http.post('http://localhost:3120/login/auth',JSON.stringify(json)).subscribe(response=>{
+    //   console.log("OK");
+    // } 
+    // );
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {faEdit} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-profile',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+pen = faEdit
   constructor() { }
 
   ngOnInit(): void {
