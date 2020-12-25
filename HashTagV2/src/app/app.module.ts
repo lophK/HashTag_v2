@@ -12,7 +12,8 @@ import { ProfileComponent } from './profile/profile.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
-import { ViralComponent } from './viral/viral.component'
+import { ViralComponent } from './viral/viral.component';
+import { CommentComponent } from './comment/comment.component'
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ViralComponent } from './viral/viral.component'
     FooterComponent,
     RegisComponent,
     ProfileComponent,
-    ViralComponent
+    ViralComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
