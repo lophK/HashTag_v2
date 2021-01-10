@@ -7,7 +7,10 @@ import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 })
 export class RegisComponent implements OnInit {
   hasttag = faHashtag
-  constructor() { }
+  siteKey: string;
+  constructor() {
+    this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
+  }
 
   ngOnInit(): void {
   }

@@ -1,54 +1,52 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form">
+            <div class="login100-form validate-form">
                 <span class="login100-form-logo">
                     <fa-icon [icon] = "hasttag"></fa-icon>
                 </span>
 
                 <span class="login100-form-title p-b-34 p-t-27">
-                    Register
+                    #HashTag
                 </span>
-
-                <div class="wrap-input100 validate-input" data-validate = "Enter fristname">
-                    <input class="input100" type="text" name="username" placeholder="Fristname">
+                    
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="text" name="" id="" placeholder="first name">
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Enter lastname">
-                    <input class="input100" type="text" name="username" placeholder="Lastname">
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="text" name="" id="" placeholder="last name">
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                    <input class="input100" type="text" name="username" placeholder="Username">
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="email" name="" id="" placeholder="email">
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <input class="input100" type="password" name="pass" placeholder="Password">
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="text" name="" id="" placeholder="tell">
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Enter tell">
-                    <input class="input100" type="text" name="username" placeholder="Phone number">
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="text" name="" id="" placeholder="addess">
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Enter address">
-                    <input class="input100" type="text" name="username" placeholder="Address">
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="text" name="" id="" placeholder="email">
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Enter birthday">
-                    <input class="input100" type="date" name="pass" placeholder="Birthday">
+                <div class="wrap-input100 validate-input" >
+                    <input class="input100" type="password" name="" id="" placeholder="Password" [(ngModel)]="password">
                 </div>
-                <br>
+                <ngx-recaptcha2 #captchaElem
+                    [siteKey]="siteKey">
+                </ngx-recaptcha2>
+<br>
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn" routerLink = "">
                         Register
-                    </button>
+                     </button>
                 </div>
-                <div class="text-center p-t-10">
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-
-
-<div id="dropDownSelect1"></div>

@@ -15,7 +15,7 @@ import { NgModule } from '@angular/core';
 import { ViralComponent } from './viral/viral.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditPComponent } from './edit-p/edit-p.component';
-
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { EditPComponent } from './edit-p/edit-p.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxCaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
