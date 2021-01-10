@@ -1,63 +1,88 @@
 <app-header></app-header>
 <br>
 <article class="special">
-    <div class="row text-center">
-        <article class="col">
+    <div class="row justify-content-md-center">
+        <article class="col-sm-3 text-center">
             <img src="../../assets/images/cat1.jpg" class="rounded " alt="Cinque Terre" width="400" height="500">
             <br>
             <br>
             <header>
                 <h3>เคยสงสัยมั้ยคะ? ที่เลี้ยงอยู่แมวหรือหมู!! ^^</h3>
             </header>
+            <div class="row">
+              <div class="col text-left">
+                  <button class="btn brorder-2 border-warning"><fa-icon [icon] = "like"></fa-icon> Like</button>
+              </div>
+              <div class="col text-center">
+                  <button class="btn brorder-2 border-warning" routerLink = "/Comment"><fa-icon [icon] = "comment"></fa-icon> Comment</button>
+              </div>
+              <div class="col text-right">
+                  <button class="btn brorder-2 border-warning"><fa-icon [icon] = "share"></fa-icon> share</button>
+              </div>
+            </div>
         </article>
     </div>
     <hr/>
 </article>
 
 <div class="container mt-3">
-    <div class="media border p-3">
-      <img src="../../assets/images/cat1.jpg" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-      <div class="media-body">
-        <h4>John Doe <small><i>16.00 4/12/2543</i></small></h4>
-        <p>น่ารักดีครับ</p>
-        <p>#แมวมิวซ์ #แมวหาบ้าน #แมวโง่ของพี่แมน  #แมวเป็นสัตว์ปัญญาอ่อน #แคปชั่นแมว #แมวเป็นสัตว์ที่คิดจะครองโลก</p>
+  <div class="container bootstrap snippets bootdey">
+    <div class="row">
+		<div class="col-md-12">
+		    <div class="blog-comment">
+				<h3 class="text-success">Comments</h3>
+                <hr/>
+				<ul class="comments">
+				<li class="clearfix">
+				  <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+				  <div class="post-comments">
+				      <p class="meta">Dec 18, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+				      <p>
+				          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				          Etiam a sapien odio, sit amet
+				      </p>
+				  </div>
+				</li>
+				<li class="clearfix">
+				  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+				  <div class="post-comments">
+				      <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+				      <p>
+				          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				          Etiam a sapien odio, sit amet
+				      </p>
+				  </div>
+        </li>
+        <li class="clearfix">
+				  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+				  <div class="post-comments">
+				      <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+				      <p>
+				          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				          Etiam a sapien odio, sit amet
+				      </p>
+				  </div>
+        </li>
+        <li class="clearfix">
+				  <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+				  <div class="post-comments">
+				      <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+				      <p>
+				          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				          Etiam a sapien odio, sit amet
+				      </p>
+				  </div>
+        </li>
+        </ul>
+        </div>
       </div>
     </div>
-    <hr>
-    <div class="media border p-3">
-        <img src="../../assets/images/cat3.jpg" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-        <div class="media-body">
-            <h4>John Doe <small><i>16.00 4/12/2543</i></small></h4>
-            <p>น่ารักดีครับ</p>
-            <p>#แมวมิวซ์ #แมวหาบ้าน #แมวโง่ของพี่แมน  #แมวเป็นสัตว์ปัญญาอ่อน #แคปชั่นแมว #แมวเป็นสัตว์ที่คิดจะครองโลก</p>
-        </div>
-      </div>
-      <hr>
-      <div class="media border p-3">
-        <img src="../../assets/images/cat4.jpg" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-        <div class="media-body">
-            <h4>John Doe <small><i>16.00 4/12/2543</i></small></h4>
-            <p>น่ารักดีครับ</p>
-            <p>#แมวมิวซ์ #แมวหาบ้าน #แมวโง่ของพี่แมน  #แมวเป็นสัตว์ปัญญาอ่อน #แคปชั่นแมว #แมวเป็นสัตว์ที่คิดจะครองโลก</p>
-        </div>
-      </div>
-      <hr>
-      <!-- <div class="media border p-3">
-        <img src="../../assets/images/cat5.jpg" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-        <div class="media-body">
-            <h4>John Doe <small><i>16.00 4/12/2543</i></small></h4>
-            <p>น่ารักดีครับ</p>
-            <p>#แมวมิวซ์ #แมวหาบ้าน #แมวโง่ของพี่แมน  #แมวเป็นสัตว์ปัญญาอ่อน #แคปชั่นแมว #แมวเป็นสัตว์ที่คิดจะครองโลก</p>
-        </div>
-      </div>
-      <hr> -->
-      
-    <br>
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Comment">
-      <div class="input-group-append">
-        <button class="btn btn-success" type="submit"><fa-icon [icon] = "send"></fa-icon></button>  
-       </div>
+  </div>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Comment">
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit"><fa-icon [icon] = "send"></fa-icon></button>  
     </div>
+  </div>
   </div>
   <app-footer></app-footer>

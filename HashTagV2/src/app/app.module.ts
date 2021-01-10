@@ -13,7 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { ViralComponent } from './viral/viral.component';
-import { CommentComponent } from './comment/comment.component'
+import { CommentComponent } from './comment/comment.component';
+import { EditPComponent } from './edit-p/edit-p.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { CommentComponent } from './comment/comment.component'
     RegisComponent,
     ProfileComponent,
     ViralComponent,
-    CommentComponent
+    CommentComponent,
+    EditPComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ProfileComponent } from './profile/profile.component';
 import { ViralComponent } from './viral/viral.component';
 import { CommentComponent } from './comment/comment.component';
+import { EditPComponent } from './edit-p/edit-p.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'Homepage', component: HomeComponent},
   {path: 'Profile', component: ProfileComponent},
   {path: 'Viral', component: ViralComponent},
-  {path: 'Comment', component: CommentComponent}
+  {path: 'Comment', component: CommentComponent},
+  {path: 'EditP', component: EditPComponent}
 ];
 
 @NgModule({
