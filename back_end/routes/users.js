@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var db=require('../condb');
+var Password = require("node-php-password");
+const { eco } = require('consolidate');
+
+
 // another routes also appear here
 // this script to fetch data from MySQL databse table
 router.get('/user-list', function(req, res, next) {
