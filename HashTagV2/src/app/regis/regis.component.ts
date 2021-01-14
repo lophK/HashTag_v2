@@ -18,9 +18,9 @@ export class RegisComponent implements OnInit {
   tel_phone= "";
   address= "";
   birthday= "";
-  // siteKey: string;
+  siteKey: string;
   constructor(private http:HttpClient , private router_:Router) {
-    // this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
+    this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
   }
   // private handleError (error: Response | any) {
   //   //Your other codes    
