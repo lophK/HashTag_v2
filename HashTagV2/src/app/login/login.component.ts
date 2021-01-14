@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class LoginComponent implements OnInit{
   hasttag = faHashtag;
-  username = "";
+  email = "";
   password = "";
   constructor(private http:HttpClient , private router_:Router) {
    
@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
   }
   async login(){
-    let json  ={username : this.username, password : this.password};
-    console.log(this.username);
+    let json  ={email : this.email, password : this.password};
+    console.log(this.email);
     console.log(this.password);
     console.log(json);//hashtagbe.comsciproject.com
     await this.http.post('http://localhost:3120/login/auth',(json)).subscribe(response=>{

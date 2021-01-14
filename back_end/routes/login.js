@@ -42,12 +42,12 @@ var router = express();
 //   })
 // });
 router.post('/auth', (req, res) => {
-  var username = req.body.username
+  var email = req.body.email
   var password = req.body.password
-  console.log(username);
+  console.log(email);
     console.log(password);
-  var GRAB_USER = `SELECT * FROM account_user WHERE username = ?`
-  db.query(GRAB_USER, username, (err, result) => {
+  var GRAB_USER = `SELECT * FROM account_user WHERE email = ?`
+  db.query(GRAB_USER, email, (err, result) => {
     if (err) {
         res.send('username  not found')
     } 

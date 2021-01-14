@@ -27,12 +27,12 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Methods", 'GET,POST,PUT,DELETE,PATCH,OPTIONS');
   next();
 });
-app.use(session({
-  secret: '161042',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 60000 }
-}))
+// app.use(session({
+//   secret: '161042',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { maxAge: 60000 }
+// }))
 
 app.use(cors());
 app.use(flash());
@@ -40,7 +40,7 @@ app.use(expressValidator());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
+// app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(bodyParser.urlencoded({ extended: true })); 
 

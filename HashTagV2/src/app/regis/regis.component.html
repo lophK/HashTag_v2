@@ -11,38 +11,40 @@
                 </span>
                     
                 <div class="wrap-input100 validate-input"  >
-                    <input class="input100" type="text" name="" id="" placeholder="first name">
+                    <input class="input100" type="text" name="" id="" placeholder="first name" [(ngModel)]="first_name">
                 </div>
 
                 <div class="wrap-input100 validate-input"  >
-                    <input class="input100" type="text" name="" id="" placeholder="last name">
+                    <input class="input100" type="text" name="" id="" placeholder="last name" [(ngModel)]="last_name">
                 </div>
 
                 <div class="wrap-input100 validate-input"  >
-                    <input class="input100" type="email" name="" id="" placeholder="email">
-                </div>
-
-                <div class="wrap-input100 validate-input"  >
-                    <input class="input100" type="text" name="" id="" placeholder="tell">
-                </div>
-
-                <div class="wrap-input100 validate-input"  >
-                    <input class="input100" type="text" name="" id="" placeholder="addess">
-                </div>
-
-                <div class="wrap-input100 validate-input"  >
-                    <input class="input100" type="text" name="" id="" placeholder="email">
+                    <input class="input100" type="email" name="" id="" placeholder="email" [(ngModel)]="email">
                 </div>
 
                 <div class="wrap-input100 validate-input" >
-                    <input class="input100" type="password" name="" id="" placeholder="Password" >
+                    <input class="input100" type="password" name="" id="" placeholder="Password" [(ngModel)]="password">
                 </div>
-                <ngx-recaptcha2 #captchaElem
+                
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="text" name="" id="" placeholder="tell" [(ngModel)]="tel_phone">
+                </div>
+
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="text" name="" id="" placeholder="address" [(ngModel)]="address">
+                </div>
+
+                <div class="wrap-input100 validate-input"  >
+                    <input class="input100" type="date" name="" id="" placeholder="birthday" [(ngModel)]="birthday">
+                </div>
+
+             
+                <!-- <ngx-recaptcha2 #captchaElem
                     [siteKey]="siteKey">
-                </ngx-recaptcha2>
+                </ngx-recaptcha2> -->
 <br>
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" routerLink = "">
+                    <button class="login100-form-btn" (click)="register()">
                         Register
                      </button>
                 </div>
