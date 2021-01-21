@@ -15,14 +15,8 @@ import { NgModule } from '@angular/core';
 import { ViralComponent } from './viral/viral.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditPComponent } from './edit-p/edit-p.component';
-<<<<<<< HEAD
 import { BotDetectCaptchaModule } from 'angular-captcha';
 import { NgxCaptchaModule } from 'ngx-captcha';
-
-=======
-import { NgxCaptchaModule } from 'ngx-captcha';
->>>>>>> 2f8746c60640674f44963b24326b749d3e0a5aca
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,11 +38,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
     BotDetectCaptchaModule,
-=======
     NgxCaptchaModule,
->>>>>>> 2f8746c60640674f44963b24326b749d3e0a5aca
   ],
   providers: [],
   bootstrap: [AppComponent]
