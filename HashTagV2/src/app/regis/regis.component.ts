@@ -20,6 +20,7 @@ export class RegisComponent implements OnInit {
   birthday= "";
   siteKey: string;
   src1 = "../../assets/images/user.png";
+  base64: any;
   constructor(private http:HttpClient , private router_:Router) {
     this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
   }
@@ -58,7 +59,8 @@ export class RegisComponent implements OnInit {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      console.log(reader.result);
+      this.base64 = reader.result;
+      console.log(this.base64)
     };
   }
 }
