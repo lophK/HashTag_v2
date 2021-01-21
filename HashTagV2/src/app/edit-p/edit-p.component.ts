@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';  
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-p',
@@ -16,17 +18,54 @@ export class EditPComponent implements OnInit {
   img :any = sessionStorage.getItem('img')
   first_name= "";
   last_name= "";
-  email= "";
+  email=sessionStorage.getItem('email');
   password= "";
   tel_phone= "";
   address= "";
   birthday= "";
-  constructor(private sanitizer: DomSanitizer) {
+  data:any;
+  constructor(private http:HttpClient , private router_:Router,private sanitizer: DomSanitizer) {
 
   }
 
   ngOnInit(): void {
     this.src1 = this.sanitizer.bypassSecurityTrustResourceUrl(this.img);
+  }
+  async edit(){
+    let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64};
+    console.log(this.email);
+    console.log(this.password);
+    console.log(json);//hashtagbe.comsciproject.com
+    //http://hashtagbe@hashtagbe.comsciproject.com/login/auth
+    await this.http.post('http://localhost:3120/edit/edit_ac2',(json)).subscribe(response=>{
+      //console.log(json);
+      let userx = JSON.stringify(response);
+      this.data = JSON.parse(userx);
+      sessionStorage.setItem(
+          "fname",this.data.first_name
+      );
+      sessionStorage.setItem(
+          "lname",this.data.last_name
+      );
+      sessionStorage.setItem(
+          "email",this.data.email
+      );
+      sessionStorage.setItem(
+          "img",this.data.user_img
+      );
+      sessionStorage.setItem(
+        "date", this.data.birthday
+      );
+      sessionStorage.setItem(
+        "tel", this.data.tel_phone
+      );
+      sessionStorage.setItem(
+        "address", this.data.address
+      );
+      console.log(userx);
+      this.router_.navigateByUrl("/Homepage");
+    } 
+    );
   }
   getFile(imageInput: any){
     console.log(imageInput.files[0]);

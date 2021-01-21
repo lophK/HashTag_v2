@@ -22,7 +22,7 @@ router.post('/edit_ac', function (req, res) {
     //UPDATE  account_user  SET first_name="t", last_name="t",username="t", password="161042", tel_phone="t", address="t", birthday="2000-10-16" where id="1"
     //'UPDATE  account_user  SET first_name='+fname+',last_name='+lname+','+'username='+user+',password='+pass+',tel_phone='+tel+',address='+add+',birthday='+bir+' where id='+id+''
     console.log(fname + "   " + lname);
-    db.query('UPDATE  account_user  SET first_name= "'+fname+'", last_name= "'+lname+'",email= "'+email+'", password= "'+pass+'", tel_phone= "'+tel+'", address= "'+add+'", birthday= "'+bir+'", user_img= "'+img+'" '+"where id="+id+'', function (error, results, fields) {
+    db.query('UPDATE  account_user  SET first_name= '+fname+', last_name= '+lname+',email= '+email+', password= '+Password.hash(pass)+', tel_phone= '+tel+', address= '+add+', birthday= "'+bir+'", user_img= '+img+`where email='`+email+`'`, function (error, results, fields) {
         if(error) throw error
         if(error) {
             //console.log(error);
@@ -30,27 +30,47 @@ router.post('/edit_ac', function (req, res) {
           } else {
             //let inserted_id = results.id; // undefined
             //console.log(inserted_id);   
-            res.status(200).json({message: "Done"});       
+            res.status(200).json({message: "Done"});
+                var GRAB_USER = `SELECT * FROM account_user WHERE email = ?`
+                    db.query(GRAB_USER, email, (err, result) => {
+                        if (err) {
+                            res.send('username  not found')
+                        } 
+                        else if (result.length==0) {
+                        res.send('username not found') //this is what you are missing
+                        }
+                        else {
+                        var user = result[0]
+                        //console.log(user);
+                        return res.send(user);
+                        
+                    }
+                    })       
           }
     });
  
 });
 router.post('/edit_ac2', function (req, res,next) {
-  const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address} = req.body;
+  const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address,user_img} = req.body;
   const password = Password.hash(plainTextPassword);
   //res.send('s');
-  let sql = 'UPDATE  account_user SET first_name=?,last_name=? ,email=?, password=?, tel_phone=?, address=?, birthday=?, user_img=?'+'where id = ?';
+  let sql = `UPDATE  account_user SET first_name = ?,last_name = ? ,email = ?, password = ?, tel_phone= ?, address= ?, birthday= ?, user_img= ? where email = ?`;
         
             sql = db.format(sql, [
-               first_name, last_name,email,password,tel_phone,  address  ,  birthday ,user_img , id
+               first_name, last_name,email,password,tel_phone,  address  ,  birthday ,user_img , email,
             ]);
             db.query(sql, (error, results, fields) => {
-                if (error) throw error;
-                if (results.affectedRows > 0) {
-                    res.status(200).send(true);
-                } else {
-                    res.status(200).send(false);
-                }
+                if (error) {
+                    res.send('username  not found')
+                } 
+                else {
+                    var GRAB_USER = `SELECT * FROM account_user WHERE email = ?`
+                        db.query(GRAB_USER, email, (err, result) => {
+                        var user = result[0];
+                  //console.log(user);
+                        return res.send(user);
+                    });
+                  }
             });
 
 });
