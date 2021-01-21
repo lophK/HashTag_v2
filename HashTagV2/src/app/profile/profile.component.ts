@@ -5,7 +5,6 @@ import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faShareAltSquare } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer } from '@angular/platform-browser';  
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-profile',

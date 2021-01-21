@@ -41,7 +41,9 @@
 
              
                 <ngx-recaptcha2 #captchaElem
-                    [siteKey]="siteKey">
+                    [siteKey]="siteKey"
+                    (success)="handleSuccess()"
+                    >
                 </ngx-recaptcha2>
 <br>
                 <div class="container-login100-form-btn">

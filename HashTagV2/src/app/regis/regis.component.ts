@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-regis',
   templateUrl: './regis.component.html',
@@ -19,40 +20,35 @@ export class RegisComponent implements OnInit {
   tel_phone= "";
   address= "";
   birthday= "";
-
   siteKey: string;
   src1:any = "../../assets/images/user.png";
   base64: any;
-  constructor(private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer) {
-    this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
+  check: any;
+  constructor(private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) {
+    this.siteKey = '6LcFZTYaAAAAAFmS7jGRoH-79sGKGG-1fHmm5GNC';
   }
-  // private handleError (error: Response | any) {
-  //   //Your other codes    
-    
-  //   if (error.status == 0){ //or whatever condition you like to put
-  //   this.router_.navigate(['/error']);
-  //   }
-  //   }
   ngOnInit(): void {
   }
   async register(){
-    let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64};
-    console.log(this.first_name);
-    console.log(this.last_name);
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.tel_phone);
-    console.log(this.address);
-    console.log(this.birthday);
-    
-    console.log(json);//http://hashtagbe.comsciproject.com/insert/register_ac
-
-    await this.http.post('http://localhost:3120/insert/register_ac',(json)).subscribe(response=>{
-      console.log(json);
-      this.router_.navigateByUrl("/");
+    if(this.check){
+      let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64};
+      console.log(this.first_name);
+      console.log(this.last_name);
+      console.log(this.email);
+      console.log(this.password);
+      console.log(this.tel_phone);
+      console.log(this.address);
+      console.log(this.birthday);
       
-    } 
-    );
+      console.log(json);//http://hashtagbe.comsciproject.com/insert/register_ac
+  
+      await this.http.post('http://localhost:3120/insert/register_ac',(json)).subscribe(response=>{
+        console.log(json);
+        this.router_.navigateByUrl("/");
+        
+      } 
+      );
+    }
   }
   getFile(imageInput: any){
     console.log(imageInput.files[0]);
@@ -68,5 +64,8 @@ export class RegisComponent implements OnInit {
         this.src1= this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
     };
     
+  }
+  handleSuccess(){
+    this.check == true
   }
 }
