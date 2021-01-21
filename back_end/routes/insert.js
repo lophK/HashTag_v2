@@ -21,25 +21,34 @@ router.post('/register_ac', async function  (req, res, next) {
 
 
     
-    const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address ,user_img} = req.body;
+    const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address} = req.body;
     const password = Password.hash(plainTextPassword);
     // console.log(req.body);
-    let sql = 'insert into account_user (first_name,last_name ,email, password, tel_phone, address, birthday, user_img)' +
-    'values(?, ?, ?, ?, ?, ?, ?, ?)';
-
-    sql = db.format(sql, [
-       first_name, last_name,email,password,tel_phone,  address  ,  birthday ,user_img
-    ]);
-    db.query(sql, (error, results, fields) => {
+    //var GRAB_USER = `SELECT * FROM account_user WHERE email = ?`
+    db.query(`SELECT * FROM account_user WHERE email = '`+email+`'`, function (error, result, fields) {
         if (error) throw error;
-        if (results.affectedRows > 0) {
-            res.status(200).send(true);
+        numRows = result.length;
+        if (numRows > 0 ) {
+            console.log(numRows);
+            res.status(400).send(false);
         } else {
-            res.status(200).send(false);
+            let sql = 'insert into account_user (first_name,last_name ,email, password, tel_phone, address, birthday, user_img)' +
+            'values(?, ?, ?, ?, ?, ?, ?, ?)';
+        
+            sql = db.format(sql, [
+               first_name, last_name,email,password,tel_phone,  address  ,  birthday ,user_img
+            ]);
+            db.query(sql, (error, results, fields) => {
+                if (error) throw error;
+                if (results.affectedRows > 0) {
+                    res.status(200).send(true);
+                } else {
+                    res.status(200).send(false);
+                }
+            });
         }
-    });
+   
+});
 })
-router.post('/ac', async function  (req, res, next) {
-   res.send("suc");
-})
+
 module.exports = router;
