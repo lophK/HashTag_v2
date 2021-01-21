@@ -21,14 +21,14 @@ router.post('/register_ac', async function  (req, res, next) {
 
 
     
-    const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address} = req.body;
+    const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address ,user_img} = req.body;
     const password = Password.hash(plainTextPassword);
     // console.log(req.body);
-    let sql = 'insert into account_user (first_name,last_name ,email, password, tel_phone, address, birthday)' +
-    'values(?, ?, ?, ?, ?, ?, ?)';
+    let sql = 'insert into account_user (first_name,last_name ,email, password, tel_phone, address, birthday, user_img)' +
+    'values(?, ?, ?, ?, ?, ?, ?, ?)';
 
     sql = db.format(sql, [
-       first_name, last_name,email,password,tel_phone,  address  ,  birthday
+       first_name, last_name,email,password,tel_phone,  address  ,  birthday ,user_img
     ]);
     db.query(sql, (error, results, fields) => {
         if (error) throw error;

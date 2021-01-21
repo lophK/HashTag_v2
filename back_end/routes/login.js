@@ -21,12 +21,9 @@ router.post('/auth', (req, res) => {
     }
     else {
       var user = result[0]
-      console.log(user['password']);
+      //console.log(user);
       if(Password.verify(password, user['password'])){
-        return res.status(200).json({
-          status_code:true,
-        //Authentication OK
-        })
+        return res.send(user);
   }else{
       res.send('password not match')
       return res.status(203).json({

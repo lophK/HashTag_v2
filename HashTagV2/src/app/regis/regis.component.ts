@@ -19,6 +19,7 @@ export class RegisComponent implements OnInit {
   tel_phone= "";
   address= "";
   birthday= "";
+
   siteKey: string;
   src1:any = "../../assets/images/user.png";
   base64: any;
@@ -35,7 +36,7 @@ export class RegisComponent implements OnInit {
   ngOnInit(): void {
   }
   async register(){
-    let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday};
+    let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64};
     console.log(this.first_name);
     console.log(this.last_name);
     console.log(this.email);
@@ -44,9 +45,9 @@ export class RegisComponent implements OnInit {
     console.log(this.address);
     console.log(this.birthday);
     
-    console.log(json);//hashtagbe.comsciproject.com
+    console.log(json);//http://hashtagbe.comsciproject.com/insert/register_ac
 
-    await this.http.post('http://hashtagbe.comsciproject.com/insert/register_ac',(json)).subscribe(response=>{
+    await this.http.post('http://localhost:3120/insert/register_ac',(json)).subscribe(response=>{
       console.log(json);
       this.router_.navigateByUrl("/");
       

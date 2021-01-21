@@ -23,9 +23,13 @@ export class LoginComponent implements OnInit{
     console.log(this.email);
     console.log(this.password);
     console.log(json);//hashtagbe.comsciproject.com
-    //ftp://hashtagbe@hashtagbe.comsciproject.com:2120/routes/login.js
-    await this.http.post('http://hashtagbe.comsciproject.com/login/auth',(json)).subscribe(response=>{
-      console.log(json);
+    //http://hashtagbe@hashtagbe.comsciproject.com/login/auth
+    await this.http.post('http://localhost:3120/login/auth',(json)).subscribe(response=>{
+      //console.log(json);
+      let userx = JSON.stringify(response);
+      let data = JSON.parse(userx);
+      console.log(data.id);
+      
       this.router_.navigateByUrl("/Homepage");
     } 
     );
