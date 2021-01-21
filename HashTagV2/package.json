@@ -24,11 +24,20 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
+<<<<<<< HEAD
     "@types/url-parse": "^1.4.3",
+=======
+    "angular-captcha": "^3.7.4",
+>>>>>>> 1cbbba7778ab64c1b12993721196d82d74a77243
     "angular-responsive-carousel": "^2.0.2",
     "bootstrap": "^4.5.3",
+<<<<<<< HEAD
+    "ng-recaptcha": "^7.0.1",
+    "ngx-captcha": "^8.0.1",
+=======
     "ngx-captcha": "^8.0.1",
     "node-php-password": "^0.1.2",
+>>>>>>> 2f8746c60640674f44963b24326b749d3e0a5aca
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "url": "^0.11.0",
