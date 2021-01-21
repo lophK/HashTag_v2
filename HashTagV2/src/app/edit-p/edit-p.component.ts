@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-p.component.css']
 })
 export class EditPComponent implements OnInit {
+  src1 ="../../assets/images/cat3.jpg"
 
   constructor() { }
 
@@ -13,7 +14,7 @@ export class EditPComponent implements OnInit {
   }
   getFile(imageInput: any){
     console.log(imageInput.files[0]);
-    // document.getElementById("Profile").src = "../../assets/images/"+imageInput.files[0].name;
+    this.src1= "../../assets/images/"+imageInput.files[0].name;
   }
 
 }
