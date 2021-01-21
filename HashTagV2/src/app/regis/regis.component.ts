@@ -19,6 +19,7 @@ export class RegisComponent implements OnInit {
   address= "";
   birthday= "";
   siteKey: string;
+  src1 = "../../assets/images/user.png";
   constructor(private http:HttpClient , private router_:Router) {
     this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
   }
@@ -47,7 +48,11 @@ export class RegisComponent implements OnInit {
       console.log(json);
       this.router_.navigateByUrl("/");
       
-    } 
+    }
     );
+  }
+  getFile(imageInput: any){
+    console.log(imageInput.files[0]);
+    this.src1= "../../assets/images/"+imageInput.files[0].name;
   }
 }

@@ -2,12 +2,13 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <div class="login100-form validate-form">
-                <span class="login100-form-logo">
-                    <fa-icon [icon] = "hasttag"></fa-icon>
-                </span>
+
+                <div style="text-align: center;">
+                    <img src={{src1}} class="rounded-circle" width="250px" height="250px" >
+                </div>
 
                 <span class="login100-form-title p-b-34 p-t-27">
-                    #HashTag
+                    <input type="file" #imageInput (change)="getFile(imageInput)">
                 </span>
                     
                 <div class="wrap-input100 validate-input"  >
