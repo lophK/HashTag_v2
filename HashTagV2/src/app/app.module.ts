@@ -16,6 +16,7 @@ import { ViralComponent } from './viral/viral.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditPComponent } from './edit-p/edit-p.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     FormsModule,
     ReactiveFormsModule,
     NgxCaptchaModule,
+    AvatarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

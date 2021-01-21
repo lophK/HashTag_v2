@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { DomSanitizer } from '@angular/platform-browser'; 
 
 
 import { HttpClient } from '@angular/common/http';
@@ -18,9 +19,11 @@ export class RegisComponent implements OnInit {
   tel_phone= "";
   address= "";
   birthday= "";
-  // siteKey: string;
-  constructor(private http:HttpClient , private router_:Router) {
-    // this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
+  siteKey: string;
+  src1:any = "../../assets/images/user.png";
+  base64: any;
+  constructor(private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer) {
+    this.siteKey = '6LdHeCcaAAAAADsC43gK77i1mL0Ro4kL2JLP9E48';
   }
   // private handleError (error: Response | any) {
   //   //Your other codes    
@@ -49,5 +52,20 @@ export class RegisComponent implements OnInit {
       
     } 
     );
+  }
+  getFile(imageInput: any){
+    console.log(imageInput.files[0]);
+    let file = imageInput.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.base64 = reader.result;
+      let json = {
+        base64: this.base64
+      }
+      console.log(this.base64)
+        this.src1= this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
+    };
+    
   }
 }

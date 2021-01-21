@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-edit-p',
   templateUrl: './edit-p.component.html',
   styleUrls: ['./edit-p.component.css']
 })
 export class EditPComponent implements OnInit {
+  src1 ="../../assets/images/cat3.jpg"
 
   constructor() { }
 
@@ -13,7 +15,13 @@ export class EditPComponent implements OnInit {
   }
   getFile(imageInput: any){
     console.log(imageInput.files[0]);
-    // document.getElementById("Profile").src = "../../assets/images/"+imageInput.files[0].name;
+    this.src1= "../../assets/images/"+imageInput.files[0].name;
+    // let file = imageInput.files[0];
+    // let reader = new FileReader();
+    // reader.readAsDataURL(file);
+    // reader.onload = () => {
+    //   console.log(reader.result);
+    // };
   }
 
 }
