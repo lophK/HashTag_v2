@@ -17,6 +17,7 @@ import { CommentComponent } from './comment/comment.component';
 import { EditPComponent } from './edit-p/edit-p.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { AvatarModule } from 'ngx-avatar';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AvatarModule } from 'ngx-avatar';
     ReactiveFormsModule,
     NgxCaptchaModule,
     AvatarModule,
+    StorageServiceModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

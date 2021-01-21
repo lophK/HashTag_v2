@@ -4,7 +4,9 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faShareAltSquare } from '@fortawesome/free-solid-svg-icons';
- 
+import { DomSanitizer } from '@angular/platform-browser';  
+import { runInThisContext } from 'vm';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -16,10 +18,16 @@ like = faThumbsUp
 dislike = faThumbsDown
 comment = faComments
 share = faShareAltSquare
+img:any = sessionStorage.getItem('img')
+src: any
+fname: any = sessionStorage.getItem('fname')
+lname: any = sessionStorage.getItem('lname')
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-  }
+    console.log(sessionStorage.getItem('img'));
+    this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.img);
 
+}
 }
