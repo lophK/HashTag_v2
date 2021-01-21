@@ -13,7 +13,7 @@ export class EditPComponent implements OnInit {
   }
   getFile(imageInput: any){
     console.log(imageInput.files[0]);
-    document.getElementById("Profile").src = "../../assets/images/"+imageInput.files[0].name;
+    // document.getElementById("Profile").src = "../../assets/images/"+imageInput.files[0].name;
   }
 
 }
