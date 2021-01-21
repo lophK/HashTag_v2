@@ -66,6 +66,7 @@ export class RegisComponent implements OnInit {
     
   }
   handleSuccess(){
-    this.check == true
+    this.check = true
+    console.log(this.check)
   }
 }

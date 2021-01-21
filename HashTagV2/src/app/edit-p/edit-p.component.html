@@ -8,32 +8,23 @@
                         <input type="file" #imageInput (change)="getFile(imageInput)" class="btn btn-outline-dark btn-sm btn-block" >
                     </div>
                     <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-0">Mark Williams</h4>
-                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>msu Mahasarakham</p>
+                        <h4 class="mt-0 mb-0">{{fname}} {{lname}}</h4>
+                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>{{address}}</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-light p-4 d-flex justify-content-end text-center">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">215</h5><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
-                    </li>
-                    <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">745</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
-                    </li>
-                    <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">340</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
-                    </li>
-                </ul>
-            </div>
             <div class="px-4 py-3">
-               <input type="text" class="form-control" id="fname" placeholder="Enter first Name">
+               <input type="text" class="form-control" id="fname" placeholder="Enter first Name" value={{fname}} [(ngModel)]="first_name">
                <hr>
-               <input type="text" id="lname" class="form-control" placeholder="Enter last Name">
+               <input type="text" id="lname" class="form-control" placeholder="Enter last Name" value={{lname}} [(ngModel)]="last_name">
                <hr>
-               <input type="date" id="Bday" class="form-control" placeholder="Enter Brith day">
+               <input type="text" id="tel" class="form-control" placeholder="Enter Phone Number" value={{tel}} [(ngModel)]="tel_phone">
                <hr>
-               <input type="password" id="pass" class="form-control" placeholder="Enter password">
+               <input type="text" id="address" class="form-control" placeholder="Enter address" value={{address1}} [(ngModel)]="address">
+               <hr>
+               <input type="date" id="Bday" class="form-control" placeholder="Enter Brith day" [(ngModel)]="birthday">
+               <hr>
+               <input type="password" id="pass" class="form-control" placeholder="Enter password" [(ngModel)]="password">
                <hr>
                <button type="submit" class="btn btn-primary">Submit</button>
             </div>

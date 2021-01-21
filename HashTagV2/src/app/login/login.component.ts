@@ -41,7 +41,16 @@ export class LoginComponent implements OnInit{
       sessionStorage.setItem(
           "img",this.data.user_img
       );
-      console.log( sessionStorage.getItem('img'));
+      sessionStorage.setItem(
+        "date", this.data.birthday
+      );
+      sessionStorage.setItem(
+        "tel", this.data.tel_phone
+      );
+      sessionStorage.setItem(
+        "address", this.data.address
+      );
+      console.log(userx);
       this.router_.navigateByUrl("/Homepage");
     } 
     );
