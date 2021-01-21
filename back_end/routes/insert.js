@@ -21,7 +21,7 @@ router.post('/register_ac', async function  (req, res, next) {
 
 
     
-    const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address} = req.body;
+    const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
     const password = Password.hash(plainTextPassword);
     // console.log(req.body);
     //var GRAB_USER = `SELECT * FROM account_user WHERE email = ?`

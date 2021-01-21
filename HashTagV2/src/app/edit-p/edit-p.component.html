@@ -4,7 +4,7 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover">
                 <div class="media align-items-end profile-head">
-                    <div class="profile mr-3"><img src={{src1}}  id="Profile" alt="..." width="300" class="rounded mb-2 img-thumbnail">
+                    <div class="profile mr-3"><img [src]="src1"  id="Profile" alt="..." width="300" class="rounded mb-2 img-thumbnail">
                         <input type="file" #imageInput (change)="getFile(imageInput)" class="btn btn-outline-dark btn-sm btn-block" >
                     </div>
                     <div class="media-body mb-5 text-white">
@@ -13,6 +13,8 @@
                     </div>
                 </div>
             </div>
+            <br><br><br>
+            <hr>
             <div class="px-4 py-3">
                <input type="text" class="form-control" id="fname" placeholder="Enter first Name" value={{fname}} [(ngModel)]="first_name">
                <hr>
@@ -26,7 +28,7 @@
                <hr>
                <input type="password" id="pass" class="form-control" placeholder="Enter password" [(ngModel)]="password">
                <hr>
-               <button type="submit" class="btn btn-primary">Submit</button>
+               <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </div>
     </div>

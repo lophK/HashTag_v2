@@ -7,13 +7,13 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./edit-p.component.css']
 })
 export class EditPComponent implements OnInit {
-  src1: any = this.sanitizer.bypassSecurityTrustResourceUrl('img')
+  src1: any 
   fname:any = sessionStorage.getItem('fname')
   lname:any = sessionStorage.getItem('lname')
   base64 : any
   address1:any = sessionStorage.getItem('address')
   tel: any = sessionStorage.getItem('tel')
-
+  img :any = sessionStorage.getItem('img')
   first_name= "";
   last_name= "";
   email= "";
@@ -26,6 +26,7 @@ export class EditPComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.src1 = this.sanitizer.bypassSecurityTrustResourceUrl(this.img);
   }
   getFile(imageInput: any){
     console.log(imageInput.files[0]);
