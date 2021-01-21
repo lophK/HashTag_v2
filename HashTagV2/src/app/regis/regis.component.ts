@@ -54,5 +54,11 @@ export class RegisComponent implements OnInit {
   getFile(imageInput: any){
     console.log(imageInput.files[0]);
     this.src1= "../../assets/images/"+imageInput.files[0].name;
+    let file = imageInput.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      console.log(reader.result);
+    };
   }
 }
