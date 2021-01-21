@@ -1,9 +1,11 @@
+
 var express = require('express');
 var router = express.Router();
 var db = require('../condb');
-const bec = require('bcrypt');
+
 var express = require('express');
 var router = express.Router();
+var Password = require("node-php-password");
 
 
 router.post('/register_ac', async function  (req, res, next) {
@@ -16,8 +18,11 @@ router.post('/register_ac', async function  (req, res, next) {
     // var bir = req.body.birthday;
     // var phash=await bec.hashSync(pass,10);
     
+
+
+    
     const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address} = req.body;
-    const password = await bec.hash(plainTextPassword, 10);
+    const password = Password.hash(plainTextPassword);
     // console.log(req.body);
     let sql = 'insert into account_user (first_name,last_name ,email, password, tel_phone, address, birthday)' +
     'values(?, ?, ?, ?, ?, ?, ?)';
@@ -33,5 +38,8 @@ router.post('/register_ac', async function  (req, res, next) {
             res.status(200).send(false);
         }
     });
+})
+router.post('/ac', async function  (req, res, next) {
+   res.send("suc");
 })
 module.exports = router;

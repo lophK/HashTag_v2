@@ -3,8 +3,8 @@ var createError = require('http-errors');
 var express = require('express');
 var flash = require('express-flash');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -21,26 +21,20 @@ var pott = process.env.port || 3120;
 var app = require("express")();
 var bodyParser = require('body-parser');
 //var app = express();
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Origin, Autherization");
-  res.header("Access-Control-Allow-Methods", 'GET,POST,PUT,DELETE,PATCH,OPTIONS');
-  next();
-});
+
 // app.use(session({
 //   secret: '161042',
 //   resave: false,
 //   saveUninitialized: true,
 //   cookie: { maxAge: 60000 }
 // }))
-
 app.use(cors());
 app.use(flash());
 app.use(expressValidator());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(bodyParser.urlencoded({ extended: true })); 
 
@@ -75,7 +69,7 @@ app.get("/", (req, res) => { res.render("index") });
 // });
 
 
-  app.use('/', indexRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/insert', regisRouter);
