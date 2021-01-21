@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit{
   hasttag = faHashtag;
   email = "";
   password = "";
+  data: any;
   constructor(private http:HttpClient , private router_:Router) {
    
    }
@@ -27,9 +28,20 @@ export class LoginComponent implements OnInit{
     await this.http.post('http://localhost:3120/login/auth',(json)).subscribe(response=>{
       //console.log(json);
       let userx = JSON.stringify(response);
-      let data = JSON.parse(userx);
-      console.log(data.id);
-      
+      this.data = JSON.parse(userx);
+      sessionStorage.setItem(
+          "fname",this.data.first_name
+      );
+      sessionStorage.setItem(
+          "lname",this.data.last_name
+      );
+      sessionStorage.setItem(
+          "email",this.data.email
+      );
+      sessionStorage.setItem(
+          "img",this.data.user_img
+      );
+      console.log( sessionStorage.getItem('img'));
       this.router_.navigateByUrl("/Homepage");
     } 
     );
