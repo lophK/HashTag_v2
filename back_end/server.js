@@ -29,7 +29,7 @@ var bodyParser = require('body-parser');
 //   cookie: { maxAge: 60000 }
 // }))
 app.use(cors());
-app.use(flash());
+// app.use(flash());
 app.use(expressValidator());
 
 app.use(bodyParser.json());
