@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit{
   }
   async login(){
     let json  ={email : this.email, password : this.password};
-    console.log(this.email);
-    console.log(this.password);
-    console.log(json);//hashtagbe.comsciproject.com
+    //console.log(this.email);
+    //console.log(this.password);
+    //console.log(json);//hashtagbe.comsciproject.com
     //http://hashtagbe@hashtagbe.comsciproject.com/login/auth
     await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/login/auth',(json)).subscribe(response=>{
       //console.log(json);
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit{
       sessionStorage.setItem(
         "address", this.data.address
       );
-      console.log(userx);
+      //console.log(userx);
       this.router_.navigateByUrl("/Homepage");
     } 
     );
