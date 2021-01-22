@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faHashtag } from '@fortawesome/free-solid-svg-icons';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 // import {FormsModule} from '@angular/forms';
 @Component({
@@ -37,5 +37,12 @@ export class LoginComponent implements OnInit{
       this.router_.navigateByUrl("/Homepage");
     } 
     );
+    // let json1 = {
+    //   email: this.email
+    // }
+    // let header = new HttpHeaders({
+    //   'Content-Type' : 'application/json',
+    //   'authorization' : 'super ultimate secret key'
+    // })
   }
 }
