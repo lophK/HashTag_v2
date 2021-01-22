@@ -42,7 +42,7 @@ export class RegisComponent implements OnInit {
       
       console.log(json);//http://hashtagbe.comsciproject.com/insert/register_ac
   
-      await this.http.post('http://hashtagbe.comsciproject.com/insert/register_ac',(json)).subscribe(response=>{
+      await this.http.post('http://localhost:3120/insert/register_ac',(json)).subscribe(response=>{
         console.log(json);
         this.router_.navigateByUrl("/");
         
