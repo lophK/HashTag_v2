@@ -25,7 +25,7 @@ export class RegisComponent implements OnInit {
   base64: any;
   check: any;
   constructor(private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) {
-    this.siteKey = '6LdsBDcaAAAAAD4qztWkmyFseeEKQiTRKG3cjp09';
+    this.siteKey = '6Lf5CjcaAAAAAEyNlbdMjNS2wlL5jetx_yozq93b';
   }
   ngOnInit(): void {
   }

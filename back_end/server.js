@@ -17,9 +17,12 @@ var delete_acRouter = require('./routes/delete');
 var bodyParser = require("body-parser");
 var cors = require('cors');
 
+
 var pott = process.env.port || 3120;
 var app = require("express")();
-var bodyParser = require('body-parser');
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 //var app = express();
 
 // app.use(session({
@@ -67,7 +70,6 @@ app.get("/", (req, res) => { res.render("index") });
 //   // Pass to next layer of middleware
 //   next();
 // });
-
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
