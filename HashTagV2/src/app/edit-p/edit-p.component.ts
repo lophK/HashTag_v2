@@ -63,7 +63,7 @@ export class EditPComponent implements OnInit {
         "address", this.data.address
       );
       console.log(userx);
-      this.router_.navigateByUrl("/Homepage");
+      this.router_.navigateByUrl("/Profile");
     } 
     );
   }
