@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var db=require('../condb');
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 var Password = require("node-php-password");
 var  json  = require('body-parser');
 var router = express();
 
 //http://hashtagbe.comsciproject.com/login/auth
+const JWT_KEY = "super ultimate secret key";
 
 router.post('/auth', (req, res) => {
   var email = req.body.email
@@ -21,8 +22,14 @@ router.post('/auth', (req, res) => {
       var user = result[0]
       //console.log(user);
       if(Password.verify(password, user['password'])){
-        return res.json(user['email']);
         
+        const token = jwt.sign({
+          email :user.email,
+        },
+        JWT_KEY
+        );
+        console.log(token);
+        return res.json({ email: user.email, token:token });
   }else{
       res.send('password not match')
       return res.status(203).json({
