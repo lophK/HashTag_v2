@@ -37,7 +37,7 @@ export class EditPComponent implements OnInit {
     console.log(this.password);
     console.log(json);//hashtagbe.comsciproject.com
     //http://hashtagbe@hashtagbe.comsciproject.com/login/auth
-    await this.http.post('http://localhost:3120/edit/edit_ac2',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/edit/edit_ac2',(json)).subscribe(response=>{
       //console.log(json);
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);

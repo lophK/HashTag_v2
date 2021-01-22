@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit{
     console.log(this.password);
     console.log(json);//hashtagbe.comsciproject.com
     //http://hashtagbe@hashtagbe.comsciproject.com/login/auth
-    await this.http.post('http://localhost:3120/login/auth',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/login/auth',(json)).subscribe(response=>{
       //console.log(json);
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);

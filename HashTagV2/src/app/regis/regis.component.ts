@@ -25,7 +25,7 @@ export class RegisComponent implements OnInit {
   base64: any;
   check: any;
   constructor(private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) {
-    this.siteKey = '6LcFZTYaAAAAAFmS7jGRoH-79sGKGG-1fHmm5GNC';
+    this.siteKey = '6LdsBDcaAAAAAD4qztWkmyFseeEKQiTRKG3cjp09';
   }
   ngOnInit(): void {
   }
@@ -42,7 +42,7 @@ export class RegisComponent implements OnInit {
       
       console.log(json);//http://hashtagbe.comsciproject.com/insert/register_ac
   
-      await this.http.post('http://localhost:3120/insert/register_ac',(json)).subscribe(response=>{
+      await this.http.post('http://hashtagbe.comsciproject.com/insert/register_ac',(json)).subscribe(response=>{
         console.log(json);
         this.router_.navigateByUrl("/");
         
