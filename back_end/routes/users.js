@@ -15,8 +15,7 @@ router.post('/user-data', function(req, res, next) {
     if (err) throw err;
     else{
       var user = result[0];
-      console.log(user);
-      res.send();
+      res.send(user);
     }
     res.end();
   });

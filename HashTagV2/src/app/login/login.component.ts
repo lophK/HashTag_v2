@@ -29,26 +29,9 @@ export class LoginComponent implements OnInit{
       //console.log(json);
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
-      sessionStorage.setItem(
-          "fname",this.data.first_name
-      );
-      sessionStorage.setItem(
-          "lname",this.data.last_name
-      );
-      sessionStorage.setItem(
-          "email",this.data.email
-      );
-      sessionStorage.setItem(
-          "img",this.data.user_img
-      );
-      sessionStorage.setItem(
-        "date", this.data.birthday
-      );
-      sessionStorage.setItem(
-        "tel", this.data.tel_phone
-      );
-      sessionStorage.setItem(
-        "address", this.data.address
+      console.log(this.data);
+      localStorage.setItem(
+          "email",this.data
       );
       //console.log(userx);
       this.router_.navigateByUrl("/Homepage");

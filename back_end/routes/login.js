@@ -22,6 +22,7 @@ router.post('/auth', (req, res) => {
       //console.log(user);
       if(Password.verify(password, user['password'])){
         return res.json(user['email']);
+        
   }else{
       res.send('password not match')
       return res.status(203).json({
