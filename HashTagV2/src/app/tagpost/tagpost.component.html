@@ -12,7 +12,7 @@
                       <div class="col-md-3">
                         <div class="row">
                             <div class="col-md">
-                                <img src="../../assets/images/cat7.jpg"  id="Post" width="145" height="100">
+                                <img [src]="src1"  id="Post" width="145" height="100">
                             </div>
                         </div>
                         <div class="row">
@@ -20,7 +20,7 @@
                                 <div class="input-group mb">
                                     <div class="custom-file">
                                       <!-- <input type="file" #imageInput (change)="getFile(imageInput)" class="btn btn-outline-dark btn-sm btn-block"> -->
-                                      <input type="file" class="custom-file-input" id="inputGroupFile02">
+                                      <input type="file" class="custom-file-input" id="inputGroupFile02"  #imageInput (change)="getFile(imageInput)">
                                       <label class="custom-file-label" for="inputGroupFile02">file</label>
                                     </div>
                                   </div>
