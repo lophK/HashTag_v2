@@ -10,7 +10,7 @@ var Password = require("node-php-password");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../images/')
+        cb(null, 'images/')
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname));
@@ -103,13 +103,16 @@ router.post('/tag_', async function  (req, res, next) {
 
 })
 router.post('/upload_image', async (req, res) => {
+ 
     await upload(req, res, (err) => {
+        console.log(req.file);
         if(err) {
             res.json({
                 status: false,
                 message: err
             });
         } else {
+            
             if(req.file == undefined) {
                 res.json({
                     status: false,
@@ -117,10 +120,26 @@ router.post('/upload_image', async (req, res) => {
                 });
             } else {
                 res.json({
+                    
                     status: true,
                     message: "File Uploaded",
                     file: req.file.filename
                 });
+                const {post_id,path} = req.body;
+                // const password = Password.hash(plainTextPassword);
+                         let sql = 'insert into IMG_file (post_id,path)' +'values(?, ?)';
+                     
+                         sql = db.format(sql, [
+                            post_id,path
+                         ]);
+                         db.query(sql, (error, results, fields) => {
+                             if (error) throw error;
+                             if (results.affectedRows > 0) {
+                                 res.status(200).send(true);
+                             } else {
+                                 res.status(200).send(false);
+                             }
+                         });
             }
         }
     });

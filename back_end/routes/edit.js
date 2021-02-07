@@ -22,6 +22,7 @@ router.post('/edit_ac', function (req, res) {
     //UPDATE  account_user  SET first_name="t", last_name="t",username="t", password="161042", tel_phone="t", address="t", birthday="2000-10-16" where id="1"
     //'UPDATE  account_user  SET first_name='+fname+',last_name='+lname+','+'username='+user+',password='+pass+',tel_phone='+tel+',address='+add+',birthday='+bir+' where id='+id+''
     console.log(fname + "   " + lname);
+    
     db.query('UPDATE  account_user  SET first_name= '+fname+', last_name= '+lname+',email= '+email+', password= '+Password.hash(pass)+', tel_phone= '+tel+', address= '+add+', birthday= "'+bir+'", user_img= '+img+`where email='`+email+`'`, function (error, results, fields) {
         if(error) throw error
         if(error) {

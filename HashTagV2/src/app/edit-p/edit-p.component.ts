@@ -19,10 +19,12 @@ export class EditPComponent implements OnInit {
   first_name= "";
   last_name= "";
   email :any = localStorage.getItem('email');
+  TOKEN :any = localStorage.getItem('token');
   password= "";
   tel_phone= "";
   address= "";
   birthday= "";
+  
   data:any;
   constructor(private http:HttpClient , private router_:Router,private sanitizer: DomSanitizer) {
 
