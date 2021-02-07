@@ -18,6 +18,10 @@ var bodyParser = require("body-parser");
 var cors = require('cors');
 
 
+const fs = require('fs');
+const mime = require('mime');
+
+
 var pott = process.env.port || 3120;
 var app = require("express")();
 
