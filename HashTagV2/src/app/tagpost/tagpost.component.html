@@ -7,7 +7,7 @@
             <li class="clearfix">
               <img src="../../assets/images/admin-settings-male.png" class="avatar" alt="">
               <div class="post-comments">
-                  <p class="meta">สร้างโพสต์<a routerLink = "/Profile">JohnDoe</a></p>
+                  <p class="meta">สร้างโพสต์: <a routerLink = "/Profile">JohnDoe</a></p>
                   <div class="row">
                       <div class="col-md-3">
                         <div class="row">
@@ -31,8 +31,21 @@
                         <textarea class="form-control" rows="5" id="comment"></textarea>
                       </div>
                   </div>
-                  <div class="row-sm">
-                    <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;">โพสต์</button>
+                  <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group" style="margin-top: 10px;">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>#CAT</option>
+                              <option>#CAR</option>
+                              <option>#รุ่นที่ 10</option>
+                              <option>#DOC</option>
+                              <option>#KINGkong</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="col-md-9">
+                        <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;">โพสต์</button>
+                    </div>
                   </div>
               </div>
             </li>
