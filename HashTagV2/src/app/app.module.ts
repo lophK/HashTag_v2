@@ -18,6 +18,8 @@ import { EditPComponent } from './edit-p/edit-p.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { AvatarModule } from 'ngx-avatar';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { TagpostComponent } from './tagpost/tagpost.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
     ViralComponent,
     CommentComponent,
     EditPComponent,
+    TagpostComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
     NgxCaptchaModule,
     AvatarModule,
     StorageServiceModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

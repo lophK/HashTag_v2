@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 })
 export class EditPComponent implements OnInit {
   src1: any 
-  fname:any = sessionStorage.getItem('fname')
-  lname:any = sessionStorage.getItem('lname')
+  fname:any 
+  lname:any 
   base64 : any
-  address1:any = sessionStorage.getItem('address')
-  tel: any = sessionStorage.getItem('tel')
-  img :any = sessionStorage.getItem('img')
+  address1:any 
+  tel: any 
+  img :any
   first_name= "";
   last_name= "";
-  email=sessionStorage.getItem('email');
+  email :any = localStorage.getItem('email');
   password= "";
   tel_phone= "";
   address= "";
@@ -29,7 +29,7 @@ export class EditPComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.src1 = this.sanitizer.bypassSecurityTrustResourceUrl(this.img);
+    this.getData();
   }
   async edit(){
     let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64};
@@ -81,6 +81,24 @@ export class EditPComponent implements OnInit {
         this.src1= this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
     };
 
+  }
+
+  async getData(){
+    let json  ={email : this.email};
+    console.log('E-mail');
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://localhost:3120/users/user-data',(json)).subscribe(response=>{
+      let userx = JSON.stringify(response);
+      this.data = JSON.parse(userx);
+      console.log(this.data);
+      this.src1 = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.user_img);
+      this.fname = this.data.first_name;
+      this.lname = this.data.last_name;
+      this.tel = this.data.tel_phone;
+      this.address = this.data.address;
+    } 
+    );
   }
 
 }

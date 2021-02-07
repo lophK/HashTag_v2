@@ -7,12 +7,18 @@ const { eco } = require('consolidate');
 
 // another routes also appear here
 // this script to fetch data from MySQL databse table
-router.get('/user', function(req, res, next) {
-    var sql='SELECT * FROM account_user';
-    db.query(sql, function (err, data, fields) {
+
+
+router.post('/user-data', function(req, res, next) {
+  var email = req.body.email;
+    var sql='SELECT first_name , last_name , email , tel_phone , address , birthday , user_img FROM account_user where email = ?';
+    db.query(sql,[email], function (err, result, fields) {
     if (err) throw err;
-     res.render('user-list', { title: 'User List', userData: data});
-    //res.end();
+    else{
+      var user = result[0];
+      res.send(user);
+    }
+    res.end();
   });
  
 });

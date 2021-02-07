@@ -1,0 +1,74 @@
+<app-header></app-header>
+<div class="row py-5 px-4">
+    <div class="col-md-6 mx-auto">
+        <div class="blog-comment bg-white shadow rounded overflow-hidden">
+            <hr/>
+            <ul class="comments">
+            <li class="clearfix">
+              <img src="../../assets/images/admin-settings-male.png" class="avatar" alt="">
+              <div class="post-comments">
+                  <p class="meta">สร้างโพสต์: <a routerLink = "/Profile">JohnDoe</a></p>
+                  <div class="row">
+                      <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md">
+                                <img [src]="src1"  id="Post" width="145" height="100">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="input-group mb">
+                                    <div class="custom-file">
+                                      <!-- <input type="file" #imageInput (change)="getFile(imageInput)" class="btn btn-outline-dark btn-sm btn-block"> -->
+                                      <input type="file" class="custom-file-input" id="inputGroupFile02"  #imageInput (change)="getFile(imageInput)">
+                                      <label class="custom-file-label" for="inputGroupFile02">file</label>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group" style="margin-top: 10px;">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option>#CAT</option>
+                              <option>#CAR</option>
+                              <option>#รุ่นที่ 10</option>
+                              <option>#DOC</option>
+                              <option>#KINGkong</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="col-md-9">
+                        <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;">โพสต์</button>
+                    </div>
+                  </div>
+              </div>
+            </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Recent photos</h5><a class="btn btn-link text-muted" >POST IMAGE</a>
+                </div>
+                <div class="row" style="text-align: center;"> 
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat5.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat3.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat6.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat5.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat3.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat6.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
