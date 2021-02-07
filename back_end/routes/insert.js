@@ -2,12 +2,26 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../condb');
+const multer = require('multer');
+var path = require('path');
 
-var express = require('express');
 var router = express.Router();
 var Password = require("node-php-password");
 
-const fs = require('fs');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../images/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+})
+const upload = multer({ 
+    storage: storage,
+    fileFilter: function(req, file, cb) {
+        checkFileType(file, cb);
+    }
+}).single("file");
 
 router.post('/register_ac', async function  (req, res, next) {
     const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
@@ -88,4 +102,37 @@ router.post('/tag_', async function  (req, res, next) {
     });
 
 })
+router.post('/upload_image', async (req, res) => {
+    await upload(req, res, (err) => {
+        if(err) {
+            res.json({
+                status: false,
+                message: err
+            });
+        } else {
+            if(req.file == undefined) {
+                res.json({
+                    status: false,
+                    message: "Errror: No file Selected"
+                });
+            } else {
+                res.json({
+                    status: true,
+                    message: "File Uploaded",
+                    file: req.file.filename
+                });
+            }
+        }
+    });
+});
+function checkFileType(file, cb){
+    const filetypes = /jpeg|jpg|png|gif/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+    if(mimetype && extname){
+      return cb(null,true);
+    } else {
+      cb('Error: Images Only!');
+    }
+  }
 module.exports = router;
