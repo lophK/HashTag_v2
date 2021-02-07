@@ -32,13 +32,15 @@ tel:any
   constructor(private sanitizer: DomSanitizer ,private http:HttpClient , private router_:Router) { }
 
   ngOnInit(): void {
-    this.user_img = this.getData();
+    this.getData();
     
 }
 
 async getData(){
   let json  ={email : this.email};
-  console.log(this.email)
+  console.log('E-mail');
+  console.log(localStorage.getItem('email'));
+  console.log(json);
   await this.http.post('http://localhost:3120/users/user-data',(json)).subscribe(response=>{
     //console.log(json);
     let userx = JSON.stringify(response);

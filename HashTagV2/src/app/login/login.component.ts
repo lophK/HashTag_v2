@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit{
       //console.log(json);
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
-      console.log(this.data);
+      console.log(this.data.email);
       localStorage.setItem(
-          "email",this.data
+          "email",this.data.email
       );
       //console.log(userx);
       this.router_.navigateByUrl("/Homepage");
