@@ -53,13 +53,13 @@ router.post('/register_ac', async function  (req, res, next) {
 
 router.post('/Post_', async function  (req, res, next) {
     //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
-    const {tag_id,post_detail,post_status} = req.body;
+    const {tag_id,post_detail,post_status,email} = req.body;
    // const password = Password.hash(plainTextPassword);
-            let sql = 'insert into post (tag_id,post_detail ,post_status)' +
+            let sql = 'insert into post (tag_id,email_ac,post_detail ,post_status)' +
             'values(?, ?, ?)';
         
             sql = db.format(sql, [
-                tag_id,post_detail,post_status
+                tag_id,email,post_detail,post_status
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;
