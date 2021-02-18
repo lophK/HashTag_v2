@@ -23,6 +23,10 @@ var app = require("express")();
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use('/images',express.static(__dirname+'/images'));
+app.use('/back_end/images',express.static(__dirname+'/back_end/images'));
+app.use('/back_end/views',express.static(__dirname+'/back_end/views'));
+//app.use('/views',express.static(__dirname+'/views'));
 //var app = express();
 
 // app.use(session({

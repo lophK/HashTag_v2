@@ -7,6 +7,7 @@ var path = require('path');
 
 var router = express.Router();
 var Password = require("node-php-password");
+const cons = require('consolidate');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -21,7 +22,7 @@ const upload = multer({
     fileFilter: function(req, file, cb) {
         checkFileType(file, cb);
     }
-}).single("file");
+});//.single("file");
 
 router.post('/register_ac', async function  (req, res, next) {
     const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
@@ -51,22 +52,44 @@ router.post('/register_ac', async function  (req, res, next) {
 });
 })
 
-router.post('/Post_', async function  (req, res, next) {
+  router.post('/Post_', async function  (req, res, next) {
     //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
     const {tag_id,post_detail,post_status,email} = req.body;
+        console.log(req.body);
    // const password = Password.hash(plainTextPassword);
             let sql = 'insert into post (tag_id,email_ac,post_detail ,post_status)' +
-            'values(?, ?, ?)';
+            'values(?, ?, ?, ?)';
         
             sql = db.format(sql, [
-                tag_id,email,post_detail,post_status
+                tag_id,req.body.email_ac,post_detail,post_status
             ]);
             db.query(sql, (error, results, fields) => {
+                
+                let   id;
                 if (error) throw error;
-                if (results.affectedRows > 0) {
-                    res.status(200).send(true);
+                // if (results.affectedRows > 0) {
+                   
+                //     console.log("id = "+this.id);
+                //     res.status(200).send(true);
+                // } else {
+                //     res.status(200).send(false);
+                // }
+            });
+            db.query(`select * from post WHERE email_ac='`+req.body.email_ac+`'`+'and post_id in (select max(post_id) from post )', function (error, resultss, fields) {
+                if (error) throw error;
+                numRows = resultss.length;
+                var post_idd = resultss[0];
+                //console.log(post_idd['post_id']);
+                //console.log(numRows);
+                if (numRows < 0 ) {
+                    console.log(numRows);
+                    res.status(400).send(false);
                 } else {
-                    res.status(200).send(false);
+                 id = resultss[0];
+                 console.log("idddd="+id['post_id']);
+                    //res.status(400).send(true);
+                    return res.json({ post_id: id['post_id']});
+                   
                 }
             });
         
@@ -102,46 +125,56 @@ router.post('/tag_', async function  (req, res, next) {
     });
 
 })
-router.post('/upload_image', async (req, res) => {
- 
-    await upload(req, res, (err) => {
-        console.log(req.file);
-        if(err) {
-            res.json({
-                status: false,
-                message: err
-            });
-        } else {
-            
-            if(req.file == undefined) {
-                res.json({
-                    status: false,
-                    message: "Errror: No file Selected"
-                });
-            } else {
-                res.json({
+router.post('/upload_image',upload.single('file'), async (req, res) => {
+   console.log(req.body);
+    // upload(req, res, (err) => {
+    //    // console.log(req.file);
+    //     if(err) {
+    //         //console.log("faild");
+    //        return res.json({
+               
+    //             status: false,
+    //             message: err
+    //         });
+    //     } else {
+           
+    //         if(req.file == undefined) {
+    //             console.log("xxx");
+    //             res.json({
+    //                 status: false,
+    //                 message: "Errror: No file Selected"
+    //             });
+    //         } else {
+    //             res.json({
                     
-                    status: true,
-                    message: "File Uploaded",
-                    file: req.file.filename
-                });
-                const {email} = req.body;
-                //let sql_idpost =`SELECT post_id FROM post WHERE email_ac = '`+email+`'`;
-                db.query(`SELECT post_id FROM post WHERE email_ac = '`+email+`'`, function (error, resultss, fields) {
-                    if (error) throw error;
-                    numRows = resultss.length;
-                    console.log(resultss);
-                    //console.log(numRows);
-                    if (numRows < 0 ) {
-                        console.log(numRows);
-                        res.status(400).send(false);
-                    } else {
-                        const {post_id,path} = req.body;
+    //                 status: true,
+    //                 message: "File Uploaded",
+    //                 file: req.file.filename
+    //             });
+    //             console.log(req.body.post_id);
+    //            //const {email,post_id} = req.body;
+    //            // const x= 'xx@xx';
+    //             //`SELECT max(id) FROM Post WHERE email = '`+req.body.email_ac+`'`
+    //             // db.query(`select * from post WHERE email_ac='`+req.body.email_ac+`'`+'and post_id in (select max(post_id) from post )', function (error, resultss, fields) {
+    //             //     if (error) throw error;
+    //             //     numRows = resultss.length;
+    //             //     var post_idd = resultss[0]
+    //             //     console.log(post_idd['post_id']);
+    //             //     //console.log(numRows);
+    //             //     if (numRows < 0 ) {
+    //             //         console.log(numRows);
+    //             //         res.status(400).send(false);
+    //             //     } else {
+                        const po_id=req.body.post_id;
+                      
+                        let  path = 'http://localhost:3120/'+req.file.path;
+
+                        console.log(path);
                         // const password = Password.hash(plainTextPassword);
                                  let sql = 'insert into IMG_file (post_id,path)' +'values(?, ?)';
                              
                                  sql = db.format(sql, [
-                                    post_id,path
+                                    po_id,path
                                  ]);
                                  db.query(sql, (error, results, fields) => {
                                      if (error) throw error;
@@ -151,12 +184,13 @@ router.post('/upload_image', async (req, res) => {
                                          res.status(200).send(false);
                                      }
                                  });
-                    }
-                });
+                //     }
+                // });
             
-            }
-        }
-    });
+    //         }
+    //     }
+    // });
+
 });
 function checkFileType(file, cb){
     const filetypes = /jpeg|jpg|png|gif/;
