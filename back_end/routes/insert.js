@@ -125,21 +125,35 @@ router.post('/upload_image', async (req, res) => {
                     message: "File Uploaded",
                     file: req.file.filename
                 });
-                const {post_id,path} = req.body;
-                // const password = Password.hash(plainTextPassword);
-                         let sql = 'insert into IMG_file (post_id,path)' +'values(?, ?)';
-                     
-                         sql = db.format(sql, [
-                            post_id,path
-                         ]);
-                         db.query(sql, (error, results, fields) => {
-                             if (error) throw error;
-                             if (results.affectedRows > 0) {
-                                 res.status(200).send(true);
-                             } else {
-                                 res.status(200).send(false);
-                             }
-                         });
+                const {email} = req.body;
+                //let sql_idpost =`SELECT post_id FROM post WHERE email_ac = '`+email+`'`;
+                db.query(`SELECT post_id FROM post WHERE email_ac = '`+email+`'`, function (error, resultss, fields) {
+                    if (error) throw error;
+                    numRows = resultss.length;
+                    console.log(resultss);
+                    //console.log(numRows);
+                    if (numRows < 0 ) {
+                        console.log(numRows);
+                        res.status(400).send(false);
+                    } else {
+                        const {post_id,path} = req.body;
+                        // const password = Password.hash(plainTextPassword);
+                                 let sql = 'insert into IMG_file (post_id,path)' +'values(?, ?)';
+                             
+                                 sql = db.format(sql, [
+                                    post_id,path
+                                 ]);
+                                 db.query(sql, (error, results, fields) => {
+                                     if (error) throw error;
+                                     if (results.affectedRows > 0) {
+                                         res.status(200).send(true);
+                                     } else {
+                                         res.status(200).send(false);
+                                     }
+                                 });
+                    }
+                });
+            
             }
         }
     });
