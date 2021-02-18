@@ -28,23 +28,21 @@
                         </div>
                       </div>
                       <div class="col-md-9">
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                        <textarea class="form-control" rows="5" id="comment"  [(ngModel)]="textStatus"></textarea>
                       </div>
                   </div>
                   <div class="row">
                     <div class="col-md-3">
                         <div class="form-group" style="margin-top: 10px;">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                              <option>#CAT</option>
-                              <option>#CAR</option>
-                              <option>#รุ่นที่ 10</option>
-                              <option>#DOC</option>
-                              <option>#KINGkong</option>
+                            <select class="form-control" #dataSelect (change)="getSelect(dataSelect)">
+                              <option value="CAT">#CAT</option>
+                              <option value="CAR">#CAR</option>
+                              <option value="DOC">#DOC</option>
                             </select>
                           </div>
                     </div>
                     <div class="col-md-9">
-                        <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;">โพสต์</button>
+                        <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" (click)='postdata()'>โพสต์</button>
                     </div>
                   </div>
               </div>

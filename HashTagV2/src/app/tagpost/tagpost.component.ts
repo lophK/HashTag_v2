@@ -14,6 +14,10 @@ export class TagpostComponent implements OnInit {
   closeResult = '';
   base64 : any
   src1 :any = '../../assets/images/user.png'
+  dataSelect = 'CAT'
+  email = localStorage.getItem('email')
+  textStatus = ''
+
   constructor(private modalService: NgbModal, private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -33,6 +37,15 @@ export class TagpostComponent implements OnInit {
         this.src1 = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
     };
     
+  }
+
+  postdata(){
+
+  }
+
+  getSelect(data: any){
+    this.dataSelect = data.value;
+    console.log(this.dataSelect);
   }
 
 }
