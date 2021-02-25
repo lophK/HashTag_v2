@@ -60,7 +60,9 @@ FROM
 	IMG_file
 	ON 
 		post.post_id = IMG_file.post_id,
-	account_user
+    account_user
+    WHERE
+    db_loph.post.email_ac = ?
     ORDER BY db_loph.post.post_time DESC`;
     //ON 
         // db_loph.IMG_file.post_id = db_loph.post.post_id
