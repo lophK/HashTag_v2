@@ -11,7 +11,15 @@ var  json  = require('body-parser');
 router.post('/select_post', function(req, res, next) {
    
     const { email} = req.body;
-    var GRAB_post = `SELECT * FROM post WHERE email_ac = ?`;
+    var GRAB_post = `SELECT
+	db_loph.post.post_id, 
+	db_loph.IMG_file.*
+FROM
+	db_loph.IMG_file
+	INNER JOIN
+	db_loph.post
+	ON 
+		db_loph.IMG_file.post_id = db_loph.post.post_id`;
     db.query(GRAB_post, req.body.email, (err, result) => {
       if (err) {
         res.json({message:"Error"})
@@ -20,7 +28,7 @@ router.post('/select_post', function(req, res, next) {
         var user = result[0]
         console.log(user);
        
-          return res.json({ data: user, token:token });
+          return res.json({ email: user.email });
       }
       })
 
