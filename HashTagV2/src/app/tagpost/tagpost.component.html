@@ -2,6 +2,16 @@
 <div class="row py-5 px-4">
     <div class="col-md-6 mx-auto">
         <div class="blog-comment bg-white shadow rounded overflow-hidden">
+            <div class="form-group">
+                <hr>
+                <label for="pwd">สร้าง TAG</label>
+                <input type="text" class="form-control" placeholder="#TAG Name">
+              </div>
+              <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" >สร้าง TAG</button>
+              <hr>
+        </div>
+        <hr/>
+        <div class="blog-comment bg-white shadow rounded overflow-hidden">
             <hr/>
             <ul class="comments">
             <li class="clearfix">
@@ -53,7 +63,7 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="py-4 px-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Recent photos</h5><a class="btn btn-link text-muted" >POST IMAGE</a>
+                    <h5 class="mb-0">รูปทั้งหมด</h5><a class="btn btn-link text-muted" >รูปที่โพสต์</a>
                 </div>
                 <div class="row" style="text-align: center;"> 
                     <div *ngFor = "let post of this.data; let i = index" class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="{{data[i].path}}" alt="" class="img-fluid rounded shadow-sm"></div>
