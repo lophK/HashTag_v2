@@ -14,6 +14,7 @@ export class TagpostComponent implements OnInit {
   closeResult = '';
   base64 : any
   src1 :any = '../../assets/images/user.png'
+  src2 :any = '../../assets/images/user.png'
   dataSelect = 'CAT'
   email :any = localStorage.getItem('email')
   Poststatus = 'public'
@@ -21,10 +22,15 @@ export class TagpostComponent implements OnInit {
   detail = '';
   file_img:any;
   file :any;
+  data :any
+  fname: any
+  lname: any
 
   constructor(private modalService: NgbModal, private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  this.getData();
+  this.getPost();
   }
 
   getFile(imageInput: any){
@@ -102,6 +108,36 @@ export class TagpostComponent implements OnInit {
   getSelect(data: any){
     this.dataSelect = data.value;
     console.log(this.dataSelect);
+  }
+
+  async getData(){
+    let json  ={email : localStorage.getItem('email')};
+    console.log(json);
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://localhost:3120/users/user-data',(json)).subscribe(response=>{
+      let userx = JSON.stringify(response);
+      this.data = JSON.parse(userx);
+      console.log(this.data);
+      this.src2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.data.user_img);
+      this.fname = this.data.first_name;
+      this.lname = this.data.last_name;
+    } 
+    );
+  }
+
+  async getPost(){
+    let json  ={email : localStorage.getItem('email')};
+    console.log(json);
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://localhost:3120/select/select_post',(json)).subscribe(response=>{
+      let userx = JSON.stringify(response);
+      this.data = JSON.parse(userx);
+      console.log('data');
+      console.log(this.data);
+    } 
+    );
   }
 
 }
