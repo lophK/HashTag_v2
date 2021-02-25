@@ -125,6 +125,28 @@ router.post('/tag_', async function  (req, res, next) {
     });
 
 })
+router.post('/Follow', async function  (req, res, next) {
+    //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
+   
+        const {user_email,follow_email} = req.body;
+   // const password = Password.hash(plainTextPassword);
+            let sql = 'insert into follow (user_email,follow_email)' +'values(?, ?)';
+        
+            sql = db.format(sql, [
+                user_email,follow_email
+            ]);
+            db.query(sql, (error, results, fields) => {
+                if (error) throw error;
+                if (results.affectedRows > 0) {
+                    res.status(200).send(true);
+                } else {
+                    res.status(200).send(false);
+                }
+            });
+        
+    
+
+})
 router.post('/upload_image',upload.single('file'), async (req, res) => {
    console.log(req.body);
     // upload(req, res, (err) => {
