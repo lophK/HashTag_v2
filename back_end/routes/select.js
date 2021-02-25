@@ -12,15 +12,16 @@ router.post('/select_post', function(req, res, next) {
    
     const { email} = req.body;
     var GRAB_post = `SELECT
-	db_loph.IMG_file.*, 
-	db_loph.post.*
+	db_loph.post.post_id, 
+	db_loph.IMG_file.*
 FROM
 	db_loph.IMG_file
 	INNER JOIN
 	db_loph.post
-	
+ON 
+    db_loph.IMG_file.post_id = db_loph.post.post_id	
 WHERE
-    db_loph.post.email_ac = '`+req.body.email_ac+`'`;
+    db_loph.post.email_ac = '`+req.body.email+`'`;
     //ON 
         // db_loph.IMG_file.post_id = db_loph.post.post_id
     db.query(GRAB_post, req.body.email, (err, result) => {
@@ -28,12 +29,11 @@ WHERE
         res.json({message:"Error"})
       } 
       else if (result) {
-        var user = result[0]
+        var user = result
         console.log(user);
        
-          return res.json({ email: user.email });
+          return res.json({ email: 'sss' });
       }
       })
-
   });
   module.exports = router;
