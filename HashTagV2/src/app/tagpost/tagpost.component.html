@@ -5,9 +5,9 @@
             <div class="form-group">
                 <hr>
                 <label for="pwd">สร้าง TAG</label>
-                <input type="text" class="form-control" placeholder="#TAG Name">
+                <input type="text" class="form-control" placeholder="#TAG Name" [(ngModel)]="Tagname">
               </div>
-              <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" >สร้าง TAG</button>
+              <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" (click)="CreateTag()">สร้าง TAG</button>
               <hr>
         </div>
         <hr/>
@@ -45,9 +45,7 @@
                     <div class="col-md-3">
                         <div class="form-group" style="margin-top: 10px;">
                             <select class="form-control" #dataSelect (change)="getSelect(dataSelect)">
-                              <option value="CAT">#CAT</option>
-                              <option value="CAR">#CAR</option>
-                              <option value="DOC">#DOC</option>
+                              <option *ngFor = 'let Tag of this.Tag; let j = index' value="{{Tag.tag_id}}">#{{Tag.tag_name}}</option>
                             </select>
                           </div>
                     </div>

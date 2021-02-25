@@ -18,19 +18,23 @@ export class TagpostComponent implements OnInit {
   dataSelect = 'CAT'
   email :any = localStorage.getItem('email')
   Poststatus = 'public'
-  tag_id :any =1;
+  tag_id :any;
   detail = '';
   file_img:any;
   file :any;
   data :any
   fname: any
   lname: any
+  Tagname = ""
+  tag_description = ""
+  Tag :any
 
   constructor(private modalService: NgbModal, private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   this.getData();
   this.getPost();
+  this.getTagAll();
   }
 
   getFile(imageInput: any){
@@ -106,8 +110,8 @@ export class TagpostComponent implements OnInit {
   }
 
   getSelect(data: any){
-    this.dataSelect = data.value;
-    console.log(this.dataSelect);
+    this.tag_id = data.value;
+    console.log(this.tag_id);
   }
 
   async getData(){
@@ -136,6 +140,32 @@ export class TagpostComponent implements OnInit {
       this.data = JSON.parse(userx);
       console.log('data');
       console.log(this.data);
+    } 
+    );
+  }
+
+  async CreateTag(){
+    let json  ={email : localStorage.getItem('email'), tag_name : this.Tagname, tag_description : this.tag_description};
+    console.log(json);
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://localhost:3120/insert/tag_',(json)).subscribe(response=>{
+      location.reload()
+    } 
+    );
+  }
+
+  async getTagAll(){
+    let json  ={email : localStorage.getItem('email')};
+    console.log(json);
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://localhost:3120/select/select_tag_all',(json)).subscribe(response=>{
+      let userx = JSON.stringify(response);
+      this.Tag = JSON.parse(userx);
+      console.log(this.Tag)
+      this.tag_id = this.Tag[0].tag_id;
+      console.log(this.tag_id);
     } 
     );
   }
