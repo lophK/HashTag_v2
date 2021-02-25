@@ -32,7 +32,7 @@ WHERE
         var user = result
         console.log(user);
        
-          return res.json({ email: 'sss' });
+        res.send(user)
       }
       })
   });

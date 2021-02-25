@@ -56,14 +56,14 @@
                     <h5 class="mb-0">Recent photos</h5><a class="btn btn-link text-muted" >POST IMAGE</a>
                 </div>
                 <div class="row" style="text-align: center;"> 
-                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat5.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat3.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div *ngFor = "let post of this.data; let i = index" class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="{{data[i].path}}" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <!-- <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat3.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
                     <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
                     <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat6.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
                     <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat5.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
                     <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat3.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
                     <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat6.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="../../assets/images/cat6.jpg" alt="" class="img-fluid rounded shadow-sm"></div> -->
                 </div>
             </div>
         </div>

@@ -89,12 +89,12 @@ export class TagpostComponent implements OnInit {
                this.http.post('http://localhost:3120/insert/upload_image',formdata).subscribe(response=>{
               
                 console.log(formdata);
-                this.router_.navigateByUrl("/Homepage");
+                location.reload()
                   } 
               );
           }
           else{
-             this.router_.navigateByUrl("/Homepage");
+             location.reload()
           }
      
         }
