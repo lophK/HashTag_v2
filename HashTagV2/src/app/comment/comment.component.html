@@ -76,9 +76,9 @@
     </div>
   </div>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Comment">
+    <input type="text" class="form-control" placeholder="Comment" [(ngModel)]="textcommet">
     <div class="input-group-append">
-      <button class="btn btn-success" type="submit"><fa-icon [icon] = "send"></fa-icon></button>  
+      <button class="btn btn-success" type="submit"><fa-icon [icon] = "send" (click)="getcomment()"></fa-icon></button>  
     </div>
   </div>
   </div>

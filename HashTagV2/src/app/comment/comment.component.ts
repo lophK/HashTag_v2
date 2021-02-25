@@ -21,7 +21,12 @@ like = faThumbsUp
 dislike = faThumbsDown
 comment = faComments
 share = faShareAltSquare
+textcommet = ""
   constructor() { }
+
+  getcomment(){
+    
+  }
 
   ngOnInit(): void {
   }
