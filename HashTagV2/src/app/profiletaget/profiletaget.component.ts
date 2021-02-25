@@ -52,7 +52,7 @@ export class ProfiletagetComponent implements OnInit {
     console.log(json);
     await this.http.post('http://localhost:3120/insert/Follow',(json)).subscribe(response=>{
       //console.log(json);
-      location.reload()
+      this.router_.navigateByUrl("/VisitP");
     } 
     );
   }

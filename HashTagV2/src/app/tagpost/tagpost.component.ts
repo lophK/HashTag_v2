@@ -93,16 +93,18 @@ export class TagpostComponent implements OnInit {
                this.http.post('http://localhost:3120/insert/upload_image',formdata).subscribe(response=>{
               
                 console.log(formdata);
-                location.reload()
+                this.router_.navigateByUrl("/Tag");
+                //location.reload()
                   } 
               );
           }
           else{
-             location.reload()
+             //location.reload()
           }
      
         }
         //this.router_.navigateByUrl("/Tag");
+        this.router_.navigateByUrl("/Tag");
        } 
       );
       
@@ -150,7 +152,7 @@ export class TagpostComponent implements OnInit {
     console.log(localStorage.getItem('email'));
     console.log(json);
     await this.http.post('http://localhost:3120/insert/tag_',(json)).subscribe(response=>{
-      location.reload()
+      this.router_.navigateByUrl("/Tag");
     } 
     );
   }
