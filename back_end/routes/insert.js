@@ -106,12 +106,12 @@ router.post('/tag_', async function  (req, res, next) {
             console.log(numRows);
             res.status(400).send(false);
         } else {
-        const {tag_name,tag_description} = req.body;
+        const {email,tag_name,tag_description} = req.body;
    // const password = Password.hash(plainTextPassword);
-            let sql = 'insert into tag (tag_name,tag_description)' +'values(?, ?)';
+            let sql = 'insert into tag (owner_tag,tag_name,tag_description)' +'values(?, ? ,?)';
         
             sql = db.format(sql, [
-                tag_name,tag_description
+                email,tag_name,tag_description
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;

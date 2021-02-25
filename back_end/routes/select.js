@@ -60,19 +60,10 @@ WHERE
   router.post('/select_tag_email', function(req, res, next) {
    
     const { email} = req.body;
-    var GRAB_tag = `SELECT
-	tag.tag_name
-FROM
-	tag
-	INNER JOIN
-	post
-	ON 
-        tag.tag_id = post.tag_id
-WHERE
-    db_loph.post.email_ac = ?`;
+    var GRAB_tag = `SELECT tag.tag_name WHERE owner_tag = ?`;
     //ON 
         // db_loph.IMG_file.post_id = db_loph.post.post_id
-    db.query(GRAB_tag, req.body.email, (err, result) => {
+    db.query(GRAB_tag, email, (err, result) => {
       if (err) {
         res.json({message:"Error"})
       } 
