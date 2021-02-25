@@ -70,7 +70,6 @@ FROM
       } 
       else if (result) {
         var user = result
-        console.log(user);
        
         res.send(user)
       }

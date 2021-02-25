@@ -20,6 +20,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { TagpostComponent } from './tagpost/tagpost.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProfiletagetComponent } from './profiletaget/profiletaget.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommentComponent,
     EditPComponent,
     TagpostComponent,
+    ProfiletagetComponent,
   ],
   imports: [
     BrowserModule,

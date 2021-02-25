@@ -10,6 +10,7 @@ import { ViralComponent } from './viral/viral.component';
 import { CommentComponent } from './comment/comment.component';
 import { EditPComponent } from './edit-p/edit-p.component';
 import { TagpostComponent } from './tagpost/tagpost.component';
+import { ProfiletagetComponent } from './profiletaget/profiletaget.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'Viral', component: ViralComponent},
   {path: 'Comment', component: CommentComponent},
   {path: 'EditP', component: EditPComponent},
-  {path: 'Tag', component: TagpostComponent}
+  {path: 'Tag', component: TagpostComponent},
+  {path: 'VisitP', component: ProfiletagetComponent}
 ];
 
 @NgModule({

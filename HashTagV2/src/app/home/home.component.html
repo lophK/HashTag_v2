@@ -56,23 +56,41 @@
 
                 </div>
             </section>
-            <div class="wrapper style2">
-
-                <article id="main" class="container special">
-                    <a href="#" class="image featured"><img src="../../assets/images/cat7.jpg" alt="" /></a>
-                    <header>
-                        <h2><a href="#">Super Cats</a></h2>
-                        <p>
-                            cat 
-                        </p>
-                    </header>
-                    <footer>
-                        <a href="profile.html" class="button">My TAG</a>
-                    </footer>
-                </article>
-
+            <div *ngFor = "let post1 of this.post; let i1 = index">
+                <div class="row mx-auto py-5 px-4">
+                    <div class=" col-lg-3"></div>
+                    <div class="bg-white shadow rounded overflow-hidden border border-secondary col-lg-6 mb-2 pr-lg">
+                        <div class="row" style="background-image: url('../../assets/images/pic06.jpg')">
+                            <div class="col-lg-3">
+                                <img [src]=(convert(post[i1].user_img)) class="rounded-circle" alt="Cinque Terre" width="150" height="150" routerLink = "/VisitP" [state]="post[i1].email_ac"> 
+                            </div>
+                            <div class="col-lg-9">
+                               <div class="row">
+                                   <div class="col">
+                                       
+                                   </div>
+                               </div>
+                               <div class="row">
+                                <div class="col">
+                                     <h4>{{post[i1].first_name}}  {{post[i1].last_name}}</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                     <h5>{{post[i1].post_detail}}</h5>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="py-4 px-4">
+                            <div class="row" style="text-align: center;"> 
+                                <div class="col-lg-11 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="{{post[i1].path}}" alt="" class="img-fluid rounded shadow-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-lg-3"></div>
+                </div>
             </div>
-
         </div>
 
 </body>
