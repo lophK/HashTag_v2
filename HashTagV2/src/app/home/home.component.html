@@ -1,68 +1,25 @@
 <app-header></app-header>
 <body class="homepage is-preload">
     <div id="page-wrapper">
-            <section class="carousel">
-                <div class="reel">
-
-                    <article>
-                        <a href="#" class="image featured"><img src="../../assets/images/cat1.jpg" alt="" /></a>
-                        <header>
-                            <h3><a href="#">Tag 1</a></h3>
-                        </header>
-                        <p>cat</p>
-                    </article>
-
-                    <article>
-                        <a href="#" class="image featured"><img src="../../assets/images/cat2.jpeg" alt="" /></a>
-                        <header>
-                            <h3><a href="#">Tag 2</a></h3>
-                        </header>
-                        <p>cat cat</p>
-                    </article>
-
-                    <article>
-                        <a href="#" class="image featured"><img src="../../assets/images/cat3.jpg" alt="" /></a>
-                        <header>
-                            <h3><a href="#">Tag 3</a></h3>
-                        </header>
-                        <p>cat cat cat</p>
-                    </article>
-
-                    <article>
-                        <a href="#" class="image featured"><img src="../../assets/images/cat4.jpg" alt="" /></a>
-                        <header>
-                            <h3><a href="#">Tag 4</a></h3>
-                        </header>
-                        <p>cat cat cat cat</p>
-                    </article>
-
-                    <article>
-                        <a href="#" class="image featured"><img src="../../assets/images/cat5.jpg" alt="" /></a>
-                        <header>
-                            <h3><a href="#">Tag 5</a></h3>
-                        </header>
-                        <p>cat cat cat cat cat </p>
-                    </article>
-
-                    <article>
-                        <a href="#" class="image featured"><img src="../../assets/images/cat6.jpg" alt="" /></a>
-                        <header>
-                            <h3><a href="#">Tag 6</a></h3>
-                        </header>
-                        <p>cat cat cat cat cat cat</p>
-                    </article>
-
-            
-
-                </div>
-            </section>
+                <section class="carousel">
+                    <div class="reel">
+                        <article *ngFor = "let Tag1 of this.Tag; let i2 = index">
+                            <br>
+                            <h3>TAG</h3>
+                            <header>
+                                <h3>#{{Tag[i2].tag_name}}</h3>
+                            </header>
+                        </article>
+                    </div>
+                </section>
+                <br>
             <div *ngFor = "let post1 of this.post; let i1 = index">
                 <div class="row mx-auto py-5 px-4">
                     <div class=" col-lg-3"></div>
                     <div class="bg-white shadow rounded overflow-hidden border border-secondary col-lg-6 mb-2 pr-lg">
                         <div class="row" style="background-image: url('../../assets/images/pic06.jpg')">
                             <div class="col-lg-3">
-                                <img [src]=(convert(post[i1].user_img)) class="rounded-circle" alt="Cinque Terre" width="150" height="150" routerLink = "/VisitP" [state]="post[i1].email_ac"> 
+                                <img [src]=(convert(post[i1].user_img)) class="rounded-circle" alt="Cinque Terre" width="150" height="150" routerLink = "/VisitP" [state]="{email :post[i1].email_ac}"> 
                             </div>
                             <div class="col-lg-9">
                                <div class="row">

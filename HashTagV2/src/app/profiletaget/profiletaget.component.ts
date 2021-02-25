@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profiletaget.component.css']
 })
 export class ProfiletagetComponent implements OnInit {
-  email = history.state
+  email = history.state.email
   data : any
   src : any
   fname : any
@@ -20,8 +20,10 @@ export class ProfiletagetComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer ,private http:HttpClient , private router_:Router) { }
 
   ngOnInit(): void {
-    console.log(history.state)
-    this.email = history.state
+    console.log("history")
+    console.log(history.state.email)
+    this.email = history.state.email
+    this.getData();
   }
 
   async getData(){
