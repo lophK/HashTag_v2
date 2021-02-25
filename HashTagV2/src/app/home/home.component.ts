@@ -49,4 +49,11 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  setemail(email : any){
+    localStorage.setItem(
+      "emailvisit",email
+  );
+  this.router_.navigateByUrl("/VisitP");
+  }
+
 }

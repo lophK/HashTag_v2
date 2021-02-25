@@ -5,7 +5,7 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover">
                 <div class="media align-items-end profile-head">
-                    <div class="profile mr-3"><img [src]="src" alt="..." width="300" class="rounded mb-2 img-thumbnail"><a class="btn btn-outline-dark btn-sm btn-block">Follow</a></div>
+                    <div class="profile mr-3"><img [src]="src" alt="..." width="300" class="rounded mb-2 img-thumbnail"><a (click)="Follow()" class="btn btn-outline-dark btn-sm btn-block">Follow</a></div>
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-0">
                             {{fname}}  {{lname}}

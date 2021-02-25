@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profiletaget.component.css']
 })
 export class ProfiletagetComponent implements OnInit {
-  email = history.state.email
+  email = localStorage.getItem('emailvisit')
   data : any
   src : any
   fname : any
@@ -20,9 +20,7 @@ export class ProfiletagetComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer ,private http:HttpClient , private router_:Router) { }
 
   ngOnInit(): void {
-    console.log("history")
-    console.log(history.state.email)
-    this.email = history.state.email
+    console.log(localStorage.getItem('emailvisit'))
     this.getData();
   }
 
@@ -43,6 +41,18 @@ export class ProfiletagetComponent implements OnInit {
       this.tel = this.data.tel_phone;
       this.day = this.data.birthday;
       this.address = this.data.address;
+    } 
+    );
+  }
+
+  async Follow(){
+    let json  ={user_email : localStorage.getItem('email'),follow_email : localStorage.getItem('emailvisit')};
+    console.log('E-mail');
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://localhost:3120/insert/Follow',(json)).subscribe(response=>{
+      //console.log(json);
+      location.reload()
     } 
     );
   }
