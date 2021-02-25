@@ -37,6 +37,45 @@ WHERE
       }
       })
   });
+  router.post('/select_post_all', function(req, res, next) {
+   
+    const { email} = req.body;
+    var GRAB_post = `SELECT
+	post.email_ac, 
+	post.post_id, 
+	tag.tag_name, 
+	IMG_file.path, 
+	account_user.user_img, 
+	account_user.first_name, 
+	account_user.last_name, 
+	post.post_detail, 
+	post.tag_id
+FROM
+	tag
+	INNER JOIN
+	post
+	ON 
+		tag.tag_id = post.tag_id
+	INNER JOIN
+	IMG_file
+	ON 
+		post.post_id = IMG_file.post_id,
+	account_user
+    ORDER BY db_loph.post.post_time DESC`;
+    //ON 
+        // db_loph.IMG_file.post_id = db_loph.post.post_id
+    db.query(GRAB_post, req.body.email, (err, result) => {
+      if (err) {
+        res.json({message:"Error"})
+      } 
+      else if (result) {
+        var user = result
+        console.log(user);
+       
+        res.send(user)
+      }
+      })
+  });
 
   router.post('/select_tag_all', function(req, res, next) {
    
