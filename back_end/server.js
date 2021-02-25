@@ -14,6 +14,7 @@ var loginRouter = require('./routes/login');
 var regisRouter = require('./routes/insert');
 var edit_acRouter = require('./routes/edit');
 var delete_acRouter = require('./routes/delete');
+var select_Router = require('./routes/select');
 var bodyParser = require("body-parser");
 var cors = require('cors');
 
@@ -81,6 +82,8 @@ app.use('/login', loginRouter);
 app.use('/insert', regisRouter);
 app.use('/edit', edit_acRouter);
 app.use('/delete', delete_acRouter);
+app.use('/select', select_Router);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -99,6 +102,6 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-app.listen(pott, () => { console.log("Server online on http://localhost:" + pott + "/users/user-list"); });
+app.listen(pott, () => { console.log("Server online on http://localhost:" + pott ); });
 
 module.exports = app;

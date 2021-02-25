@@ -5,7 +5,7 @@ var db = require('../condb');
 const multer = require('multer');
 var path = require('path');
 
-var router = express.Router();
+// var router = express.Router();
 var Password = require("node-php-password");
 const cons = require('consolidate');
 
