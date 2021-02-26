@@ -29,7 +29,7 @@ export class ProfiletagetComponent implements OnInit {
     console.log('E-mail');
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/users/user-data',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/users/user-data',(json)).subscribe(response=>{
       //console.log(json);
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
@@ -50,7 +50,7 @@ export class ProfiletagetComponent implements OnInit {
     console.log('E-mail');
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/insert/Follow',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/Follow',(json)).subscribe(response=>{
       //console.log(json);
       this.router_.navigateByUrl("/VisitP");
     } 

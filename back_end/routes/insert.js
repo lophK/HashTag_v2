@@ -188,15 +188,15 @@ router.post('/upload_image',upload.single('file'), async (req, res) => {
     //             //         res.status(400).send(false);
     //             //     } else {
                         const po_id=req.body.post_id;
-                      
-                        let  path = 'http://localhost:3120/'+req.file.path;
+                                     //http://hashtagbe.comsciproject.com/images/1614295271477.jpg
+                        let  path1 = 'http://'+'hashtagbe'+'.comsciproject.com/images/'+req.file.filename;
 
-                        console.log(path);
+                        console.log(path1);
                         // const password = Password.hash(plainTextPassword);
                                  let sql = 'insert into IMG_file (post_id,path)' +'values(?, ?)';
                              
                                  sql = db.format(sql, [
-                                    po_id,path
+                                    po_id,path1
                                  ]);
                                  db.query(sql, (error, results, fields) => {
                                      if (error) throw error;
@@ -217,6 +217,7 @@ router.post('/upload_image',upload.single('file'), async (req, res) => {
 function checkFileType(file, cb){
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    console.log(file.originalname);
     const mimetype = filetypes.test(file.mimetype);
     if(mimetype && extname){
       return cb(null,true);

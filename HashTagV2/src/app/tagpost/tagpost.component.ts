@@ -28,6 +28,8 @@ export class TagpostComponent implements OnInit {
   Tagname = ""
   tag_description = ""
   Tag :any
+  test= "http://hashtagbe.comsciproject.com/images/1614295271477.jpg";
+  
 
   constructor(private modalService: NgbModal, private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) { }
 
@@ -73,8 +75,9 @@ export class TagpostComponent implements OnInit {
 
       //console.log(json);//http://hashtagbe.comsciproject.com/insert/register_ac
   
-      await this.http.post('http://localhost:3120/insert/Post_',(json)).subscribe(response=>{
+      await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/Post_',(json)).subscribe(response=>{
         //console.log(json);
+        location.reload();
        if(response){
           console.log(response);
           let p_id = JSON.stringify(response);
@@ -90,21 +93,19 @@ export class TagpostComponent implements OnInit {
          // formdata.append("tag_id",'1');
           let js2 = {tag_id : this.tag_id, email_ac : this.email, post_detail : this.detail, post_status: this.Poststatus,file:this.file ,post_id:pid.post_id};
           if(this.file != null){
-               this.http.post('http://localhost:3120/insert/upload_image',formdata).subscribe(response=>{
+               this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/upload_image',formdata).subscribe(response=>{
               
                 console.log(formdata);
-                this.router_.navigateByUrl("/Tag");
-                //location.reload()
+                location.reload();
                   } 
               );
           }
           else{
-             //location.reload()
+            location.reload();
           }
      
         }
-        //this.router_.navigateByUrl("/Tag");
-        this.router_.navigateByUrl("/Tag");
+        location.reload();
        } 
       );
       
@@ -121,7 +122,7 @@ export class TagpostComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/users/user-data',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/users/user-data',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
       console.log(this.data);
@@ -137,7 +138,7 @@ export class TagpostComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/select/select_post',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_post',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
       console.log('data');
@@ -151,8 +152,8 @@ export class TagpostComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/insert/tag_',(json)).subscribe(response=>{
-      this.router_.navigateByUrl("/Tag");
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/tag_',(json)).subscribe(response=>{
+      location.reload();
     } 
     );
   }
@@ -162,7 +163,7 @@ export class TagpostComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/select/select_tag_all',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_tag_all',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
       this.Tag = JSON.parse(userx);
       console.log(this.Tag)

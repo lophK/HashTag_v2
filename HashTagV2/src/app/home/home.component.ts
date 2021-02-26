@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/select/select_post_all',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_post_all',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
       this.post = JSON.parse(userx);
       console.log(this.post)
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://localhost:3120/select/select_tag_all',(json)).subscribe(response=>{
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_tag_all',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
       this.Tag = JSON.parse(userx);
       console.log(this.Tag)
