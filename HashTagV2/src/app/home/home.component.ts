@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
       console.log(this.post)
     } 
     );
+    //`xzxzxzxz
   }
 
   convert(img: any){
