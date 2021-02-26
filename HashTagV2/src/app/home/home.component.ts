@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getpostAll();
     this.getTagAll();
+    if(localStorage.getItem('token') == null){
+      this.router_.navigateByUrl("/");
+    }
   }
 
   async getpostAll(){

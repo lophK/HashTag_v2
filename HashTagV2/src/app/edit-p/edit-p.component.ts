@@ -32,6 +32,9 @@ export class EditPComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    if(localStorage.getItem('token') == null){
+      this.router_.navigateByUrl("/");
+    }
   }
   async edit(){
     let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64};

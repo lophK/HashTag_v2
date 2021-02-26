@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit{
    }
  
   ngOnInit(): void {
+    if(localStorage.getItem('token') == null){
+      this.router_.navigateByUrl("/");
+    }
   }
   async login(){
     let json  ={email : this.email, password : this.password};
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit{
         "token",this.data.token
     );
   
+    
       //console.log(userx);
       this.router_.navigateByUrl("/Homepage");
     } 

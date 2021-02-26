@@ -37,6 +37,9 @@ export class TagpostComponent implements OnInit {
   this.getData();
   this.getPost();
   this.getTagAll();
+  if(localStorage.getItem('token') == null){
+    this.router_.navigateByUrl("/");
+  }
   }
 
   getFile(imageInput: any){

@@ -119,17 +119,28 @@ FROM
   router.post('/select_follwing', function(req, res, next) {
    
     const { email} = req.body;
-    var GRAB_tag = `SELECT follow_email where user_email = ?`;
-    //ON 
-        // db_loph.IMG_file.post_id = db_loph.post.post_id
-    db.query(GRAB_tag, email, (err, result) => {
+    var GRAB_follow = `SELECT
+    account_user.user_img, 
+    account_user.first_name, 
+    follow.follow_email
+  FROM
+    account_user,
+    follow
+  WHERE
+    follow.follow_email <= (
+    SELECT
+      follow_email 
+    FROM
+      follow 
+    WHERE
+    follow.user_email =?)`;
+    db.query(GRAB_follow, email, (err, result) => {
       if (err) {
         res.json({message:"Error"})
       } 
       else if (result) {
-        var user = result[0];
-        console.log(user);
-       
+        var user = result
+       console.log(user[0])
         res.send(user)
       }
       })

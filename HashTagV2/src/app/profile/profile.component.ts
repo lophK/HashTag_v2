@@ -23,17 +23,24 @@ share = faShareAltSquare
 src: any = ""
 email: any = localStorage.getItem('email')
 data: any
+data2 : any
 fname: any
 lname:any
 address: any
 day: any
 user_img:any
+datafollow : any
+
 tel:any
   constructor(private sanitizer: DomSanitizer ,private http:HttpClient , private router_:Router) { }
 
   ngOnInit(): void {
     this.getData();
-    
+    this.getPost();
+    this.getFollow();
+    if(localStorage.getItem('token') == null){
+      this.router_.navigateByUrl("/");
+    }
 }
 
 async getData(){
@@ -53,6 +60,37 @@ async getData(){
     this.tel = this.data.tel_phone;
     this.day = this.data.birthday;
     this.address = this.data.address;
+  } 
+  );
+}
+convert(img: any){
+  return this.sanitizer.bypassSecurityTrustResourceUrl(img);
+}
+
+async getPost(){
+  let json  ={email : localStorage.getItem('email')};
+  console.log(json);
+  console.log(localStorage.getItem('email'));
+  console.log(json);
+  await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_post',(json)).subscribe(response=>{
+    let userx = JSON.stringify(response);
+    this.data2 = JSON.parse(userx);
+    console.log('data2');
+    console.log(this.data2);
+  } 
+  );
+}
+
+async getFollow(){
+  let json  ={email : localStorage.getItem('email')};
+  console.log(json);
+  console.log(localStorage.getItem('email'));
+  console.log(json);
+  await this.http.post('http://localhost:3120/select/select_follwing',(json)).subscribe(response=>{
+    let userx = JSON.stringify(response);
+    this.datafollow = JSON.parse(userx);
+    console.log('data3');
+    console.log(this.datafollow);
   } 
   );
 }
