@@ -115,4 +115,23 @@ FROM
       }
       })
   });
+
+  router.post('/select_follwing', function(req, res, next) {
+   
+    const { email} = req.body;
+    var GRAB_tag = `SELECT follow_email where user_email = ?`;
+    //ON 
+        // db_loph.IMG_file.post_id = db_loph.post.post_id
+    db.query(GRAB_tag, email, (err, result) => {
+      if (err) {
+        res.json({message:"Error"})
+      } 
+      else if (result) {
+        var user = result[0];
+        console.log(user);
+       
+        res.send(user)
+      }
+      })
+  });
   module.exports = router;

@@ -70,7 +70,39 @@ router.post('/edit_ac', function (req, res) {
     });
  
 });
+
+
+router.post('/edit_post', function (req, res) {
+    jwt.verify(req.body.token, super_key, (error) => {
+        if (error) { res.sendStatus(403); }
+        else {
+            
+            const {tag_id,post_detail,post_status} = req.body;
+    //UPDATE  account_user  SET first_name="t", last_name="t",username="t", password="161042", tel_phone="t", address="t", birthday="2000-10-16" where id="1"
+    //'UPDATE  account_user  SET first_name='+fname+',last_name='+lname+','+'username='+user+',password='+pass+',tel_phone='+tel+',address='+add+',birthday='+bir+' where id='+id+''
+    console.log(fname + "   " + lname);
+    
+    let sql = 'update post set tag_id=? , post_detail- ?,post_status';
+
+    sql = db.format(sql, [
+        tag_id,post_detail,post_status
+    ]);
+    db.query(sql, (error, results, fields) => {
+        if (error) throw error;
+        if (results.affectedRows > 0) {
+            res.status(200).send(true);
+        } else {
+            res.status(200).send(false);
+        }
+    });
+    }
+    });
+ 
+});
 router.post('/edit_ac2', function (req, res,next) {
+    jwt.verify(req.body.token, super_key, (error) => {
+        if (error) { res.sendStatus(403); }
+        else {
   const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address,user_img} = req.body;
   const password = Password.hash(plainTextPassword);
   //res.send('s');
@@ -92,6 +124,8 @@ router.post('/edit_ac2', function (req, res,next) {
                     });
                   }
             });
+        }
+        });
 
 });
 
