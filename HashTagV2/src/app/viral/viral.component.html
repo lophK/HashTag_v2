@@ -41,59 +41,14 @@
                     <p>
                         เป็นโพสต์ที่ได้รับความนิยมสูงในช่วงนี้
                     </p>
-                    <div class="row gtr-50">
+                    <div class="row gtr-50" *ngFor = "let viral of this.viral; let v = index">
                         <div class="col-4">
                             <a href="#" class="image fit"><img src="../../assets/images/cat3.jpg" alt="" /></a>
                         </div>
                         <div class="col-8">
-                            <h3>เจ้าแมวน้อย</h3>
+                            <h3>{{viral.tag_name}}</h3>
                             <p>
                                 อายุได้สี่เดือน หาคู่ให้น้องครับตอนนี้น้องเหงามาก.
-                            </p>
-                        </div>
-                        <div class="col-4">
-                            <a href="#" class="image fit"><img src="../../assets/images/cat3.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-8">
-                            <h3>แมวเสี่ยโอ</h3>
-                            <p>
-                                ไม่ใช่แมวของคนที่ โอ นะครับแมวชื่อเสี่ยโอ +.+
-                            </p>
-                        </div>
-                        <div class="col-4">
-                            <a href="#" class="image fit"><img src="../../assets/images/cat3.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-8">
-                            <h3>รุ่นที่ 10</h3>
-                            <p>
-                                เป็นแมวชุดที่ 10 แล้วครับของคอกนี้ ใครสนใจรับน้องไปเลี้ยงบ้างครับ.
-                            </p>
-                        </div>
-                        <div class="col-4">
-                            <a href="#" class="image fit"><img src="../../assets/images/cat3.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-8">
-                            <h3>แมวเสี่ยโอ</h3>
-                            <p>
-                                ไม่ใช่แมวของคนที่ โอ นะครับแมวชื่อเสี่ยโอ +.+
-                            </p>
-                        </div>
-                        <div class="col-4">
-                            <a href="#" class="image fit"><img src="../../assets/images/cat3.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-8">
-                            <h3>แมวเสี่ยโอ</h3>
-                            <p>
-                                ไม่ใช่แมวของคนที่ โอ นะครับแมวชื่อเสี่ยโอ +.+
-                            </p>
-                        </div>
-                        <div class="col-4">
-                            <a href="#" class="image fit"><img src="../../assets/images/cat3.jpg" alt="" /></a>
-                        </div>
-                        <div class="col-8">
-                            <h3>แมวเสี่ยโอ</h3>
-                            <p>
-                                ไม่ใช่แมวของคนที่ โอ นะครับแมวชื่อเสี่ยโอ +.+
                             </p>
                         </div>
                     </div>
