@@ -30,6 +30,7 @@ address: any
 day: any
 user_img:any
 datafollow : any
+datauser:any = [] 
 
 tel:any
   constructor(private sanitizer: DomSanitizer ,private http:HttpClient , private router_:Router) { }
@@ -63,6 +64,19 @@ async getData(){
   } 
   );
 }
+
+async getDataUser(email1 : any, i :any){
+  let json  ={email : email1};
+  await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/users/user-data',(json)).subscribe(response=>{
+    //console.log(json);
+    let userx = JSON.stringify(response);
+    this.datauser[i] = JSON.parse(userx);
+    console.log('user')
+    console.log(this.datauser);
+  } 
+  );
+}
+
 convert(img: any){
   return this.sanitizer.bypassSecurityTrustResourceUrl(img);
 }
@@ -75,8 +89,6 @@ async getPost(){
   await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_post',(json)).subscribe(response=>{
     let userx = JSON.stringify(response);
     this.data2 = JSON.parse(userx);
-    console.log('data2');
-    console.log(this.data2);
   } 
   );
 }
@@ -91,6 +103,9 @@ async getFollow(){
     this.datafollow = JSON.parse(userx);
     console.log('data3');
     console.log(this.datafollow);
+    for (let i = 0; i < this.datafollow.length; i++) {
+      this.getDataUser(this.datafollow[i].follow_email, i);
+    }
   } 
   );
 }
