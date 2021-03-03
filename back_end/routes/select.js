@@ -134,4 +134,25 @@ FROM
       }
       })
   });
+  router.post('/viral_Tag', function(req, res, next) {
+   
+    const { email} = req.body;
+    var GRAB_follow = ` SELECT tag_name ,
+      COUNT(*) AS viral
+  FROM tag t
+  JOIN post p ON p.tag_id = t.tag_id
+
+  GROUP BY t.tag_id
+  ORDER BY viral DESC, t.tag_name DESC`;
+    db.query(GRAB_follow, email, (err, result) => {
+      if (err) {
+        res.json({message:"Error"})
+      } 
+      else if (result) {
+        var user = result
+       console.log(user[0])
+        res.send(user)
+      }
+      })
+  });
   module.exports = router;
