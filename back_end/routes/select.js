@@ -119,10 +119,11 @@ FROM
   router.post('/select_follwing', function(req, res, next) {
    
     const { email} = req.body;
-    var GRAB_follow = `SELECT 
-    DISTINCTROW follow.follow_email , account_user.user_img
-    FROM follow
-    LEFT JOIN account_user ON account_user.email = 'naratihporiginal@gmail.com'`;
+    var GRAB_follow = `SELECT
+    follow_email 
+    FROM
+      follow
+      WHERE user_email = ?`;
     db.query(GRAB_follow, email, (err, result) => {
       if (err) {
         res.json({message:"Error"})
