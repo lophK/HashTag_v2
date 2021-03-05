@@ -29,7 +29,7 @@ export class TagpostComponent implements OnInit {
   tag_description = ""
   Tag :any
   test= "http://hashtagbe.comsciproject.com/images/1614295271477.jpg";
-  
+  status : any
 
   constructor(private modalService: NgbModal, private http:HttpClient , private router_:Router, private sanitizer: DomSanitizer,private formBuilder: FormBuilder) { }
 
@@ -174,6 +174,10 @@ export class TagpostComponent implements OnInit {
       console.log(this.tag_id);
     } 
     );
+  }
+
+  getSelectstatus(value : any){
+    this.status = value.value;
   }
 
 }

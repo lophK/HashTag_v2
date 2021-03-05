@@ -29,7 +29,6 @@
                             <div class="col-md">
                                 <div class="input-group mb">
                                     <div class="custom-file">
-                                      <!-- <input type="file" #imageInput (change)="getFile(imageInput)" class="btn btn-outline-dark btn-sm btn-block"> -->
                                       <input type="file" class="custom-file-input" id="inputGroupFile02"  #imageInput (change)="getFile(imageInput)">
                                       <label class="custom-file-label" for="inputGroupFile02">file</label>
                                     </div>
@@ -53,7 +52,7 @@
                         <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" (click)='postdata()'>โพสต์</button>
                     </div>
                     <div class="col-md-3" style="margin-top: 10px;">
-                        <select class="form-control" #dataSelect2>
+                        <select class="form-control" #dataSelect2 (change) = "getSelectstatus(dataSelect2)"> 
                             <option value="public">public</option>
                             <option value="private">Private</option>
                           </select>

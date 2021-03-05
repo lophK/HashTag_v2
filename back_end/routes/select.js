@@ -49,7 +49,8 @@ WHERE
 	account_user.first_name, 
 	account_user.last_name, 
 	post.post_detail, 
-	post.tag_id
+  post.tag_id,
+  post.post_time
 FROM
 	tag
 	INNER JOIN

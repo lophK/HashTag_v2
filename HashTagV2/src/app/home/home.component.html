@@ -1,54 +1,52 @@
 <app-header></app-header>
-<body class="homepage is-preload">
-    <div id="page-wrapper">
-                <section class="carousel">
-                    <div class="reel">
-                        <article *ngFor = "let Tag1 of this.Tag; let i2 = index">
-                            <br>
-                            <h3>TAG</h3>
-                            <header>
-                                <h3>#{{Tag[i2].tag_name}}</h3>
-                            </header>
-                        </article>
-                    </div>
-                </section>
-                <br>
-            <div *ngFor = "let post1 of this.post; let i1 = index">
-                <div class="row mx-auto py-5 px-4">
-                    <div class=" col-lg-3"></div>
-                    <div class="bg-white shadow rounded overflow-hidden border border-secondary col-lg-6 mb-2 pr-lg">
-                        <div class="row" style="background-image: url('../../assets/images/pic06.jpg')">
-                            <div class="col-lg-3">
-                                <img [src]=(convert(post[i1].user_img)) class="rounded-circle" alt="Cinque Terre" width="150" height="150" (click)="setemail(post[i1].email_ac)"> 
-                            </div>
-                            <div class="col-lg-9">
-                               <div class="row">
-                                   <div class="col">
-                                       
-                                   </div>
-                               </div>
-                               <div class="row">
-                                <div class="col">
-                                     <h4>{{post[i1].first_name}}  {{post[i1].last_name}}</h4>
-                                </div>
-                            </div>
+<p-dialog header="Title" [(visible)]="display">
+    Content
+</p-dialog>
+<button type="button" (click)="showDialog()" label="Show"></button>
+            <div class="row" *ngFor = "let postall of this.post; let ip = index"><br>
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <div class="blog-comment bg-white shadow rounded overflow-hidden" style="margin-top: 25px; margin-bottom: 25px;">
+                        <hr/>
+                        <ul class="comments">
+                        <li class="clearfix">
+                        <div>
+                            <p class="meta"><img [src]="convertimg(post[ip].user_img)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px ;">Post: <a routerLink = "/Profile">{{post[ip].first_name}}  {{post[ip].last_name}} {{post[ip].post_time}}</a></p>
                             <div class="row">
-                                <div class="col">
-                                     <h5>{{post[i1].post_detail}}</h5>
+                                <div class="col-md-3">
+                                    
+                                </div>
+                                <div class="col-md-6 text-center  border">
+                                    <img [src]="post[ip].path"  id="Post" width="400" height="400" style="margin-top: 10px; margin-bottom: 10px;">
+                                </div>
+                                <div class="col-md-3">
+                                    
                                 </div>
                             </div>
+                            <div class="row" style="margin: 15px;">
+                                <div class="col-md-12 border-top">
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-md-4 text-center">
+                                            <button class="btn brorder-2 border-warning"><fa-icon [icon] = "like"></fa-icon> Like</button>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            
+                                            <!-- <button class="btn brorder-2 border-warning" ><fa-icon [icon] = "comment" (click)="showModalDialog()"></fa-icon> comment</button> -->
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <button class="btn brorder-2 border-warning"><fa-icon [icon] = "share"></fa-icon> Share</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="py-4 px-4">
-                            <div class="row" style="text-align: center;"> 
-                                <div class="col-lg-11 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="{{post[i1].path}}" alt="" class="img-fluid rounded shadow-sm"></div>
-                            </div>
-                        </div>
+                        </li>
+                        </ul>
                     </div>
-                    <div class=" col-lg-3"></div>
+                </div>
+                <div class="col-md-3">
                 </div>
             </div>
-        </div>
-
-</body>
+            
 <app-footer></app-footer>
