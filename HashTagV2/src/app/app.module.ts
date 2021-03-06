@@ -20,11 +20,12 @@ import { AvatarModule } from 'ngx-avatar';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { TagpostComponent } from './tagpost/tagpost.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProfiletagetComponent } from './profiletaget/profiletaget.component';
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';     
+import { ProfiletagetComponent } from './profiletaget/profiletaget.component';  
 import { DialogModule } from 'primeng/dialog';
+import { Header1Component } from './header1/header1.component';
+import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ButtonModule } from 'primeng/button';
     EditPComponent,
     TagpostComponent,
     ProfiletagetComponent,
+    Header1Component,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,9 @@ import { ButtonModule } from 'primeng/button';
     StorageServiceModule,
     NgbModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    ToolbarModule,
+    SplitButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

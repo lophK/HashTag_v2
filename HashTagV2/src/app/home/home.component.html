@@ -1,52 +1,125 @@
 <app-header></app-header>
-<p-dialog header="Title" [(visible)]="display">
-    Content
-</p-dialog>
-<button type="button" (click)="showDialog()" label="Show"></button>
-            <div class="row" *ngFor = "let postall of this.post; let ip = index"><br>
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-6">
-                    <div class="blog-comment bg-white shadow rounded overflow-hidden" style="margin-top: 25px; margin-bottom: 25px;">
-                        <hr/>
-                        <ul class="comments">
-                        <li class="clearfix">
-                        <div>
-                            <p class="meta"><img [src]="convertimg(post[ip].user_img)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px ;">Post: <a routerLink = "/Profile">{{post[ip].first_name}}  {{post[ip].last_name}} {{post[ip].post_time}}</a></p>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    
-                                </div>
-                                <div class="col-md-6 text-center  border">
-                                    <img [src]="post[ip].path"  id="Post" width="400" height="400" style="margin-top: 10px; margin-bottom: 10px;">
-                                </div>
-                                <div class="col-md-3">
-                                    
-                                </div>
+<br>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="blog-comment bg-white shadow rounded overflow-hidden" style="background-color: #404040 !important;">
+            <hr/>
+            <ul class="comments">
+            <li class="clearfix">
+              <img [src]="src2" class="avatar" alt="">
+              <div class="post-comments" style="background-color: #404040 !important; border-color: #404040 !important;">
+                  <p class="meta">สร้างโพสต์: <a routerLink = "/Profile">{{fname}}  {{lname}}</a></p>
+                  <div class="row">
+                      <div class="col-md-3">
+                        <div class="row justify-content-center">
+                            <div class="col-md text-center" style="margin-bottom: 5px;">
+                                <img [src]="src1"  id="Post" width="120" height="120">
                             </div>
-                            <div class="row" style="margin: 15px;">
-                                <div class="col-md-12 border-top">
-                                    <div class="row" style="margin-top: 10px;">
-                                        <div class="col-md-4 text-center">
-                                            <button class="btn brorder-2 border-warning"><fa-icon [icon] = "like"></fa-icon> Like</button>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            
-                                            <!-- <button class="btn brorder-2 border-warning" ><fa-icon [icon] = "comment" (click)="showModalDialog()"></fa-icon> comment</button> -->
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <button class="btn brorder-2 border-warning"><fa-icon [icon] = "share"></fa-icon> Share</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="input-group mb">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="inputGroupFile02"  #imageInput (change)="getFile(imageInput)" style="background-color: dimgrey;">
+                                      <label class="custom-file-label" for="inputGroupFile02">file</label>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-9">
+                        <textarea class="form-control" rows="5" id="comment"  [(ngModel)]="detail" style="background-color: dimgray; border-color: #202020 ; color: white; font-size: larger;"></textarea>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group" style="margin-top: 10px;">
+                            <select class="form-control" #dataSelect (change)="getSelect(dataSelect)" style="background-color: dimgrey; color: white;">
+                              <option *ngFor = 'let Tag of this.Tag; let j = index' value="{{Tag.tag_id}}">#{{Tag.tag_name}}</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" (click)='postdata()'>โพสต์</button>
+                    </div>
+                    <div class="col-md-3" style="margin-top: 10px;">
+                        <select class="form-control" #dataSelect2 (change) = "getSelectstatus(dataSelect2)"> 
+                            <option value="public">public</option>
+                            <option value="private">Private</option>
+                          </select>
+                        </div>
+                  </div>
+              </div>
+            </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12" style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
+                    <h2 style="color: white;">Post</h2>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12" style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
+                    <h2 style="color: white;">Following</h2>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row justify-content-left" *ngFor = "let postall of this.post; let ip = index"><br>
+                    <div class="col-md-12 ">
+                        <div class="blog-comment bg-white shadow rounded overflow-hidden" style="margin-top: 15px; margin-bottom: 25px; background-color: #404040 !important;">
+                            <ul class="comments">
+                            <li class="clearfix">
+                            <div style="margin-top: 20px;">
+                                <p class="meta"><img [src]="convertimg(post[ip].user_img)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px;">Post: <a routerLink = "/Profile">{{post[ip].first_name}}  {{post[ip].last_name}} {{post[ip].post_time}}</a></p>
+                                <div class="row justify-content-md-center">
+                                    <div class="col-md text-center">
+                                        <img [src]="post[ip].path"  id="Post" width="400" height="400" style="margin-top: 10px; margin-bottom: 10px;">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin: 15px;">
+                                    <div class="col-md-12 border-top" style="border-color: #202020 !important;">
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col-md-4 text-center">
+                                                <button class="btn brorder-2" style="color: white;"><fa-icon [icon] = "like"></fa-icon> Like</button>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <button class="btn brorder-2" style="color: white;" ><fa-icon [icon] = "comment" (click)="showModalDialog()"></fa-icon> comment</button>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <button class="btn brorder-2 " style="color: white;"><fa-icon [icon] = "share"></fa-icon> Share</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            </li>
+                            </ul>
                         </div>
-                        </li>
-                        </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <div class="row" *ngFor = "let followhome of this.datauser; let indexF = index"><br>
+                    <div class="col-md-12 ">
+                        <div class="blog-comment bg-white shadow rounded overflow-hidden" style="margin-top: 15px; margin-bottom: 15px; background-color: #404040 !important;">
+                            <ul class="comments">
+                            <li class="clearfix">
+                            <div style="margin-top: 20px;">
+                                <p class="meta2"><img [src]="convertimg(datauser[indexF].user_img)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px ;"><a routerLink = "/Profile">{{datauser[indexF].first_name}}  {{datauser[indexF].last_name}}</a></p>
+                            </div>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
+        </div>
+    </div>
+</div>        
 <app-footer></app-footer>

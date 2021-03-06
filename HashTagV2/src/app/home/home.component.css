@@ -19,7 +19,7 @@ hr {
     margin-top: 20px;
     margin-bottom: 20px;
     border: 0;
-    border-top: 1px solid #FFFFFF;
+    border-top: 1px solid #6b6e80;
 }
 a {
     color: #82b440;
@@ -81,13 +81,20 @@ a {
 }
 
 .blog-comment .meta {
-	font-size: 13px;
+	font-size: 15px;
 	color: #aaaaaa;
 	padding-bottom: 8px;
 	margin-bottom: 10px !important;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #202020;
 }
 
+
+.blog-comment .meta2 {
+	font-size: 20px;
+	color: #aaaaaa;
+	padding-bottom: 8px;
+	margin-bottom: 10px !important;
+}
 .blog-comment ul.comments ul{
 	list-style-type: none;
 	padding: 0;
