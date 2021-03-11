@@ -19,26 +19,6 @@ import { PrimeNGConfig } from 'primeng/api';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  styles: [`
-      :host ::ng-deep .p-button {
-          margin: 0 .5rem 0 0;
-          min-width: 10rem;
-      }
-
-      p {
-          margin: 0;
-      }
-
-      .confirmation-content {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-      }
-
-      :host ::ng-deep .p-dialog .p-button {
-          min-width: 6rem;
-      }
-  `]
 })
 export class HomeComponent implements OnInit {
   post: any
@@ -74,7 +54,20 @@ export class HomeComponent implements OnInit {
   datafollow : any
   tag_description = ""
   display: boolean = false
-  datauser:any = [] 
+  datauser:any = []
+  Lcout: any = 0
+
+
+    showDialog() {
+        this.display = true;
+        console.log(this.display)
+    }
+
+  likeCoute(){
+    this.Lcout = this.Lcout+1;
+    console.log(this.Lcout)
+    return this.Lcout;
+  }
 
   test= "http://hashtagbe.comsciproject.com/images/1614295271477.jpg";
   status : any
@@ -85,6 +78,7 @@ export class HomeComponent implements OnInit {
     this.getData();
     this.getPost();
     this.getFollow();
+    this.getTagAll1();
     if(localStorage.getItem('token') == null){
       this.router_.navigateByUrl("/");
     }
@@ -191,7 +185,7 @@ export class HomeComponent implements OnInit {
 
       //console.log(json);//http://hashtagbe.comsciproject.com/insert/register_ac
   
-      await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/Post_',(json)).subscribe(response=>{
+      await this.http.post('http://localhost:3120/insert/Post_',(json)).subscribe(response=>{
         //console.log(json);
         location.reload();
        if(response){
@@ -238,7 +232,7 @@ export class HomeComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/users/user-data',(json)).subscribe(response=>{
+    await this.http.post('http://localhost:3120/users/user-data',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
       console.log(this.data);
@@ -254,7 +248,7 @@ export class HomeComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_post',(json)).subscribe(response=>{
+    await this.http.post('http://localhost:3120/select/select_post',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
       console.log('data');
@@ -268,7 +262,7 @@ export class HomeComponent implements OnInit {
     console.log(json);
     console.log(localStorage.getItem('email'));
     console.log(json);
-    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/tag_',(json)).subscribe(response=>{
+    await this.http.post('http://localhost:3120/insert/tag_',(json)).subscribe(response=>{
       location.reload();
     } 
     );
@@ -280,7 +274,7 @@ export class HomeComponent implements OnInit {
 
   async getDataUser(email1 : any, i :any){
     let json  ={email : email1};
-    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/users/user-data',(json)).subscribe(response=>{
+    await this.http.post('http://localhost:3120/users/user-data',(json)).subscribe(response=>{
       //console.log(json);
       let userx = JSON.stringify(response);
       this.datauser[i] = JSON.parse(userx);
@@ -304,6 +298,21 @@ export class HomeComponent implements OnInit {
       for (let i = 0; i < this.datafollow.length; i++) {
         this.getDataUser(this.datafollow[i].follow_email, i);
       }
+    } 
+    );
+  }
+
+  async getTagAll1(){
+    let json  ={email : localStorage.getItem('email')};
+    console.log(json);
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_tag_all',(json)).subscribe(response=>{
+      let userx = JSON.stringify(response);
+      this.Tag = JSON.parse(userx);
+      console.log(this.Tag)
+      this.tag_id = this.Tag[0].tag_id;
+      console.log(this.tag_id);
     } 
     );
   }

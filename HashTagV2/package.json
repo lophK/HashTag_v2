@@ -11,7 +11,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~11.0.5",
+    "@angular/animations": "^11.0.9",
+    "@angular/cdk": "^11.2.4",
     "@angular/common": "~11.0.5",
     "@angular/compiler": "~11.0.5",
     "@angular/core": "~11.0.5",
@@ -32,6 +33,7 @@
     "angular-captcha": "^3.7.4",
     "angular-responsive-carousel": "^2.0.2",
     "bootstrap": "^4.5.3",
+    "install": "^0.13.0",
     "ng": "^0.0.0",
     "ng-modal": "^1.0.2",
     "ng-recaptcha": "^7.0.1",

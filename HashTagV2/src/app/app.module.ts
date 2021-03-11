@@ -26,6 +26,8 @@ import { Header1Component } from './header1/header1.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     TagpostComponent,
     ProfiletagetComponent,
     Header1Component,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     ButtonModule,
     ToolbarModule,
     SplitButtonModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
