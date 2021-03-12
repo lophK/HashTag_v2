@@ -112,7 +112,6 @@ router.post('/register_ac', async function  (req, res, next) {
 })
 
 router.post('/tag_', upload2.single('file'), async  (req, res) =>{
-    //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
     const { tag_name} = req.body;
     db.query(`SELECT * FROM tag WHERE tag_name = '`+tag_name+`'`, function (error, result, fields) {
         if (error) throw error;
@@ -122,13 +121,13 @@ router.post('/tag_', upload2.single('file'), async  (req, res) =>{
             console.log(numRows);
             res.status(400).send(false);
         } else {
-        const {email,tag_name,tag_description} = req.body;
+        const {email,tag_name} = req.body;
         let  path_img = 'http://'+'hashtagbe'+'.comsciproject.com/tag_img_file/'+req.file.filename;
    // const password = Password.hash(plainTextPassword);
-            let sql = 'insert into tag (tag_img,owner_tag,tag_name,tag_description)' +'values(?,?, ? ,?)';
+            let sql = 'insert into tag (tag_img,owner_tag,tag_name)' +'values(?,?,?)';
         
             sql = db.format(sql, [
-                path_img,email,tag_name,tag_description
+                path_img,email,tag_name
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;

@@ -151,11 +151,11 @@ export class TagpostComponent implements OnInit {
   }
 
   async CreateTag(){
-    let json  ={email : localStorage.getItem('email'), tag_name : this.Tagname, tag_description : this.tag_description};
-    console.log(json);
-    console.log(localStorage.getItem('email'));
-    console.log(json);
-    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/tag_',(json)).subscribe(response=>{
+    var formdata1 = new FormData();
+          formdata1.append("file", this.file);
+          formdata1.append("tag_name",this.Tagname);
+          formdata1.append("email_ac",this.email);
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/tag_',(formdata1)).subscribe(response=>{
       location.reload();
     } 
     );
