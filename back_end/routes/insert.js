@@ -24,6 +24,21 @@ const upload = multer({
     }
 });//.single("file");
 
+const storage2 = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'tag_img_file/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+})
+const upload2 = multer({ 
+    storage: storage2,
+    fileFilter: function(req, file, cb) {
+        checkFileType(file, cb);
+    }
+});//.single("file");
+
 router.post('/register_ac', async function  (req, res, next) {
     const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
     const password = Password.hash(plainTextPassword);
@@ -95,7 +110,8 @@ router.post('/register_ac', async function  (req, res, next) {
         
 
 })
-router.post('/tag_', async function  (req, res, next) {
+
+router.post('/tag_', upload2.single('file'), async  (req, res) =>{
     //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
     const { tag_name} = req.body;
     db.query(`SELECT * FROM tag WHERE tag_name = '`+tag_name+`'`, function (error, result, fields) {
@@ -107,11 +123,12 @@ router.post('/tag_', async function  (req, res, next) {
             res.status(400).send(false);
         } else {
         const {email,tag_name,tag_description} = req.body;
+        let  path_img = 'http://'+'hashtagbe'+'.comsciproject.com/tag_img_file/'+req.file.filename;
    // const password = Password.hash(plainTextPassword);
-            let sql = 'insert into tag (owner_tag,tag_name,tag_description)' +'values(?, ? ,?)';
+            let sql = 'insert into tag (tag_img,owner_tag,tag_name,tag_description)' +'values(?,?, ? ,?)';
         
             sql = db.format(sql, [
-                email,tag_name,tag_description
+                path_img,email,tag_name,tag_description
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;
@@ -148,45 +165,7 @@ router.post('/Follow', async function  (req, res, next) {
 
 })
 router.post('/upload_image',upload.single('file'), async (req, res) => {
-   console.log(req.body);
-    // upload(req, res, (err) => {
-    //    // console.log(req.file);
-    //     if(err) {
-    //         //console.log("faild");
-    //        return res.json({
-               
-    //             status: false,
-    //             message: err
-    //         });
-    //     } else {
-           
-    //         if(req.file == undefined) {
-    //             console.log("xxx");
-    //             res.json({
-    //                 status: false,
-    //                 message: "Errror: No file Selected"
-    //             });
-    //         } else {
-    //             res.json({
-                    
-    //                 status: true,
-    //                 message: "File Uploaded",
-    //                 file: req.file.filename
-    //             });
-    //             console.log(req.body.post_id);
-    //            //const {email,post_id} = req.body;
-    //            // const x= 'xx@xx';
-    //             //`SELECT max(id) FROM Post WHERE email = '`+req.body.email_ac+`'`
-    //             // db.query(`select * from post WHERE email_ac='`+req.body.email_ac+`'`+'and post_id in (select max(post_id) from post )', function (error, resultss, fields) {
-    //             //     if (error) throw error;
-    //             //     numRows = resultss.length;
-    //             //     var post_idd = resultss[0]
-    //             //     console.log(post_idd['post_id']);
-    //             //     //console.log(numRows);
-    //             //     if (numRows < 0 ) {
-    //             //         console.log(numRows);
-    //             //         res.status(400).send(false);
-    //             //     } else {
+   //console.log(req.body);
                         const po_id=req.body.post_id;
                                      //http://hashtagbe.comsciproject.com/images/1614295271477.jpg
                         let  path1 = 'http://'+'hashtagbe'+'.comsciproject.com/images/'+req.file.filename;
@@ -206,14 +185,8 @@ router.post('/upload_image',upload.single('file'), async (req, res) => {
                                          res.status(200).send(false);
                                      }
                                  });
-                //     }
-                // });
-            
-    //         }
-    //     }
-    // });
-
 });
+
 function checkFileType(file, cb){
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
