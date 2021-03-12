@@ -141,6 +141,66 @@ router.post('/tag_', upload2.single('file'), async  (req, res) =>{
     });
 
 })
+
+router.post('/like_', async function (req, res){
+  
+        const {post_id,email_like} = req.body;
+     
+
+            let sql = 'insert into like_table (post_id,email_like)' +'values(?,?)';
+        
+            sql = db.format(sql, [
+                post_id,email_like
+            ]);
+            db.query(sql, (error, results, fields) => {
+                if (error) throw error;
+                if (results.affectedRows > 0) {
+                    res.status(200).send(true);
+                } else {
+                    res.status(200).send(false);
+                }
+            });
+        
+})
+router.post('/Unlike_', async function (req, res){
+  
+    const {post_id,email_like} = req.body;
+
+        let sql = 'DELETE FROM like_table  where post_id = ? and email_like=?';
+    
+        sql = db.format(sql, [
+            post_id,email_like
+        ]);
+        db.query(sql, (error, results, fields) => {
+            if (error) throw error;
+            if (results.affectedRows > 0) {
+                res.status(200).send(true);
+            } else {
+                res.status(200).send(false);
+            }
+        });
+    
+})
+router.post('/show_ac_like', async function (req, res){
+  
+    const {post_id,email_like} = req.body;
+ 
+
+        let sql = 'SELECT * FROM `like_table` WHERE post_id = ?';
+    
+        sql = db.format(sql, [
+            post_id
+        ]);
+        db.query(sql, (error, results, fields) => {
+            if (error) throw error;
+            if (results.affectedRows > 0) {
+                res.status(200).send(true);
+            } else {
+                res.status(200).send(false);
+            }
+        });
+    
+})
 router.post('/Follow', async function  (req, res, next) {
     //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
    
