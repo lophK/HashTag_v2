@@ -269,7 +269,7 @@ export class HomeComponent implements OnInit {
   }
 
   getSelectstatus(value : any){
-    this.status = value.value;
+    this.Poststatus = value.value;
   }
 
   async getDataUser(email1 : any, i :any){

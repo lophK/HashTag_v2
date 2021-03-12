@@ -1,75 +1,50 @@
 <app-header></app-header>
 <div class="row py-5 px-4">
     <div class="col-md-6 mx-auto">
-        <div class="blog-comment bg-white shadow rounded overflow-hidden">
-            <div class="form-group">
-                <hr>
-                <label for="pwd">สร้าง TAG</label>
-                <input type="text" class="form-control" placeholder="#TAG Name" [(ngModel)]="Tagname">
-              </div>
-              <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" (click)="CreateTag()">สร้าง TAG</button>
-              <hr>
-        </div>
-        <hr/>
-        <div class="blog-comment bg-white shadow rounded overflow-hidden">
-            <hr/>
-            <ul class="comments">
-            <li class="clearfix">
-              <img [src]="src2" class="avatar" alt="">
-              <div class="post-comments">
-                  <p class="meta">สร้างโพสต์: <a routerLink = "/Profile">{{fname}}  {{lname}}</a></p>
-                  <div class="row">
-                      <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-md">
-                                <img [src]="src1"  id="Post" width="145" height="100">
+        <div class="row" style="text-align: center;">
+            <div class="col-md-3" style="margin-top: 20px;">
+                <div class="row">
+                    <div class="col-md">
+                        <img [src]="src1" id="Post" width="145" height="130">
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-7">
+                        <div class="input-group mb">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile02" #imageInput
+                                    (change)="getFile(imageInput)">
+                                <label class="custom-file-label" for="inputGroupFile02" style="text-align: left;">Image</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="input-group mb">
-                                    <div class="custom-file">
-                                      <input type="file" class="custom-file-input" id="inputGroupFile02"  #imageInput (change)="getFile(imageInput)">
-                                      <label class="custom-file-label" for="inputGroupFile02">file</label>
-                                    </div>
-                                  </div>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="col-md-9">
-                        <textarea class="form-control" rows="5" id="comment"  [(ngModel)]="detail"></textarea>
-                      </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group" style="margin-top: 10px;">
-                            <select class="form-control" #dataSelect (change)="getSelect(dataSelect)">
-                              <option *ngFor = 'let Tag of this.Tag; let j = index' value="{{Tag.tag_id}}">#{{Tag.tag_name}}</option>
-                            </select>
-                          </div>
                     </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" (click)='postdata()'>โพสต์</button>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="blog-comment bg-white shadow rounded overflow-hidden">  
+                    <div class="form-group">
+                        <hr>
+                        <label for="pwd">สร้าง TAG</label>
+                        <input type="text" class="form-control" placeholder="#TAG Name" [(ngModel)]="Tagname">
                     </div>
-                    <div class="col-md-3" style="margin-top: 10px;">
-                        <select class="form-control" #dataSelect2 (change) = "getSelectstatus(dataSelect2)"> 
-                            <option value="public">public</option>
-                            <option value="private">Private</option>
-                          </select>
-                        </div>
-                  </div>
-              </div>
-            </li>
-            </ul>
+                    <button type="button" class="btn btn-primary"
+                        style="text-align: center; width: 100%; margin-top: 10px;" (click)="CreateTag()">สร้าง
+                        TAG</button>
+                    <hr>
+                </div>
+            </div>
         </div>
         <hr>
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="py-4 px-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">รูปทั้งหมด</h5><a class="btn btn-link text-muted" >รูปที่โพสต์</a>
+                    <h5 class="mb-0">รูปทั้งหมด</h5><a class="btn btn-link text-muted">รูปที่โพสต์</a>
                 </div>
-                <div class="row" style="text-align: center;"> 
-                    <div *ngFor = "let post of this.data; let i = index" class="col-lg-6 mb-2 pr-lg" routerLink = "/Comment"><img style="width: 500px; height: 400px;" src="{{data[i].path}}" alt="" class="img-fluid rounded shadow-sm"></div>
+                <div class="row" style="text-align: center;">
+                    <div *ngFor="let post of this.data; let i = index" class="col-lg-6 mb-2 pr-lg"
+                        routerLink="/Comment"><img style="width: 500px; height: 400px;" src="{{data[i].path}}" alt=""
+                            class="img-fluid rounded shadow-sm"></div>
                 </div>
             </div>
         </div>
