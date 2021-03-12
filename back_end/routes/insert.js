@@ -121,13 +121,13 @@ router.post('/tag_', upload2.single('file'), async  (req, res) =>{
             console.log(numRows);
             res.status(400).send(false);
         } else {
-        const {email,tag_name} = req.body;
+        const {owner_tag,tag_name} = req.body;
         let  path_img = 'http://'+'hashtagbe'+'.comsciproject.com/tag_img_file/'+req.file.filename;
    // const password = Password.hash(plainTextPassword);
             let sql = 'insert into tag (tag_img,owner_tag,tag_name)' +'values(?,?,?)';
         
             sql = db.format(sql, [
-                path_img,email,tag_name
+                path_img,owner_tag,tag_name
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;

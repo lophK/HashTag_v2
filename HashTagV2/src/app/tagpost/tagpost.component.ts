@@ -154,8 +154,8 @@ export class TagpostComponent implements OnInit {
     var formdata1 = new FormData();
           formdata1.append("file", this.file);
           formdata1.append("tag_name",this.Tagname);
-          formdata1.append("email_ac",this.email);
-    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/tag_',(formdata1)).subscribe(response=>{
+          formdata1.append("owner_tag",this.email);
+    await this.http.post('http://localhost:3120/insert/tag_',formdata1).subscribe(response=>{
       location.reload();
     } 
     );
