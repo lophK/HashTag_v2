@@ -76,7 +76,7 @@
                             <ul class="comments">
                             <li class="clearfix">
                             <div style="margin-top: 20px;">
-                                <p class="meta" style="color: skyblue !important;"><img [src]="convertimg(post[ip].user_img)" (click)="setemail(post[ip].email_ac)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px;">Post: <a (click)="setemail(post[ip].email_ac)" style="color: yellowgreen !important;">{{post[ip].first_name}}  {{post[ip].last_name}} {{post[ip].post_time}}  public</a></p>
+                                <p class="meta" style="color: skyblue !important;"><img [src]="convertimg(post[ip].user_img)" (click)="setemail(post[ip].email_ac)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px;">Post: <a (click)="setemail(post[ip].email_ac)" style="color: yellowgreen !important;">{{post[ip].first_name}}  {{post[ip].last_name}} {{post[ip].post_time}}  {{post[ip].post_status}}</a></p>
                                 <div class="row justify-content-md-center">
                                     <div class="col-md text-center">
                                         <img [src]="post[ip].path"  id="Post" width="400" height="400" style="margin-top: 10px; margin-bottom: 10px;">

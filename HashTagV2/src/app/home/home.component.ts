@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   src2 :any = '../../assets/images/user.png'
   dataSelect = 'CAT'
   email :any = localStorage.getItem('email')
-  Poststatus = 'public'
+  Poststatus : any = "public"
   tag_id :any;
   detail = '';
   file_img:any;

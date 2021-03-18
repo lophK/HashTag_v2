@@ -50,7 +50,8 @@ WHERE
 	account_user.last_name, 
 	post.post_detail, 
   post.tag_id,
-  post.post_time
+  post.post_time,
+  post.post_status
 FROM
 	tag
 	INNER JOIN
