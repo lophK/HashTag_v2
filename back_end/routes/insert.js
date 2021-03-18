@@ -183,23 +183,19 @@ router.post('/Unlike_', async function (req, res){
 })
 router.post('/show_ac_like', async function (req, res){
   
-    const {post_id,email_like} = req.body;
- 
+    const { email} = req.body;
+    var GRAB_post = 'SELECT COUNT(like_id) FROM like_table GROUP BY post_id';
 
-        let sql = 'SELECT * FROM `like_table` WHERE post_id = ?';
-    
-        sql = db.format(sql, [
-            post_id
-        ]);
-        db.query(sql, (error, results, fields) => {
-            if (error) throw error;
-            if (results.affectedRows > 0) {
-                res.status(200).send(true);
-            } else {
-                res.status(200).send(false);
-            }
-        });
-    
+    db.query(GRAB_post, req.body.email, (err, result) => {
+      if (err) {
+        res.json({message:"Error"})
+      } 
+      else if (result) {
+        var user = result
+        console.log(user);
+        res.send(user)
+      }
+      })   
 })
 router.post('/Follow', async function  (req, res, next) {
     //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
@@ -210,6 +206,28 @@ router.post('/Follow', async function  (req, res, next) {
         
             sql = db.format(sql, [
                 user_email,follow_email
+            ]);
+            db.query(sql, (error, results, fields) => {
+                if (error) throw error;
+                if (results.affectedRows > 0) {
+                    res.status(200).send(true);
+                } else {
+                    res.status(200).send(false);
+                }
+            });
+        
+    
+
+})
+router.post('/comment-post', async function  (req, res, next) {
+    //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
+   
+        const {user_epost_id,com_description,com_time} = req.body;
+   // const password = Password.hash(plainTextPassword);
+            let sql = 'insert into comment (post_id,com_description,com_time)' +'values(?, ?,?)';
+        
+            sql = db.format(sql, [
+                user_epost_id  ,com_description,com_time
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;
