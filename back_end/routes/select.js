@@ -140,7 +140,7 @@ FROM
   router.post('/viral_Tag', function(req, res, next) {
    
     const { email} = req.body;
-    var GRAB_follow = ` SELECT tag_name ,
+    var GRAB_follow = ` SELECT tag_name , tag_img ,
       COUNT(*) AS viral
   FROM tag t
   JOIN post p ON p.tag_id = t.tag_id

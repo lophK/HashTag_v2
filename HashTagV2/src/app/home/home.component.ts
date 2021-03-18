@@ -56,8 +56,7 @@ export class HomeComponent implements OnInit {
   display: boolean = false
   datauser:any = []
   Lcout: any = 0
-
-
+  viral: any
     showDialog() {
         this.display = true;
         console.log(this.display)
@@ -79,6 +78,7 @@ export class HomeComponent implements OnInit {
     this.getPost();
     this.getFollow();
     this.getTagAll1();
+    this.getViral();
     if(localStorage.getItem('token') == null){
       this.router_.navigateByUrl("/");
     }
@@ -313,6 +313,17 @@ export class HomeComponent implements OnInit {
       console.log(this.Tag)
       this.tag_id = this.Tag[0].tag_id;
       console.log(this.tag_id);
+    } 
+    );
+  }
+
+  async getViral(){
+    let json  ={email : localStorage.getItem('email')};
+    await this.http.post('http://localhost:3120/select/viral_Tag',(json)).subscribe(response=>{
+      let userx = JSON.stringify(response);
+      this.viral = JSON.parse(userx);
+      console.log("viral_tag")
+      console.log(this.viral)
     } 
     );
   }
