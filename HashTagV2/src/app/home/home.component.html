@@ -265,14 +265,13 @@
                                 <h3 class="text-success">Comments</h3>
                                 <hr />
                                 <ul class="comments">
-                                    <li class="clearfix">
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                                    <li class="clearfix" *ngFor="let comment of this.commentpost1; let cp = index">
+                                        <img [src]="convert(commentpost1[cp].user_img)" class="avatar" alt="">
                                         <div class="post-comments">
-                                            <p class="meta">Dec 18, 2014 <a href="#">JohnDoe</a> says : <i
-                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p class="meta">ผู้แสดงความคิดเห็น : <i
+                                                    class="pull-right"><a href="#"><small>{{commentpost1[cp].first_name}} {{commentpost1[cp].last_name}}</small></a></i></p>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Etiam a sapien odio, sit amet
+                                                {{commentpost1[cp].com_description}}
                                             </p>
                                         </div>
                                     </li>
@@ -290,6 +289,9 @@
             <div class="input-group-append">
                 <button class="btn btn-success" type="submit" (click)="commentpost()">
                     <fa-icon [icon]="send"></fa-icon> send
+                </button>
+                <button class="btn btn-warning" type="submit" (click)="display = false">
+                   ยกเลิก
                 </button>
             </div>
         </div>

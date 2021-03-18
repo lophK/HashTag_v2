@@ -63,10 +63,18 @@ export class HomeComponent implements OnInit {
   com = ""
   likec2 = [5, 4, 5, 4, 1, 4]
   idpost: any
+  commentpost1 : any
   showDialog(id: any) {
     this.idpost = id;
+    let json = {post_id : this.idpost}
+    this.http.post('http://localhost:3120/select/select_com_by_post', (json)).subscribe(response => {
+    let userx = JSON.stringify(response);
+    this.commentpost1 = JSON.parse(userx);
+    console.log('commentpost1');
+    console.log(this.commentpost1);
+    }
+    );
     this.display = true;
-    
   }
 
   async likeCoute(id: any) {
@@ -353,4 +361,6 @@ export class HomeComponent implements OnInit {
     }
     );
   }
+
+
 }

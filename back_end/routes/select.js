@@ -166,7 +166,8 @@ FROM
     const { post_id} = req.body;
     let sql = `SELECT
     db_loph.account_user.user_img, 
-    db_loph.account_user.first_name, 
+    db_loph.account_user.first_name,
+    db_loph.account_user.last_name,
     db_loph.post.post_id, 
     db_loph.account_user.email, 
     db_loph.comment.com_description
