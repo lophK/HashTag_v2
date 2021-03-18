@@ -14,6 +14,7 @@ import { faShareAltSquare } from '@fortawesome/free-solid-svg-icons';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
+import { count } from 'console';
 
 @Component({
   selector: 'app-home',
@@ -58,6 +59,8 @@ export class HomeComponent implements OnInit {
   Lcout: any = 0
   viraltag: any
   likec: any
+  likec1 : any = []
+  likec2 = [5,4,5,4,1,4]
     showDialog() {
         this.display = true;
         console.log(this.display)
@@ -149,7 +152,8 @@ export class HomeComponent implements OnInit {
   this.router_.navigateByUrl("/VisitP");
   }
 
-  convertimg(img: any){
+  convertimg(img: any, id : any){
+    //this.getlike(id);
     return this.sanitizer.bypassSecurityTrustResourceUrl(img);
   }
 
@@ -172,14 +176,6 @@ export class HomeComponent implements OnInit {
   }
 
   async postdata(){
-
-   
-   /* tag_id
-    post_id
-    email_ac
-    post_detail
-    post_time
-    post_status*/
       let json  ={tag_id : this.tag_id, email_ac : this.email, post_detail : this.detail, post_status: this.Poststatus,file_img:this.file};
       console.log(this.tag_id);
       console.log(this.email);
@@ -217,7 +213,7 @@ export class HomeComponent implements OnInit {
           else{
             location.reload();
           }
-     
+
         }
         location.reload();
        } 
@@ -333,7 +329,8 @@ export class HomeComponent implements OnInit {
   }
 
   async getlike(){
-    let json  ={email : localStorage.getItem('email'), tag_name : this.Tagname, tag_description : this.tag_description};
+    let id = 1;
+    let json  ={post_id : id};
     await this.http.post('http://localhost:3120/insert/show_ac_like',(json)).subscribe(response=>{
       //location.reload();
       let userx = JSON.stringify(response);
