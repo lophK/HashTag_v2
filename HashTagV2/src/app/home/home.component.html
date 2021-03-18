@@ -160,7 +160,7 @@
 
 <app-footer></app-footer>
 <p-dialog header="แสดงความคิดเห็น" [(visible)]="display" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false" [scrollable]="true" scrollHeight="100px">
+    [draggable]="false" [resizable]="false">
     <div class="row">
         <div class="col-md">
             <div class="container mt-3">
@@ -247,10 +247,10 @@
     </div>
     <ng-template pTemplate="footer">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Comment" [(ngModel)]="textcommet">
+            <input type="text" class="form-control" placeholder="Comment">
             <div class="input-group-append">
                 <button class="btn btn-success" type="submit">
-                    <fa-icon [icon]="send" (click)="getcomment()"></fa-icon> send
+                    <fa-icon [icon]="send"></fa-icon> send
                 </button>
             </div>
         </div>
