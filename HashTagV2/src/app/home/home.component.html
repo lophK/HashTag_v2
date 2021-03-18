@@ -3,118 +3,152 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="blog-comment bg-white shadow rounded overflow-hidden" style="background-color: #404040 !important;">
-            <hr/>
+            <hr />
             <ul class="comments">
-            <li class="clearfix">
-                <img [src]="src2" class="avatar" alt="">
-                <div class="post-comments" style="background-color: #404040 !important; border-color: #404040 !important;">
-                    <p class="meta">สร้างโพสต์: <a routerLink = "/Profile">{{fname}}  {{lname}}</a></p>
-                    <div class="row">
-                        <div class="col-md-3">
-                        <div class="row justify-content-center">
-                            <div class="col-md text-center" style="margin-bottom: 5px;">
-                                <img [src]="src1"  id="Post" width="120" height="120">
-                            </div>
-                        </div>
+                <li class="clearfix">
+                    <img [src]="src2" class="avatar" alt="">
+                    <div class="post-comments"
+                        style="background-color: #404040 !important; border-color: #404040 !important;">
+                        <p class="meta">สร้างโพสต์: <a routerLink="/Profile">{{fname}} {{lname}}</a></p>
                         <div class="row">
-                            <div class="col-md">
-                                <div class="input-group mb">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile02"  #imageInput (change)="getFile(imageInput)" style="background-color: dimgrey;">
-                                        <label class="custom-file-label" for="inputGroupFile02">file</label>
-                                    </div>
-                                    </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-md-9">
-                        <textarea class="form-control" rows="5" id="comment"  [(ngModel)]="detail" style="background-color: dimgray; border-color: #202020 ; color: white; font-size: larger;"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group" style="margin-top: 10px;">
-                            <select class="form-control" #dataSelect (change)="getSelect(dataSelect)" style="background-color: dimgrey; color: white;">
-                                <option *ngFor = 'let Tag of this.Tag; let j = index' value="{{Tag.tag_id}}">#{{Tag.tag_name}}</option>
-                            </select>
-                            </div>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary" style="text-align: center; width: 100%; margin-top: 10px;" (click)='postdata()'>โพสต์</button>
-                    </div>
-                    <div class="col-md-3" style="margin-top: 10px;">
-                        <select class="form-control" #dataSelect2 (change) = "getSelectstatus(dataSelect2)"> 
-                            <option value="public">public</option>
-                            <option value="private">Private</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            </ul>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 text-center">
-                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12" style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
-                    <h2 style="color: white;">Post</h2>
-                </div>
-            </div>
-            <div class="col-md-6 text-center">
-                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12" style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
-                    <h2 style="color: white;">Following</h2>
-                </div>
-            </div>
-        </div>
-        
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row justify-content-left" *ngFor = "let postall of this.post; let ip = index"><br>
-                    <div class="col-md-12 ">
-                        <div class="blog-comment bg-white shadow rounded overflow-hidden" style="margin-top: 15px; margin-bottom: 25px; background-color: #404040 !important;">
-                            <ul class="comments">
-                            <li class="clearfix">
-                            <div style="margin-top: 20px;">
-                                <p class="meta" style="color: skyblue !important;"><img [src]="convertimg(post[ip].user_img)" (click)="setemail(post[ip].email_ac)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px;">Post: <a (click)="setemail(post[ip].email_ac)" style="color: yellowgreen !important;">{{post[ip].first_name}}  {{post[ip].last_name}} {{post[ip].post_time}}  {{post[ip].post_status}}</a></p>
-                                <div class="row justify-content-md-center">
-                                    <div class="col-md text-center">
-                                        <img [src]="post[ip].path"  id="Post" width="400" height="400" style="margin-top: 10px; margin-bottom: 10px;">
+                            <div class="col-md-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-md text-center" style="margin-bottom: 5px;">
+                                        <img [src]="src1" id="Post" width="120" height="120">
                                     </div>
                                 </div>
-                                <h6 style="color: white !important;" style="margin-left: 15px;"><fa-icon [icon] = "like"></fa-icon>    {{Lcout}}</h6>
-                                <div class="row" style="margin: 15px;">
-                                    <div class="col-md-12 border-top" style="border-color: #202020 !important;">
-                                        <div class="row" style="margin-top: 10px;">
-                                            <div class="col-md-4 text-center">
-                                                <button class="btn brorder-2" style="color: white;" (click) = "likeCoute()"><fa-icon [icon] = "like"></fa-icon> ถูกใจ</button>
-                                            </div>
-                                            <div class="col-md-4 text-center">
-                                                <button class="btn brorder-2" style="color: white;" (click)="showDialog()"><fa-icon [icon] = "comment"></fa-icon> แสดงความคิดเห็น</button>
-                                            </div>
-                                            <div class="col-md-4 text-center">
-                                                <button class="btn brorder-2 " style="color: white;"><fa-icon [icon] = "share"></fa-icon> เเชร์</button>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="input-group mb">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile02"
+                                                    #imageInput (change)="getFile(imageInput)"
+                                                    style="background-color: dimgrey;">
+                                                <label class="custom-file-label" for="inputGroupFile02">file</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </li>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows="5" id="comment" [(ngModel)]="detail"
+                                    style="background-color: dimgray; border-color: #202020 ; color: white; font-size: larger;"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <select class="form-control" #dataSelect (change)="getSelect(dataSelect)"
+                                        style="background-color: dimgrey; color: white;">
+                                        <option *ngFor='let Tag of this.Tag; let j = index' value="{{Tag.tag_id}}">
+                                            #{{Tag.tag_name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary"
+                                    style="text-align: center; width: 100%; margin-top: 10px;"
+                                    (click)='postdata()'>โพสต์</button>
+                            </div>
+                            <div class="col-md-3" style="margin-top: 10px;">
+                                <select class="form-control" #dataSelect2 (change)="getSelectstatus(dataSelect2)">
+                                    <option value="public">public</option>
+                                    <option value="private">Private</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12"
+                    style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
+                    <h2 style="color: white;">Post</h2>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12"
+                    style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
+                    <h2 style="color: white;">Following</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row justify-content-left" *ngFor="let postall of this.post; let ip = index"><br>
+                    <div class="col-md-12 ">
+                        <div class="blog-comment bg-white shadow rounded overflow-hidden"
+                            style="margin-top: 15px; margin-bottom: 25px; background-color: #404040 !important;">
+                            <ul class="comments">
+                                <li class="clearfix">
+                                    <div style="margin-top: 20px;">
+                                        <p class="meta" style="color: skyblue !important;"><img
+                                                [src]="convertimg(post[ip].user_img)"
+                                                (click)="setemail(post[ip].email_ac)" class="rounded-circle" alt=""
+                                                style="width: 50px; height: 50px; margin-right:10px;">Post: <a
+                                                (click)="setemail(post[ip].email_ac)"
+                                                style="color: yellowgreen !important;">{{post[ip].first_name}}
+                                                {{post[ip].last_name}} {{post[ip].post_time}}
+                                                {{post[ip].post_status}}</a></p>
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md text-center">
+                                                <img [src]="post[ip].path" id="Post" width="400" height="400"
+                                                    style="margin-top: 10px; margin-bottom: 10px;">
+                                            </div>
+                                        </div>
+                                        <h6 style="color: white !important;" style="margin-left: 15px;">
+                                            <fa-icon [icon]="like"></fa-icon> {{Lcout}}
+                                        </h6>
+                                        <div class="row" style="margin: 15px;">
+                                            <div class="col-md-12 border-top" style="border-color: #202020 !important;">
+                                                <div class="row" style="margin-top: 10px;">
+                                                    <div class="col-md-4 text-center">
+                                                        <button class="btn brorder-2" style="color: white;"
+                                                            (click)="likeCoute()">
+                                                            <fa-icon [icon]="like"></fa-icon> ถูกใจ
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-4 text-center">
+                                                        <button class="btn brorder-2" style="color: white;"
+                                                            (click)="showDialog()">
+                                                            <fa-icon [icon]="comment"></fa-icon> แสดงความคิดเห็น
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-4 text-center">
+                                                        <button class="btn brorder-2 " style="color: white;">
+                                                            <fa-icon [icon]="share"></fa-icon> เเชร์
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="row" *ngFor = "let followhome of this.datauser; let indexF = index"><br>
+                <div class="row" *ngFor="let followhome of this.datauser; let indexF = index"><br>
                     <div class="col-md-12 ">
-                        <div class="blog-comment bg-white shadow rounded overflow-hidden" style="margin-top: 15px; margin-bottom: 15px; background-color: #404040 !important;">
+                        <div class="blog-comment bg-white shadow rounded overflow-hidden"
+                            style="margin-top: 15px; margin-bottom: 15px; background-color: #404040 !important;">
                             <ul class="comments">
-                            <li class="clearfix">
-                            <div style="margin-top: 20px;">
-                                <p class="meta2"><img [src]="convertimg(datauser[indexF].user_img)" class="rounded-circle" alt="" style="width: 50px; height: 50px; margin-right:10px ;"><a routerLink = "/Profile">{{datauser[indexF].first_name}}  {{datauser[indexF].last_name}}</a></p>
-                            </div>
-                            </li>
+                                <li class="clearfix">
+                                    <div style="margin-top: 20px;">
+                                        <p class="meta2"><img [src]="convertimg(datauser[indexF].user_img)"
+                                                class="rounded-circle" alt=""
+                                                style="width: 50px; height: 50px; margin-right:10px ;"><a
+                                                routerLink="/Profile">{{datauser[indexF].first_name}}
+                                                {{datauser[indexF].last_name}}</a></p>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -122,16 +156,103 @@
             </div>
         </div>
     </div>
-</div>   
-     
+</div>
+
 <app-footer></app-footer>
-<p-dialog header="Header" [(visible)]="display" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false">
-    <p class="p-m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="display=false" label="Yes" class="p-button-text"></p-button>
-            <p-button icon="pi pi-times" (click)="display=false" label="No"></p-button>
-        </ng-template>
+<p-dialog header="แสดงความคิดเห็น" [(visible)]="display" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [scrollable]="true" scrollHeight="100px">
+    <div class="row">
+        <div class="col-md">
+            <div class="container mt-3">
+                <div class="container bootstrap snippets bootdey">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="blog-comment">
+                                <h3 class="text-success">Comments</h3>
+                                <hr />
+                                <ul class="comments">
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 18, 2014 <a href="#">JohnDoe</a> says : <i
+                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
+                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
+                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
+                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
+                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
+                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Comment" [(ngModel)]="textcommet">
+            <div class="input-group-append">
+                <button class="btn btn-success" type="submit">
+                    <fa-icon [icon]="send" (click)="getcomment()"></fa-icon> send
+                </button>
+            </div>
+        </div>
+    </ng-template>
 </p-dialog>
