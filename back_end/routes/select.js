@@ -163,8 +163,8 @@ FROM
   });
   router.post('/select_com_by_post', function(req, res, next) {
    
-    const { email} = req.body;
-    var GRAB_follow = `SELECT
+    const { post_id} = req.body;
+    let sql = `SELECT
     db_loph.account_user.user_img, 
     db_loph.account_user.first_name, 
     db_loph.post.post_id, 
@@ -181,8 +181,11 @@ FROM
     db_loph.post.post_id = db_loph.comment.post_id AND
     db_loph.post.email_ac = db_loph.comment.email_com AND
     db_loph.comment.email_com = db_loph.account_user.email AND
-    db_loph.account_user.email = ?`;
-    db.query(GRAB_follow, email, (err, result) => {
+    db_loph.comment.post_id = ?`;
+    sql = db.format(sql, [
+      post_id 
+  ]);
+    db.query(sql, (err, result) => {
       if (err) {
         res.json({message:"Error"})
       } 
