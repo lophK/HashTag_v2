@@ -184,7 +184,7 @@ router.post('/Unlike_', async function (req, res){
 router.post('/show_ac_like', async function (req, res){
   
     const { email} = req.body;
-    var GRAB_post = 'SELECT COUNT(like_id) FROM like_table GROUP BY post_id';
+    var GRAB_post = 'SELECT COUNT(like_id) as amount FROM like_table GROUP BY post_id';
 
     db.query(GRAB_post, req.body.email, (err, result) => {
       if (err) {
