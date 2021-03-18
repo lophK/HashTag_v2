@@ -222,12 +222,12 @@ router.post('/Follow', async function  (req, res, next) {
 router.post('/comment-post', async function  (req, res, next) {
     //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
    
-        const {post_id,com_description,com_time} = req.body;
+        const {post_id,com_email,com_description} = req.body;
    // const password = Password.hash(plainTextPassword);
-            let sql = 'insert into comment (post_id,com_description,com_time)' +'values(?, ?,?)';
+            let sql = 'insert into comment (post_id,email_com,com_description)' +'values(?, ?,?)';
         
             sql = db.format(sql, [
-                post_id  ,com_description,com_time
+                post_id  ,com_email,com_description
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;
