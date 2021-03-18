@@ -30,7 +30,7 @@ router.post('/del_ac', function (req, res, next) {
 
 router.post('/del_post', function (req, res, next) {
 
-  var post_id= req.body.id;
+  const {post_id} = req.body;
  // where id="+id+''
 console.log(id);
 db.query('DELETE FROM post WHERE post_id ='+post_id+'', function (error, results, fields) {

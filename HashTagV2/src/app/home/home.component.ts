@@ -363,9 +363,8 @@ export class HomeComponent implements OnInit {
   }
 
   async delcom(id :any) {
-    //http://hashtagbe.comsciproject.com/insert/register_ac
     let json = {post_id : id}
-    await this.http.post('http://localhost:3120/delete/comment-del', (json)).subscribe(response => {
+    await this.http.post('http://localhost:3120/delete/del_post', (json)).subscribe(response => {
       console.log(json);
       location.reload();
 
