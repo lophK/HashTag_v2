@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   display: boolean = false
   datauser:any = []
   Lcout: any = 0
-  viral: any
+  viraltag: any
     showDialog() {
         this.display = true;
         console.log(this.display)
@@ -321,9 +321,9 @@ export class HomeComponent implements OnInit {
     let json  ={email : localStorage.getItem('email')};
     await this.http.post('http://localhost:3120/select/viral_Tag',(json)).subscribe(response=>{
       let userx = JSON.stringify(response);
-      this.viral = JSON.parse(userx);
+      this.viraltag = JSON.parse(userx);
       console.log("viral_tag")
-      console.log(this.viral)
+      console.log(this.viraltag)
     } 
     );
   }

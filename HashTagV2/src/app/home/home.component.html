@@ -149,18 +149,16 @@
                     style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
                     <h2 style="color: white;">TAG Viral</h2>
                 </div>
-                <div class="row" *ngFor="let viraltag of this.viral; let indexV = index"><br>
+                <div class="row" *ngFor="let viraltag of this.viraltag; let tag = index"><br>
                     <div class="col-md-12 ">
                         <div class="blog-comment bg-white shadow rounded overflow-hidden"
                             style="margin-top: 15px; margin-bottom: 15px; background-color: #404040 !important;">
                             <ul class="comments">
                                 <li class="clearfix">
                                     <div style="margin-top: 20px;">
-                                        <p class="meta2"><img [src]="viral[indexV   ].tag_img"
+                                        <p class="meta2"><img [src]="this.viraltag.tag_img"
                                                 class="rounded-circle" alt=""
-                                                style="width: 50px; height: 50px; margin-right:10px ;"><a
-                                                routerLink="/Profile">{{datauser[indexF].first_name}}
-                                                {{datauser[indexF].last_name}}</a></p>
+                                                style="width: 50px; height: 50px; margin-right:10px ;"><a>{{viraltag.tag_name}}</a></p>
                                     </div>
                                 </li>
                             </ul>
