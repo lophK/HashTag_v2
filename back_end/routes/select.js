@@ -140,13 +140,48 @@ FROM
   router.post('/viral_Tag', function(req, res, next) {
    
     const { email} = req.body;
-    var GRAB_follow = ` SELECT tag_name , tag_img ,
+    let sql = ` SELECT tag_name , tag_img ,
       COUNT(*) AS viral
   FROM tag t
   JOIN post p ON p.tag_id = t.tag_id
 
   GROUP BY t.tag_id
   ORDER BY viral DESC, t.tag_name DESC`;
+  sql = db.format(sql, [
+    email 
+]);
+    db.query(sql, (err, result) => {
+      if (err) {
+        res.json({message:"Error"})
+      } 
+      else if (result) {
+        var user = result
+       console.log(user[0])
+        res.send(user)
+      }
+      })
+  });
+  router.post('/select_com_by_post', function(req, res, next) {
+   
+    const { email} = req.body;
+    var GRAB_follow = `SELECT
+    db_loph.account_user.user_img, 
+    db_loph.account_user.first_name, 
+    db_loph.post.post_id, 
+    db_loph.account_user.email, 
+    db_loph.comment.com_description
+  FROM
+    db_loph.post
+    INNER JOIN
+    db_loph.comment
+    ON 
+      db_loph.post.post_id = db_loph.comment.post_id,
+    db_loph.account_user
+  WHERE
+    db_loph.post.post_id = db_loph.comment.post_id AND
+    db_loph.post.email_ac = db_loph.comment.email_com AND
+    db_loph.comment.email_com = db_loph.account_user.email AND
+    db_loph.account_user.email = ?`;
     db.query(GRAB_follow, email, (err, result) => {
       if (err) {
         res.json({message:"Error"})
