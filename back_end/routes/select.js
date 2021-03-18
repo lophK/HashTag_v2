@@ -192,7 +192,7 @@ FROM
       } 
       else if (result) {
         var user = result
-       console.log(user[0])
+       //console.log(user[0])
         res.send(user)
       }
       })
