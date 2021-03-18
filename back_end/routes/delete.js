@@ -27,4 +27,26 @@ router.post('/del_ac', function (req, res, next) {
 
 
 })
+router.post('/comment-del', async function  (req, res, next) {
+  //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
+ 
+      const {com_id} = req.body;
+ // const password = Password.hash(plainTextPassword);
+          let sql = 'DELETE FROM comment where com_id = ?';
+      
+          sql = db.format(sql, [
+            com_id
+          ]);
+          db.query(sql, (error, results, fields) => {
+              if (error) throw error;
+              if (results.affectedRows > 0) {
+                  res.status(200).send(true);
+              } else {
+                  res.status(200).send(false);
+              }
+          });
+      
+  
+
+})
 module.exports = router;

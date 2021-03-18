@@ -128,6 +128,28 @@ router.post('/edit_ac2', function (req, res,next) {
         });
 
 });
+router.post('/comment-edit', async function  (req, res, next) {
+    //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
+   
+        const {post_id,com_description,com_time} = req.body;
+   // const password = Password.hash(plainTextPassword);
+            let sql = 'update  comment  com_description=?,com_time=? where post_id = ?';
+        
+            sql = db.format(sql, [
+                com_description,com_time,post_id  
+            ]);
+            db.query(sql, (error, results, fields) => {
+                if (error) throw error;
+                if (results.affectedRows > 0) {
+                    res.status(200).send(true);
+                } else {
+                    res.status(200).send(false);
+                }
+            });
+        
+    
+
+})
 
 
 module.exports = router;

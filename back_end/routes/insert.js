@@ -222,12 +222,12 @@ router.post('/Follow', async function  (req, res, next) {
 router.post('/comment-post', async function  (req, res, next) {
     //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
    
-        const {user_epost_id,com_description,com_time} = req.body;
+        const {post_id,com_description,com_time} = req.body;
    // const password = Password.hash(plainTextPassword);
             let sql = 'insert into comment (post_id,com_description,com_time)' +'values(?, ?,?)';
         
             sql = db.format(sql, [
-                user_epost_id  ,com_description,com_time
+                post_id  ,com_description,com_time
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;
@@ -241,6 +241,8 @@ router.post('/comment-post', async function  (req, res, next) {
     
 
 })
+
+
 router.post('/upload_image',upload.single('file'), async (req, res) => {
    //console.log(req.body);
                         const po_id=req.body.post_id;
