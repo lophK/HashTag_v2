@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
   datauser:any = []
   Lcout: any = 0
   viraltag: any
+  likec: any
     showDialog() {
         this.display = true;
         console.log(this.display)
@@ -79,6 +80,7 @@ export class HomeComponent implements OnInit {
     this.getFollow();
     this.getTagAll1();
     this.getViral();
+    this.getlike();
     if(localStorage.getItem('token') == null){
       this.router_.navigateByUrl("/");
     }
@@ -324,6 +326,21 @@ export class HomeComponent implements OnInit {
       this.viraltag = JSON.parse(userx);
       console.log("viral_tag")
       console.log(this.viraltag)
+    } 
+    );
+  }
+
+  async getlike(){
+    let json  ={email : localStorage.getItem('email'), tag_name : this.Tagname, tag_description : this.tag_description};
+    console.log(json);
+    console.log(localStorage.getItem('email'));
+    console.log(json);
+    await this.http.post('http://localhost:3120/insert/show_ac_like',(json)).subscribe(response=>{
+      //location.reload();
+      let userx = JSON.stringify(response);
+      this.likec = JSON.parse(userx);
+      console.log("likec")
+      console.log(this.likec)
     } 
     );
   }

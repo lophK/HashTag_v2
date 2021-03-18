@@ -63,8 +63,8 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 text-center">
-                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12"
+            <div class="col-md-6 ">
+                <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12 text-center"
                     style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
                     <h2 style="color: white;">Post</h2>
                 </div>
@@ -90,7 +90,7 @@
                                             </div>
                                         </div>
                                         <h6 style="color: white !important;" style="margin-left: 15px;">
-                                            <fa-icon [icon]="like"></fa-icon> {{Lcout}}
+                                            <fa-icon [icon]="like"></fa-icon> {{likec[ip].amount}}
                                         </h6>
                                         <div class="row" style="margin: 15px;">
                                             <div class="col-md-12 border-top" style="border-color: #202020 !important;">
@@ -147,7 +147,7 @@
                 </div>
                 <div class="blog-comment bg-white shadow rounded overflow-hidden col-md-12 text-center"
                     style="margin-top: 25px; margin-bottom: 25px; background-color: #404040 !important;">
-                    <h2 style="color: white;">TAG Viral</h2>
+                    <h2 style="color: white;">Viral Tag</h2>
                 </div>
                 <div class="row" *ngFor="let viraltag of this.viraltag; let tag = index"><br>
                     <div class="col-md-12 ">
