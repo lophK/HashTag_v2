@@ -63,10 +63,12 @@ export class HomeComponent implements OnInit {
         console.log(this.display)
     }
 
-  likeCoute(){
-    this.Lcout = this.Lcout+1;
-    console.log(this.Lcout)
-    return this.Lcout;
+  async likeCoute(id: any){
+    let json  ={post_id : id ,email_like : localStorage.getItem('email')};
+    await this.http.post('http://localhost:3120/insert/like_',(json)).subscribe(response=>{
+      location.reload();
+    } 
+    );
   }
 
   test= "http://hashtagbe.comsciproject.com/images/1614295271477.jpg";
@@ -332,9 +334,6 @@ export class HomeComponent implements OnInit {
 
   async getlike(){
     let json  ={email : localStorage.getItem('email'), tag_name : this.Tagname, tag_description : this.tag_description};
-    console.log(json);
-    console.log(localStorage.getItem('email'));
-    console.log(json);
     await this.http.post('http://localhost:3120/insert/show_ac_like',(json)).subscribe(response=>{
       //location.reload();
       let userx = JSON.stringify(response);
