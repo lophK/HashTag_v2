@@ -105,7 +105,7 @@
                                                     </div>
                                                     <div class="col-md-4 text-center">
                                                         <button class="btn brorder-2" style="color: white;"
-                                                            (click)="showDialog()">
+                                                            (click)="showDialog(post[ip].post_id)">
                                                             <fa-icon [icon]="comment"></fa-icon> แสดงความคิดเห็น
                                                         </button>
                                                     </div>
@@ -276,61 +276,6 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="clearfix">
-                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-                                        <div class="post-comments">
-                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
-                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Etiam a sapien odio, sit amet
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-                                        <div class="post-comments">
-                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
-                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Etiam a sapien odio, sit amet
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-                                        <div class="post-comments">
-                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
-                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Etiam a sapien odio, sit amet
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-                                        <div class="post-comments">
-                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
-                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Etiam a sapien odio, sit amet
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-                                        <div class="post-comments">
-                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i
-                                                    class="pull-right"><a href="#"><small>Reply</small></a></i></p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Etiam a sapien odio, sit amet
-                                            </p>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -341,9 +286,9 @@
     </div>
     <ng-template pTemplate="footer">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Comment">
+            <input type="text" class="form-control" placeholder="Comment" [(ngModel)]="com">
             <div class="input-group-append">
-                <button class="btn btn-success" type="submit">
+                <button class="btn btn-success" type="submit" (click)="commentpost()">
                     <fa-icon [icon]="send"></fa-icon> send
                 </button>
             </div>
