@@ -14,7 +14,6 @@ import { faShareAltSquare } from '@fortawesome/free-solid-svg-icons';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
-import { count } from 'console';
 
 @Component({
   selector: 'app-home',
@@ -79,7 +78,20 @@ export class HomeComponent implements OnInit {
 
   async likeCoute(id: any) {
     let json = { post_id: id, email_like: localStorage.getItem('email') };
+    localStorage.setItem(
+      "like"+id, '1',
+    );
     await this.http.post('http://localhost:3120/insert/like_', (json)).subscribe(response => {
+      location.reload();
+    }
+    );
+  }
+  async likeUn(id: any) {
+    let json = { post_id: id, email_like: localStorage.getItem('email') };
+    localStorage.setItem(
+      "like"+id, '0',
+    );
+    await this.http.post('http://localhost:3120/insert/Unlike_', (json)).subscribe(response => {
       location.reload();
     }
     );

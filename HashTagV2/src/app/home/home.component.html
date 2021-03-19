@@ -76,7 +76,7 @@
                                 <li class="clearfix">
                                     <div style="margin-top: 20px;">
                                         <p class="meta" style="color: skyblue !important;"><img
-                                                [src]="convertimg(post[ip].user_img,post[ip].post_id)"
+                                                [src]="convert(post[ip].user_img)"
                                                 (click)="setemail(post[ip].email_ac)" class="rounded-circle" alt=""
                                                 style="width: 50px; height: 50px; margin-right:10px;">Post: <a
                                                 (click)="setemail(post[ip].email_ac)"
@@ -103,6 +103,12 @@
                                                             <fa-icon [icon]="like"></fa-icon> ถูกใจ
                                                         </button>
                                                     </div>
+                                                    <!-- <div class="col-md-4 text-center"  #elseBlock>
+                                                        <button class="btn brorder-2" style="color: white;"
+                                                            (click)="likeCoute([post[ip].post_id])">
+                                                            <fa-icon [icon]="like"></fa-icon> ถูกใจแล้ว
+                                                        </button>
+                                                    </div> -->
                                                     <div class="col-md-4 text-center">
                                                         <button class="btn brorder-2" style="color: white;"
                                                             (click)="showDialog(post[ip].post_id)">
@@ -136,7 +142,7 @@
                             <ul class="comments">
                                 <li class="clearfix">
                                     <div style="margin-top: 20px;">
-                                        <p class="meta2"><img [src]="convertimg(datauser[indexF].user_img)"
+                                        <p class="meta2"><img [src]="convert(datauser[indexF].user_img)"
                                                 class="rounded-circle" alt=""
                                                 style="width: 50px; height: 50px; margin-right:10px ;"><a
                                                 routerLink="/Profile">{{datauser[indexF].first_name}}
