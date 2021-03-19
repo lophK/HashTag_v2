@@ -27,6 +27,8 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use('/images',express.static(__dirname+'/images'));
 app.use('/back_end/images',express.static(__dirname+'/back_end/images'));
 app.use('/back_end/views',express.static(__dirname+'/back_end/views'));
+app.use('/back_end',express.static(__dirname+'/back_end'));
+app.use('/back_end/routes',express.static(__dirname+'/back_end/routes'));
 //app.use('/views',express.static(__dirname+'/views'));
 //var app = express();
 
