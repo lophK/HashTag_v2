@@ -97,13 +97,13 @@
                                         <div class="row" style="margin: 15px;">
                                             <div class="col-md-12 border-top" style="border-color: #202020 !important;">
                                                 <div class="row" style="margin-top: 10px;">
-                                                    <div class="col-md-4 text-center">
+                                                    <div *ngIf="1 == 1" class="col-md-4 text-center">
                                                         <button class="btn brorder-2" style="color: white;"
                                                             (click)="likeCoute([post[ip].post_id])">
                                                             <fa-icon [icon]="like"></fa-icon> ถูกใจ
                                                         </button>
                                                     </div>
-                                                    <!-- <div class="col-md-4 text-center"  #elseBlock>
+                                                    <!-- <div *ngIf="1 == 1" class="col-md-4 text-center"  #elseBlock>
                                                         <button class="btn brorder-2" style="color: white;"
                                                             (click)="likeCoute([post[ip].post_id])">
                                                             <fa-icon [icon]="like"></fa-icon> ถูกใจแล้ว
