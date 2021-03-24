@@ -104,7 +104,7 @@ router.post('/edit_post', function (req, res) {
     //'UPDATE  account_user  SET first_name='+fname+',last_name='+lname+','+'username='+user+',password='+pass+',tel_phone='+tel+',address='+add+',birthday='+bir+' where id='+id+''
     console.log(fname + "   " + lname);
             
-    let sql = 'UPDATE  post  SET tag_id= '+tag_id+', post_detail= '+post_detail+',post_status= '+post_status+`where post_id='`+post_id+`AND email_ac ='`+email_ac+'';
+    let sql = 'UPDATE  post  SET tag_id= '+tag_id+', post_detail= '+post_detail+',post_status= '+post_status+` where post_id='`+post_id+` AND email_ac ='`+email_ac+'';
 
     sql = db.format(sql, [
         tag_id,post_detail,post_status,post_id,email_ac

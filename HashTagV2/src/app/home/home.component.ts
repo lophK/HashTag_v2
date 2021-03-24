@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   dataSelect = 'CAT'
   email: any = localStorage.getItem('email')
   Poststatus: any = "public"
-  tag_id: any = 1;
+  tag_id: any = '1';
   detail = '';
   file_img: any;
   file: any;
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
   commentpost1: any
   count: any = []
   editshow = false;
-  tag_id1 : any = 1;
+  tag_id1 : any = '1';
   Poststatus1 : any
   editpostid : any
   editimage  = false
