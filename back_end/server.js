@@ -22,14 +22,16 @@ var cors = require('cors');
 var pott = process.env.port || 3120;
 var app = require("express")();
 
+// app.set("view engine", "ejs");
+
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use('/images',express.static(__dirname+'/images'));
 app.use('/back_end/images',express.static(__dirname+'/back_end/images'));
-app.use('/back_end/views',express.static(__dirname+'/back_end/views'));
+// app.use('/back_end/views',express.static(__dirname+'/back_end/views'));
 app.use('/back_end',express.static(__dirname+'/back_end'));
 app.use('/back_end/routes',express.static(__dirname+'/back_end/routes'));
-//app.use('/views',express.static(__dirname+'/views'));
+// app.use('/views',express.static(__dirname+'/views'));
 //var app = express();
 
 // app.use(session({
@@ -52,8 +54,7 @@ app.use(function(req, res, next) {
   res.setHeader("Content-Type", "application/json");
   next();
 });
-app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
+
 
 app.get("/", (req, res) => { res.render("index") });
 

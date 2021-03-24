@@ -41,6 +41,7 @@ WHERE
    
     const { email} = req.body;
     var GRAB_post = `SELECT
+    
 	post.email_ac, 
 	post.post_id, 
 	tag.tag_name, 

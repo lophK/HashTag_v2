@@ -425,7 +425,9 @@ export class HomeComponent implements OnInit {
   }
 
   async editpost() {
-    let json = { tag_id: this.tag_id1, post_detail: this.detail1, post_status: this.Poststatus1, post_id: this.editpostid, email_ac: this.email}
+    let JWT =localStorage.getItem('token');
+    console.log(JWT);
+    let json = { tag_id: this.tag_id1, post_detail: this.detail1, post_status: this.Poststatus1, post_id: this.editpostid, email_ac: this.email,token:JWT}
     console.log(json)
     await this.http.post('http://localhost:3120/edit/edit_post', (json)).subscribe(response => {
       location.reload();

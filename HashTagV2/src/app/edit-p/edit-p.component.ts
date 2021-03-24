@@ -37,12 +37,14 @@ export class EditPComponent implements OnInit {
     }
   }
   async edit(){
-    let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64};
+    let jwt = localStorage.getItem('token');
+    let json  ={first_name : this.first_name, last_name : this.last_name, email : this.email, password : this.password, tel_phone: this.tel_phone, address : this.address, birthday : this.birthday ,user_img:this.base64,token:jwt};
     console.log(this.email);
     console.log(this.password);
     console.log(json);//hashtagbe.comsciproject.com
     //http://hashtagbe@hashtagbe.comsciproject.com/login/auth
-    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/edit/edit_ac2',(json)).subscribe(response=>{
+    //http://hashtagbe@hashtagbe.comsciproject.com/edit/edit_ac2
+    await this.http.post('http://localhost:3120/edit/edit_ac2',(json)).subscribe(response=>{
       //console.log(json);
       let userx = JSON.stringify(response);
       this.data = JSON.parse(userx);
