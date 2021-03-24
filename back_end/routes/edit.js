@@ -98,7 +98,7 @@ router.post('/edit_post', function (req, res) {
     jwt.verify(req.body.token, super_key, (error) => {
         if (error) { res.sendStatus(403); }
         else {
-            
+
             const {tag_id,post_detail,post_status,post_id,email_ac} = req.body;
     //UPDATE  account_user  SET first_name="t", last_name="t",username="t", password="161042", tel_phone="t", address="t", birthday="2000-10-16" where id="1"
     //'UPDATE  account_user  SET first_name='+fname+',last_name='+lname+','+'username='+user+',password='+pass+',tel_phone='+tel+',address='+add+',birthday='+bir+' where id='+id+''

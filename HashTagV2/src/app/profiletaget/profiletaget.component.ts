@@ -17,18 +17,17 @@ export class ProfiletagetComponent implements OnInit {
   day :any
   tel : any
   address : any
+  post : any
   constructor(private sanitizer: DomSanitizer ,private http:HttpClient , private router_:Router) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('emailvisit'))
     this.getData();
+    this.getPost();
   }
 
   async getData(){
     let json  ={email : this.email};
-    console.log('E-mail');
-    console.log(localStorage.getItem('email'));
-    console.log(json);
     await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/users/user-data',(json)).subscribe(response=>{
       //console.log(json);
       let userx = JSON.stringify(response);
@@ -53,6 +52,18 @@ export class ProfiletagetComponent implements OnInit {
     await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/insert/Follow',(json)).subscribe(response=>{
       //console.log(json);
       this.router_.navigateByUrl("/VisitP");
+    } 
+    );
+  }
+
+  async getPost(){
+    let json  ={email : this.email};
+    console.log('E-mail');
+    await this.http.post('http://hashtagbe@hashtagbe.comsciproject.com/select/select_post',(json)).subscribe(response=>{
+      //console.log(json);
+      let userx = JSON.stringify(response);
+      this.post = JSON.parse(userx);
+      console.log(this.post);
     } 
     );
   }

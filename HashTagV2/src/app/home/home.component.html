@@ -76,18 +76,19 @@
                                 <li class="clearfix">
                                     <div style="margin-top: 20px;">
                                         <p class="meta" style="color: skyblue !important;"><img
-                                                [src]="convert(post[ip].user_img)"
-                                                (click)="setemail(post[ip].email_ac)" class="rounded-circle" alt=""
+                                                [src]="convert(post[ip].user_img)" (click)="setemail(post[ip].email_ac)"
+                                                class="rounded-circle" alt=""
                                                 style="width: 50px; height: 50px; margin-right:10px;">Post: <a
                                                 (click)="setemail(post[ip].email_ac)"
                                                 style="color: yellowgreen !important;">{{post[ip].first_name}}
                                                 {{post[ip].last_name}} {{post[ip].post_time}}
-                                                {{post[ip].post_status}}</a></p>
+                                                {{post[ip].post_status}}</a><fa-icon *ngIf="post[ip].email_ac == this.email" class="pi pi-user-edit" style="margin-left: 20px; color: yellow; font-size: 30px;" (click)="edit(post[ip].post_id)"></fa-icon></p>
                                         <div class="row justify-content-md-center">
                                             <div class="col-md text-center">
                                                 <img [src]="post[ip].path" id="Post" width="400" height="400"
                                                     style="margin-top: 10px; margin-bottom: 10px;">
                                             </div>
+                                            <a style="color: white;" (click)="show(post[ip].post_id)"><fa-icon *ngIf="post[ip].email_ac == this.email" class="pi pi-pencil" style="margin-left: 20px; color: yellow;"></fa-icon>แก้ไขโพสต์รูป</a>
                                         </div>
                                         <div>
                                             <h6 style="color: white !important;" style="margin-left: 15px;">
@@ -97,17 +98,17 @@
                                         <div class="row" style="margin: 15px;">
                                             <div class="col-md-12 border-top" style="border-color: #202020 !important;">
                                                 <div class="row" style="margin-top: 10px;">
-                                                    <div *ngIf="1 == 1" class="col-md-4 text-center">
+                                                    <div class="col-md-4 text-center">
                                                         <button class="btn brorder-2" style="color: white;"
-                                                            (click)="likeCoute([post[ip].post_id])">
+                                                            (click)="likeCoute([post[ip].post_id],ip)">
                                                             <fa-icon [icon]="like"></fa-icon> ถูกใจ
                                                         </button>
                                                     </div>
-                                                    <!-- <div *ngIf="1 == 1" class="col-md-4 text-center"  #elseBlock>
+                                                    <!-- <div *ngIf="this.count[ip] == 1;" class="col-md-4 text-center"  #elseBlock>
                                                         <button class="btn brorder-2" style="color: white;"
-                                                            (click)="likeCoute([post[ip].post_id])">
+                                                            (click)="likeUn([post[ip].post_id],ip)">
                                                             <fa-icon [icon]="like"></fa-icon> ถูกใจแล้ว
-                                                        </button>
+                                                        </button> 
                                                     </div> -->
                                                     <div class="col-md-4 text-center">
                                                         <button class="btn brorder-2" style="color: white;"
@@ -116,7 +117,8 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-md-4 text-center">
-                                                        <button class="btn brorder-2 " style="color: white;" (click) = "delcom(post[ip].post_id)">
+                                                        <button class="btn brorder-2 " style="color: white;"
+                                                            (click)="delcom(post[ip].post_id)">
                                                             <fa-icon class="pi pi-trash"></fa-icon> ลบ
                                                         </button>
                                                     </div>
@@ -176,85 +178,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- <div class="row">
-            <div class="col-md-6">
-                <div class="row justify-content-left" *ngFor="let postall of this.post; let ip = index"><br>
-                    <div class="col-md-12 ">
-                        <div class="blog-comment bg-white shadow rounded overflow-hidden"
-                            style="margin-top: 15px; margin-bottom: 25px; background-color: #404040 !important;">
-                            <ul class="comments">
-                                <li class="clearfix">
-                                    <div style="margin-top: 20px;">
-                                        <p class="meta" style="color: skyblue !important;"><img
-                                                [src]="convertimg(post[ip].user_img)"
-                                                (click)="setemail(post[ip].email_ac)" class="rounded-circle" alt=""
-                                                style="width: 50px; height: 50px; margin-right:10px;">Post: <a
-                                                (click)="setemail(post[ip].email_ac)"
-                                                style="color: yellowgreen !important;">{{post[ip].first_name}}
-                                                {{post[ip].last_name}} {{post[ip].post_time}}
-                                                {{post[ip].post_status}}</a></p>
-                                        <div class="row justify-content-md-center">
-                                            <div class="col-md text-center">
-                                                <img [src]="post[ip].path" id="Post" width="400" height="400"
-                                                    style="margin-top: 10px; margin-bottom: 10px;">
-                                            </div>
-                                        </div>
-                                        <h6 style="color: white !important;" style="margin-left: 15px;">
-                                            <fa-icon [icon]="like"></fa-icon> {{Lcout}}
-                                        </h6>
-                                        <div class="row" style="margin: 15px;">
-                                            <div class="col-md-12 border-top" style="border-color: #202020 !important;">
-                                                <div class="row" style="margin-top: 10px;">
-                                                    <div class="col-md-4 text-center">
-                                                        <button class="btn brorder-2" style="color: white;"
-                                                            (click)="likeCoute()">
-                                                            <fa-icon [icon]="like"></fa-icon> ถูกใจ
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-md-4 text-center">
-                                                        <button class="btn brorder-2" style="color: white;"
-                                                            (click)="showDialog()">
-                                                            <fa-icon [icon]="comment"></fa-icon> แสดงความคิดเห็น
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-md-4 text-center">
-                                                        <button class="btn brorder-2 " style="color: white;">
-                                                            <fa-icon [icon]="share"></fa-icon> เเชร์
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row" *ngFor="let followhome of this.datauser; let indexF = index"><br>
-                    <div class="col-md-12 ">
-                        <div class="blog-comment bg-white shadow rounded overflow-hidden"
-                            style="margin-top: 15px; margin-bottom: 15px; background-color: #404040 !important;">
-                            <ul class="comments">
-                                <li class="clearfix">
-                                    <div style="margin-top: 20px;">
-                                        <p class="meta2"><img [src]="convertimg(datauser[indexF].user_img)"
-                                                class="rounded-circle" alt=""
-                                                style="width: 50px; height: 50px; margin-right:10px ;"><a
-                                                routerLink="/Profile">{{datauser[indexF].first_name}}
-                                                {{datauser[indexF].last_name}}</a></p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 
@@ -274,8 +197,9 @@
                                     <li class="clearfix" *ngFor="let comment of this.commentpost1; let cp = index">
                                         <img [src]="convert(commentpost1[cp].user_img)" class="avatar" alt="">
                                         <div class="post-comments">
-                                            <p class="meta">ผู้แสดงความคิดเห็น : <i
-                                                    class="pull-right"><a href="#"><small>{{commentpost1[cp].first_name}} {{commentpost1[cp].last_name}}</small></a></i></p>
+                                            <p class="meta">ผู้แสดงความคิดเห็น : <i class="pull-right"><a
+                                                        href="#"><small>{{commentpost1[cp].first_name}}
+                                                            {{commentpost1[cp].last_name}}</small></a></i></p>
                                             <p>
                                                 {{commentpost1[cp].com_description}}
                                             </p>
@@ -297,9 +221,102 @@
                     <fa-icon [icon]="send"></fa-icon> send
                 </button>
                 <button class="btn btn-warning" type="submit" (click)="display = false">
-                   ยกเลิก
+                    ยกเลิก
                 </button>
             </div>
         </div>
+    </ng-template>
+</p-dialog>
+
+
+<p-dialog header="แก้ไขโพสต์" [(visible)]="editshow" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <div class="blog-comment bg-white shadow rounded overflow-hidden" style="background-color: #404040 !important;" justify-content-center>
+        <hr />
+        <ul class="comments">
+            <li class="clearfix">
+                <img [src]="src2" class="avatar" alt="" width="100" height="100">
+                <div class="post-comments"
+                    style="background-color: #404040 !important; border-color: #404040 !important;">
+                    <p class="meta">แก้ไขโพสต์: <a routerLink="/Profile">{{fname}} {{lname}}</a></p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea class="form-control" rows="5" id="comment" [(ngModel)]="detail1"
+                                style="background-color: dimgray; border-color: #202020 ; color: white; font-size: larger;"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" style="margin-top: 10px;">
+                                <select class="form-control" #dataSelect1 (change)="getSelect1(dataSelect1)"
+                                    style="background-color: dimgrey; color: white;">
+                                    <option *ngFor='let Tag of this.Tag; let j = index' value="{{Tag.tag_id}}">
+                                        #{{Tag.tag_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 10px;">
+                            <select class="form-control" #dataSelect3 (change)="getSelectstatus1(dataSelect3)">
+                                <option value="public">public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-success" type="submit" (click)="editpost()">
+            <fa-icon [icon]="send"></fa-icon> บันทึกการแก้ไข
+        </button>
+        <button class="btn btn-warning" type="submit" (click)="editshow = false">
+            ยกเลิก
+        </button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog header="แก้ไขรูปภาพ" [(visible)]="editimage" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <div class="blog-comment bg-white shadow rounded overflow-hidden" style="background-color: #404040 !important;" justify-content-center>
+        <hr />
+        <ul class="comments">
+            <li class="clearfix">
+                <img [src]="src2" class="avatar" alt="" width="100" height="100">
+                <div class="post-comments"
+                    style="background-color: #404040 !important; border-color: #404040 !important;">
+                    <p class="meta">แก้ไขรูปภาพ: <a routerLink="/Profile">{{fname}} {{lname}}</a></p>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="row justify-content-center">
+                                <div class="col-md text-center" style="margin-bottom: 5px;">
+                                    <img [src]="srcedit" id="Post" width="160" height="160">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="input-group mb">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="inputGroupFile02"
+                                                #imageInput1 (change)="getFile1(imageInput1)"
+                                                style="background-color: dimgrey;">
+                                            <label class="custom-file-label" for="inputGroupFile02">เลือกรูปภาพของคุณ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-success" type="submit" (click)="editpost()">
+            <fa-icon [icon]="send"></fa-icon> บันทึกการแก้ไข
+        </button>
+        <button class="btn btn-warning" type="submit" (click)="editimage = false">
+            ยกเลิก
+        </button>
     </ng-template>
 </p-dialog>

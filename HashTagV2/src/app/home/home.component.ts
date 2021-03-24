@@ -40,10 +40,11 @@ export class HomeComponent implements OnInit {
   base64: any
   src1: any = '../../assets/images/user.png'
   src2: any = '../../assets/images/user.png'
+  srcedit: any = '../../assets/images/user.png'
   dataSelect = 'CAT'
   email: any = localStorage.getItem('email')
   Poststatus: any = "public"
-  tag_id: any;
+  tag_id: any = 1;
   detail = '';
   file_img: any;
   file: any;
@@ -62,34 +63,45 @@ export class HomeComponent implements OnInit {
   com = ""
   likec2 = [5, 4, 5, 4, 1, 4]
   idpost: any
-  commentpost1 : any
+  commentpost1: any
+  count: any = []
+  editshow = false;
+  tag_id1 : any = 1;
+  Poststatus1 : any
+  editpostid : any
+  editimage  = false
+  detail1 = ''
   showDialog(id: any) {
     this.idpost = id;
-    let json = {post_id : this.idpost}
+    let json = { post_id: this.idpost }
     this.http.post('http://localhost:3120/select/select_com_by_post', (json)).subscribe(response => {
-    let userx = JSON.stringify(response);
-    this.commentpost1 = JSON.parse(userx);
-    console.log('commentpost1');
-    console.log(this.commentpost1);
+      let userx = JSON.stringify(response);
+      this.commentpost1 = JSON.parse(userx);
     }
     );
     this.display = true;
   }
 
-  async likeCoute(id: any) {
+  show(){
+    this.editimage = true
+  }
+
+  async likeCoute(id: any, ip: any) {
     let json = { post_id: id, email_like: localStorage.getItem('email') };
+    this.count[ip] = 1
     localStorage.setItem(
-      "like"+id, '1',
+      "like" + id, '1',
     );
     await this.http.post('http://localhost:3120/insert/like_', (json)).subscribe(response => {
       location.reload();
     }
     );
   }
-  async likeUn(id: any) {
+  async likeUn(id: any, ip: any) {
     let json = { post_id: id, email_like: localStorage.getItem('email') };
+    this.count[ip] = 0
     localStorage.setItem(
-      "like"+id, '0',
+      "like" + id, '0',
     );
     await this.http.post('http://localhost:3120/insert/Unlike_', (json)).subscribe(response => {
       location.reload();
@@ -145,8 +157,10 @@ export class HomeComponent implements OnInit {
     await this.http.post('http://localhost:3120/select/select_post_all', (json)).subscribe(response => {
       let userx = JSON.stringify(response);
       this.post = JSON.parse(userx);
-      console.log('post');
-      console.log(this.post);
+      console.log(this.post)
+      for (let index = 0; index < this.post.length; index++) {
+        this.count[index] = 0;
+      }
     }
     );
   }
@@ -192,8 +206,23 @@ export class HomeComponent implements OnInit {
       let json = {
         base64: this.base64
       }
-      console.log(this.base64)
       this.src1 = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
+    };
+
+  }
+  getFile1(imageInput: any) {
+    console.log(imageInput.files[0]);
+    let file = imageInput.files[0];
+    let reader = new FileReader();
+    let file_img = imageInput.files[0];
+    this.file = file_img;
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.base64 = reader.result;
+      let json = {
+        base64: this.base64
+      }
+      this.srcedit = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
     };
 
   }
@@ -250,6 +279,10 @@ export class HomeComponent implements OnInit {
     console.log(this.tag_id);
   }
 
+  getSelect1(data: any) {
+    this.tag_id1 = data.value;
+  }
+
   async getData() {
     let json = { email: localStorage.getItem('email') };
     console.log(json);
@@ -293,6 +326,9 @@ export class HomeComponent implements OnInit {
 
   getSelectstatus(value: any) {
     this.Poststatus = value.value;
+  }
+  getSelectstatus1(value: any) {
+    this.Poststatus1 = value.value;
   }
 
   async getDataUser(email1: any, i: any) {
@@ -365,8 +401,17 @@ export class HomeComponent implements OnInit {
   }
   async commentpost() {
     //http://hashtagbe.comsciproject.com/insert/register_ac
-    let json = {post_id : this.idpost, com_email : this.email, com_description : this.com}
+    let json = { post_id: this.idpost, com_email: this.email, com_description: this.com }
     await this.http.post('http://localhost:3120/insert/comment-post', (json)).subscribe(response => {
+      console.log(json);
+      location.reload();
+    }
+    );
+  }
+
+  async delcom(id: any) {
+    let json = { post_id: id }
+    await this.http.post('http://localhost:3120/delete/del_post', (json)).subscribe(response => {
       console.log(json);
       location.reload();
 
@@ -374,12 +419,17 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  async delcom(id :any) {
-    let json = {post_id : id}
-    await this.http.post('http://localhost:3120/delete/del_post', (json)).subscribe(response => {
-      console.log(json);
-      location.reload();
+  edit(id: any) {
+    this.editshow = true
+    this.editpostid = id;
+  }
 
+  async editpost() {
+    //http://hashtagbe.comsciproject.com/insert/register_ac
+    let json = { tag_id: this.tag_id1, post_detail: this.detail1, post_status: this.Poststatus1, post_id: this.editpostid, email_ac: this.email}
+    console.log(json)
+    await this.http.post('http://localhost:3120/edit/edit_post', (json)).subscribe(response => {
+      location.reload();
     }
     );
   }

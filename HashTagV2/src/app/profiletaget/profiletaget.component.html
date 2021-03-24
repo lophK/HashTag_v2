@@ -40,14 +40,7 @@
                     <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat5.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat3.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat6.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat5.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat3.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-                    <div class="col-lg-4 mb-2 pr-lg-1" routerLink = "/Comment"><img src="../../assets/images/cat6.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div  *ngFor="let posttaget of this.post; let post1 = index" class="col-lg-4 mb-2 pr-lg-1"><img [src]="posttaget.path" alt="" class="img-fluid rounded shadow-sm" width="450px" height="450px" style="margin-top: 10px;"></div>
                 </div>
             </div>
         </div>
