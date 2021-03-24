@@ -99,15 +99,15 @@ router.post('/edit_post', function (req, res) {
         if (error) { res.sendStatus(403); }
         else {
             
-            const {tag_id,post_detail,post_status} = req.body;
+            const {tag_id,post_detail,post_status,post_id,email_ac} = req.body;
     //UPDATE  account_user  SET first_name="t", last_name="t",username="t", password="161042", tel_phone="t", address="t", birthday="2000-10-16" where id="1"
     //'UPDATE  account_user  SET first_name='+fname+',last_name='+lname+','+'username='+user+',password='+pass+',tel_phone='+tel+',address='+add+',birthday='+bir+' where id='+id+''
     console.log(fname + "   " + lname);
     
-    let sql = 'update post set tag_id=? , post_detail= ?,post_status';
+    let sql = 'update post set tag_id=? , post_detail= ?,post_status=? where post_id =? and email_ac = ?';
 
     sql = db.format(sql, [
-        tag_id,post_detail,post_status
+        tag_id,post_detail,post_status,post_id,email_ac
     ]);
     db.query(sql, (error, results, fields) => {
         if (error) throw error;
@@ -179,7 +179,7 @@ router.post('/img-edit',  upload.single('file') ,async   (req, res) =>{
         const {post_id} = req.body;
         let  path = 'http://'+'hashtagbe'+'.comsciproject.com/images/'+req.file.filename;
    // const password = Password.hash(plainTextPassword);
-            let sql = 'update  IMG_file set path=? where post_id = ?';
+            let sql = 'update  IMG_file set path = ? where post_id = ?';
         
             sql = db.format(sql, [
                 path,post_id  
