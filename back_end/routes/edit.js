@@ -7,6 +7,28 @@ var router = express.Router();
 var Password = require("node-php-password");
 let super_key="super ultimate secret key";
 
+
+const multer = require('multer');
+var path = require('path');
+
+// var router = express.Router();
+var Password = require("node-php-password");
+const cons = require('consolidate');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'images/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+})
+const upload = multer({ 
+    storage: storage,
+    fileFilter: function(req, file, cb) {
+        checkFileType(file, cb);
+    }
+});//.single("file");
 function verifyToken (req, res, next) {
     const bearerHeader = req.headers['authorization'];
     if(typeof bearerHeader !== 'undefined') {
@@ -82,7 +104,7 @@ router.post('/edit_post', function (req, res) {
     //'UPDATE  account_user  SET first_name='+fname+',last_name='+lname+','+'username='+user+',password='+pass+',tel_phone='+tel+',address='+add+',birthday='+bir+' where id='+id+''
     console.log(fname + "   " + lname);
     
-    let sql = 'update post set tag_id=? , post_detail- ?,post_status';
+    let sql = 'update post set tag_id=? , post_detail= ?,post_status';
 
     sql = db.format(sql, [
         tag_id,post_detail,post_status
@@ -137,6 +159,30 @@ router.post('/comment-edit', async function  (req, res, next) {
         
             sql = db.format(sql, [
                 com_description,com_time,post_id  
+            ]);
+            db.query(sql, (error, results, fields) => {
+                if (error) throw error;
+                if (results.affectedRows > 0) {
+                    res.status(200).send(true);
+                } else {
+                    res.status(200).send(false);
+                }
+            });
+        
+    
+
+})
+
+router.post('/img-edit',  upload.single('file') ,async   (req, res) =>{
+    //const { email, password: plainTextPassword, first_name, last_name, birthday, tel_phone, address, user_img} = req.body;
+   
+        const {post_id} = req.body;
+        let  path = 'http://'+'hashtagbe'+'.comsciproject.com/images/'+req.file.filename;
+   // const password = Password.hash(plainTextPassword);
+            let sql = 'update  IMG_file set path=? where post_id = ?';
+        
+            sql = db.format(sql, [
+                path,post_id  
             ]);
             db.query(sql, (error, results, fields) => {
                 if (error) throw error;
