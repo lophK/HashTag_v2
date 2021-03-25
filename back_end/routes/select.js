@@ -37,6 +37,37 @@ WHERE
       }
       })
   });
+
+  router.post('/select_post_by_id_email', function(req, res, next) {
+   
+    const { email} = req.body;
+    var GRAB_post = `SELECT
+	db_loph.post.post_detail, 
+	db_loph.IMG_file.path
+FROM
+	db_loph.post
+	INNER JOIN
+	db_loph.IMG_file
+ON 
+db_loph.post.post_id = db_loph.IMG_file.post_id	
+WHERE
+    db_loph.post.email_ac = ? and db_loph.post.post_id
+    ORDER BY db_loph.post.post_time DESC`;
+    //ON 
+        // db_loph.IMG_file.post_id = db_loph.post.post_id
+    db.query(GRAB_post, req.body.email, (err, result) => {
+      if (err) {
+        res.json({message:"Error"})
+      } 
+      else if (result) {
+        var user = result
+        console.log(user);
+       
+        res.send(user)
+      }
+      })
+  });
+
   router.post('/select_post_all', function(req, res, next) {
    
     const { email} = req.body;
