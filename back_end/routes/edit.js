@@ -95,8 +95,11 @@ router.post('/edit_ac', function (req, res) {
 });
 
 
+
+
 router.post('/edit_post', function (req, res) {
-    const { post_id } = req.body;
+    const { tag_id, post_detail, post_status, post_id, email_ac } = req.body;
+
     let body = req.body;
     //console.log(req.body.post_id);
     let select_data = "select * from post where post_id = ?";
@@ -119,8 +122,6 @@ router.post('/edit_post', function (req, res) {
             else {
                 let newdata = mgJson.merge(old_dataRes, body);
                 console.log(newdata);
-                const { tag_id, post_detail, post_status, post_id, email_ac } = req.body;
-
                 let sql = 'UPDATE  post  SET tag_id = ?, post_detail = ? ,post_status=?  where post_id = ? and email_ac = ?';
 
                 sql = db.format(sql, [
@@ -138,8 +139,12 @@ router.post('/edit_post', function (req, res) {
             }
         });
 
-    });
-});
+    })
+}); 
+
+
+
+
 
 router.post('/edit_ac2', function (req, res, next) {
 
