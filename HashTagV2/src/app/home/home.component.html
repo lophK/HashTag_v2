@@ -88,7 +88,7 @@
                                                 <img [src]="post[ip].path" id="Post" width="400" height="400"
                                                     style="margin-top: 10px; margin-bottom: 10px;">
                                             </div>
-                                            <a style="color: white;" (click)="show(post[ip].post_id)"><fa-icon *ngIf="post[ip].email_ac == this.email" class="pi pi-pencil" style="margin-left: 20px; color: yellow;"></fa-icon>แก้ไขโพสต์รูป</a>
+                                            <a *ngIf="post[ip].email_ac == this.email" style="color: white;" (click)="show(post[ip].post_id)"><fa-icon  class="pi pi-pencil" style="margin-left: 20px; color: yellow;"></fa-icon>แก้ไขโพสต์รูป</a>
                                         </div>
                                         <div>
                                             <h6 style="color: white !important;" style="margin-left: 15px;">
